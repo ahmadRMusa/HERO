@@ -13,10 +13,13 @@ namespace HEROCrossFit.Models.Objects
         [Display(Name = "Subscription Name")]
         public virtual string Name { get; set; }
         [Display(Name = "Monthly Price")]
+        [DataType(DataType.Currency)]
         public virtual decimal PricePerMonth { get; set; }
         [Display(Name = "6-Month Price")]
+        [DataType(DataType.Currency)]
         public virtual decimal PricePerHalfYear { get; set; }
         [Display(Name = "Yearly Price")]
+        [DataType(DataType.Currency)]
         public virtual decimal PricePerYear { get; set; }
         public virtual IList<Athlete> Athletes { get; set; }
     }

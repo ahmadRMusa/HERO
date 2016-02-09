@@ -1,0 +1,59 @@
+﻿@model HEROCrossFit.Models.Objects.Subscription
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@Html.Partial("_LeftMenu")
+
+<h2>Create a New Subscription Level</h2>
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Subscription Details</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Create", "Subscriptions", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken();
+                    <fieldset>
+                        <legend>Enter Subscription Details</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PricePerMonth, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.PricePerMonth, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PricePerHalfYear, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.PricePerHalfYear, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PricePerYear, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.PricePerYear, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="Create" class="btn btn-primary">Create Subscription</button>
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Subscriptions", "Index", "Subscriptions")
+</div>
