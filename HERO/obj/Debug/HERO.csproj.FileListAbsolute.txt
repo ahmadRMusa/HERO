@@ -89,3 +89,6 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.Web.Mvc.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.ApplicationDbContext.Initial.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.Initial.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddSubscriptionLengthToAthlete.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddDescToSubscription.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddBdayToAthlete.resources

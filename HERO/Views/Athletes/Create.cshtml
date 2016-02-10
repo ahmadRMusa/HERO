@@ -1,0 +1,91 @@
+﻿@model HERO.Models.AthleteViewModel
+
+@{
+    ViewBag.Title = "Add a New Athlete";
+}
+
+@Html.Partial("_LeftMenu")
+
+<h2>Add a new Athlete</h2>
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Subscription Details</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Create", "Athletes", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken();
+                    <fieldset>
+                        <legend>Enter Athlete Details</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="birthdatepicker">Birth Date</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control datepicker" id="birthdatepicker" value="02/16/12" name="BirthDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Gender</label>
+                            <div class="col-lg-10">
+                                @Html.RadioButton("Gender", "Male")
+                                <label for="Gender">Male</label>
+                                <br />
+                                @Html.RadioButton("Gender", "Female")
+                                <label for="Gender">Female</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Subscription</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("SubscriptionId", null, "Choose Subscription", new { @class = "form-control" } )
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Length</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("SubscriptionLength", null, "Choose Subscription Length", new { @class = "form-control" } )
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="Create" class="btn btn-primary">Add Athlete</button>
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/vendors")
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker();
+            $('.uniform_on').uniform();
+            $('.chzn-select').chosen();
+            $('.textarea-wysihtml5').wysihtml5({
+                stylesheets: [
+                    'vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/stylesheets/bootstrap-wysihtml5/wysiwyg-color.css'
+                ]
+            });
+        });
+    </script>
+}

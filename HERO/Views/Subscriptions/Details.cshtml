@@ -1,4 +1,4 @@
-﻿@model HEROCrossFit.Models.Objects.Subscription
+﻿@model HERO.Models.Objects.Subscription
 
 @{
     ViewBag.Title = "Details";
@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th>Athlete Name <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+                <th>Subscription Length (In Months) <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
            {
                <tr>
                    <td>@(item.FirstName + " " + item.LastName)</td>
+                   <td>@item.SubscriptionLength</td>
                </tr>
            }
         </tbody>

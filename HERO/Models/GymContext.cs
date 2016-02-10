@@ -1,6 +1,6 @@
 namespace HERO.Models
 {
-    using HEROCrossFit.Models.Objects;
+    using HERO.Models.Objects;
     using System;
     using System.Data.Entity;
     using System.Linq;

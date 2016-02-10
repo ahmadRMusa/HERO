@@ -1,17 +1,14 @@
-﻿using HERO.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Web;
 
-namespace HERO.Models.Objects
+namespace HERO.Models
 {
-    public class Athlete
+    public class AthleteViewModel
     {
-        public int Id { get; set; }
         [Required]
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
         [Display(Name = "Last Name")]
@@ -24,6 +21,7 @@ namespace HERO.Models.Objects
         public string Gender { get; set; }
         [Required]
         public int SubscriptionLength { get; set; }
-        public virtual Subscription Subscription { get; set; }
+        [Required]
+        public int SubscriptionId { get; set; }
     }
 }

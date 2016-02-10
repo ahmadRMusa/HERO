@@ -214,7 +214,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Constants\SubscriptionLenghts.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AthletesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
@@ -231,8 +233,21 @@
     <Compile Include="Migrations\GymContext\201602092119102_Initial.Designer.cs">
       <DependentUpon>201602092119102_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602101418386_AddSubscriptionLengthToAthlete.cs" />
+    <Compile Include="Migrations\GymContext\201602101418386_AddSubscriptionLengthToAthlete.Designer.cs">
+      <DependentUpon>201602101418386_AddSubscriptionLengthToAthlete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602101430260_AddDescToSubscription.cs" />
+    <Compile Include="Migrations\GymContext\201602101430260_AddDescToSubscription.Designer.cs">
+      <DependentUpon>201602101430260_AddDescToSubscription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602101536516_AddBdayToAthlete.cs" />
+    <Compile Include="Migrations\GymContext\201602101536516_AddBdayToAthlete.Designer.cs">
+      <DependentUpon>201602101536516_AddBdayToAthlete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AthleteViewModel.cs" />
     <Compile Include="Models\GymContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1781,6 +1796,11 @@
     <Content Include="Views\Subscriptions\Index.cshtml" />
     <Content Include="Views\Subscriptions\Create.cshtml" />
     <Content Include="Views\Subscriptions\Details.cshtml" />
+    <Content Include="Views\Athletes\Create.cshtml" />
+    <Content Include="Views\Athletes\Delete.cshtml" />
+    <Content Include="Views\Athletes\Details.cshtml" />
+    <Content Include="Views\Athletes\Edit.cshtml" />
+    <Content Include="Views\Athletes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1799,6 +1819,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602092119102_Initial.resx">
       <DependentUpon>201602092119102_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602101418386_AddSubscriptionLengthToAthlete.resx">
+      <DependentUpon>201602101418386_AddSubscriptionLengthToAthlete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602101430260_AddDescToSubscription.resx">
+      <DependentUpon>201602101430260_AddDescToSubscription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602101536516_AddBdayToAthlete.resx">
+      <DependentUpon>201602101536516_AddBdayToAthlete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

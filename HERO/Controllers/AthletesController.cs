@@ -8,110 +8,132 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HERO.Models;
+using HERO.Constants;
 using HERO.Models.Objects;
 
 namespace HERO.Controllers
 {
-    // [Authorize(Roles = "Admin, Coach")]
-    public class SubscriptionsController : Controller
+    public class AthletesController : Controller
     {
-        // GET: Subscriptions
+        // GET: Athletes
         public async Task<ActionResult> Index(GymContext db)
         {
-            return View(await db.Subscriptions.ToListAsync());
+            return View(await db.Athletes.ToListAsync());
         }
 
-        // GET: Subscriptions/Details/5
+        // GET: Athletes/Details/5
         public async Task<ActionResult> Details(GymContext db, int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
-            if (subscription == null)
+            Athlete athlete = await db.Athletes.FindAsync(id);
+            if (athlete == null)
             {
                 return HttpNotFound();
             }
-            return View(subscription);
+            return View(athlete);
         }
 
-        // GET: Subscriptions/Create
-        public ActionResult Create()
+        // GET: Athletes/Create
+        public ActionResult Create(GymContext db)
         {
+            List<Subscription> subscriptions = db.Subscriptions.ToList();
+
+            ViewBag.SubscriptionLength = new SelectList(
+                    SubscriptionLenghts.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value } ),
+                    "value",
+                    "text");
+
+            ViewBag.SubscriptionId = new SelectList(
+                    subscriptions.Select(x => new { text = x.Name, value = x.Id } ),
+                    "value",
+                    "text");
+
             return View();
         }
 
-        // POST: Subscriptions/Create
+        // POST: Athletes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(GymContext db, [Bind(Include = "Name,PricePerMonth,PricePerHalfYear,PricePerYear")] Subscription subscription)
+        public async Task<ActionResult> Create(GymContext db, [Bind(Include = "FirstName,LastName,BirthDate,Gender,SubscriptionLength,SubscriptionId")] AthleteViewModel model)
         {
+            Athlete athlete = new Athlete
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Gender = model.Gender,
+                BirthDate = model.BirthDate,
+                Subscription = db.Subscriptions.Single(x => x.Id.Equals(model.SubscriptionId)),
+                SubscriptionLength = model.SubscriptionLength
+            };
+
             if (ModelState.IsValid)
             {
-                db.Subscriptions.Add(subscription);
+                db.Athletes.Add(athlete);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(subscription);
+            return View(athlete);
         }
 
-        // GET: Subscriptions/Edit/5
+        // GET: Athletes/Edit/5
         public async Task<ActionResult> Edit(GymContext db, int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
-            if (subscription == null)
+            Athlete athlete = await db.Athletes.FindAsync(id);
+            if (athlete == null)
             {
                 return HttpNotFound();
             }
-            return View(subscription);
+            return View(athlete);
         }
 
-        // POST: Subscriptions/Edit/5
+        // POST: Athletes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(GymContext db, [Bind(Include = "Id,Name,PricePerMonth,PricePerHalfYear,PricePerYear")] Subscription subscription)
+        public async Task<ActionResult> Edit(GymContext db, [Bind(Include = "Id,FirstName,LastName,Age,Gender,SubscriptionLength")] Athlete athlete)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subscription).State = EntityState.Modified;
+                db.Entry(athlete).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(subscription);
+            return View(athlete);
         }
 
-        // GET: Subscriptions/Delete/5
+        // GET: Athletes/Delete/5
         public async Task<ActionResult> Delete(GymContext db, int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
-            if (subscription == null)
+            Athlete athlete = await db.Athletes.FindAsync(id);
+            if (athlete == null)
             {
                 return HttpNotFound();
             }
-            return View(subscription);
+            return View(athlete);
         }
 
-        // POST: Subscriptions/Delete/5
+        // POST: Athletes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(GymContext db, int id)
         {
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
-            db.Subscriptions.Remove(subscription);
+            Athlete athlete = await db.Athletes.FindAsync(id);
+            db.Athletes.Remove(athlete);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
