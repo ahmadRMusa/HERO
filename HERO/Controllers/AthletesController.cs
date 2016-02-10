@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using HERO.Models;
 using HERO.Constants;
 using HERO.Models.Objects;
+using HERO.Services;
 
 namespace HERO.Controllers
 {
@@ -42,7 +43,7 @@ namespace HERO.Controllers
             List<Subscription> subscriptions = db.Subscriptions.ToList();
 
             ViewBag.SubscriptionLength = new SelectList(
-                    SubscriptionLenghts.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value } ),
+                    ConstantValues.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value } ),
                     "value",
                     "text");
 
@@ -59,12 +60,13 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(GymContext db, [Bind(Include = "FirstName,LastName,BirthDate,Gender,SubscriptionLength,SubscriptionId")] AthleteViewModel model)
+        public async Task<ActionResult> Create(GymContext db, IEmailSender emailSender, [Bind(Include = "FirstName,LastName,BirthDate,Gender,SubscriptionLength,SubscriptionId")] AthleteViewModel model)
         {
             Athlete athlete = new Athlete
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                EmailAddress = model.EmailAddress,
                 Gender = model.Gender,
                 BirthDate = model.BirthDate,
                 Subscription = db.Subscriptions.Single(x => x.Id.Equals(model.SubscriptionId)),
@@ -75,6 +77,13 @@ namespace HERO.Controllers
             {
                 db.Athletes.Add(athlete);
                 await db.SaveChangesAsync();
+
+                /* Send Email */
+                Guid token = Guid.NewGuid();
+                string emailBody = ConstantValues.GetEmailBody(athlete.FirstName, "CrossFit Example", token);
+                await emailSender.SendEmailAsync(athlete.EmailAddress, "Welcome to CrossFit Example!", emailBody);
+                /* **** */
+
                 return RedirectToAction("Index");
             }
 

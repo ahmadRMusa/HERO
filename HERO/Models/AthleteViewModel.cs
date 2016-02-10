@@ -9,10 +9,15 @@ namespace HERO.Models
     public class AthleteViewModel
     {
         [Required]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        public string EmailAddress { get; set; }
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Birth Date")]

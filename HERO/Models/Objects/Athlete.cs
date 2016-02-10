@@ -23,6 +23,10 @@ namespace HERO.Models.Objects
         [Required]
         public string Gender { get; set; }
         [Required]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        public string EmailAddress { get; set; }
+        [Required]
         public int SubscriptionLength { get; set; }
         public virtual Subscription Subscription { get; set; }
     }

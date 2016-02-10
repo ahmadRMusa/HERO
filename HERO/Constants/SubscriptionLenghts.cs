@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HERO.Constants
 {
-    public static class SubscriptionLenghts
+    public static class ConstantValues
     {
         public static Dictionary<string, int> SubscriptionLengthOptions = new Dictionary<string, int>()
         {

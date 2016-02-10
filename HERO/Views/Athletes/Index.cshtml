@@ -20,6 +20,7 @@
                         <tr>
                             <th>@Html.DisplayNameFor(m => m.FirstName)</th>
                             <th>@Html.DisplayNameFor(m => m.LastName)</th>
+                            <th>@Html.DisplayNameFor(m => m.EmailAddress)</th>
                             <th>@Html.DisplayNameFor(m => m.Subscription.Name)</th>
                             <th>@Html.DisplayNameFor(m => m.SubscriptionLength)</th>
                             <th>Actions</th>
@@ -29,6 +30,7 @@
                             <tr>
                                 <td>@Html.DisplayFor(m => item.FirstName)</td>
                                 <td>@Html.DisplayFor(m => item.LastName)</td>
+                                <td>@Html.DisplayFor(m => item.EmailAddress)</td>
                                 <td>@Html.DisplayFor(m => item.Subscription.Name)</td>
                                 <td>@Html.DisplayFor(m => item.SubscriptionLength) Months</td>
                                 <td>

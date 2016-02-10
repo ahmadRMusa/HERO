@@ -11,6 +11,7 @@ namespace HERO.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Models;
+    using Services;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -63,6 +64,7 @@ namespace HERO.App_Start
         {
             kernel.Bind<GymContext>().ToSelf().InRequestScope();
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+            kernel.Bind<IEmailSender>().To<AuthMessageSender>().InRequestScope();
         }
     }
 }
