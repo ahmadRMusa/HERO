@@ -98,3 +98,4 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGrid.SmtpApi.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGridMail.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Net.Http.Formatting.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Net.Http.Formatting.xml
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.CreateAthleteSignupKey.resources

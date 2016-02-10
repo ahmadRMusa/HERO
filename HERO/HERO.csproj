@@ -266,6 +266,10 @@
     <Compile Include="Migrations\GymContext\201602101717333_AthleteAndSubscriptionUpdate.Designer.cs">
       <DependentUpon>201602101717333_AthleteAndSubscriptionUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602102104554_CreateAthleteSignupKey.cs" />
+    <Compile Include="Migrations\GymContext\201602102104554_CreateAthleteSignupKey.Designer.cs">
+      <DependentUpon>201602102104554_CreateAthleteSignupKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
@@ -273,6 +277,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objects\Athlete.cs" />
+    <Compile Include="Models\Objects\AthleteSignupKey.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEmailSender.cs" />
@@ -1854,6 +1859,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602101717333_AthleteAndSubscriptionUpdate.resx">
       <DependentUpon>201602101717333_AthleteAndSubscriptionUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602102104554_CreateAthleteSignupKey.resx">
+      <DependentUpon>201602102104554_CreateAthleteSignupKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

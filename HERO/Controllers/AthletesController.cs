@@ -86,13 +86,7 @@ namespace HERO.Controllers
             {
                 _db.Athletes.Add(athlete);
                 await _db.SaveChangesAsync();
-
-                /* Send Email */
-                Guid token = Guid.NewGuid();
-                string emailBody = ConstantValues.GetEmailBody(athlete.FirstName, "CrossFit Example", token);
-                await _emailSender.SendEmailAsync(athlete.EmailAddress, "Welcome to CrossFit Example!", emailBody);
-                /* **** */
-
+                await BeginAthleteSetup(athlete);
                 return RedirectToAction("Index");
             }
 
@@ -154,6 +148,22 @@ namespace HERO.Controllers
             _db.Athletes.Remove(athlete);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public async Task BeginAthleteSetup(Athlete athlete)
+        {
+            Guid token = Guid.NewGuid();
+            string emailBody = ConstantValues.GetEmailBody(athlete.FirstName, "CrossFit Example", token);
+            await _emailSender.SendEmailAsync(athlete.EmailAddress, "Welcome to CrossFit Example!", emailBody);
+
+            var keys = new AthleteSignupKey
+            {
+                Token = token.ToString(),
+                Athlete = athlete
+            };
+
+            _db.AthleteSignupKeys.Add(keys);
+            await _db.SaveChangesAsync();
         }
 
         protected override void Dispose(bool disposing)

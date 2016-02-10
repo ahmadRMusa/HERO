@@ -27,6 +27,7 @@ namespace HERO.Models.Objects
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
         [Required]
+        [Display(Name = "Length")]
         public int SubscriptionLength { get; set; }
         public virtual Subscription Subscription { get; set; }
     }
