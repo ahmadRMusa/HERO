@@ -29,6 +29,10 @@ namespace HERO.Models.Objects
         [Required]
         [Display(Name = "Length")]
         public int SubscriptionLength { get; set; }
+        [StringLength(500)]
+        public string Biography { get; set; }
+        public bool VerifiedUser { get; set; }
+        public int UserId { get; set; }
         public virtual Subscription Subscription { get; set; }
     }
 }

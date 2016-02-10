@@ -93,6 +93,11 @@ namespace HERO.Controllers
             return View(athlete);
         }
 
+        public ActionResult Signup()
+        {
+            return View();
+        }
+
         // GET: Athletes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

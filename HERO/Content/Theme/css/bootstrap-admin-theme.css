@@ -274,3 +274,29 @@ footer p{
 .bootstrap-admin-login-form input[type="checkbox"]{
     margin-right: 5px;
 }
+
+.center-div {
+    background-color: #fff;
+    border: 1px solid #E5E5E5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.center-div h1 {
+    text-align: center;
+}
+
+.wysihtml5-toolbar {
+    list-style: none;
+}
+
+.wysihtml5-toolbar li {
+    display: inline;
+}
