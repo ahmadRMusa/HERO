@@ -62,6 +62,7 @@ namespace HERO.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<GymContext>().ToSelf().InRequestScope();
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
         }
     }
 }
