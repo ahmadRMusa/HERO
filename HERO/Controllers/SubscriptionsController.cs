@@ -15,20 +15,27 @@ namespace HERO.Controllers
     // [Authorize(Roles = "Admin, Coach")]
     public class SubscriptionsController : Controller
     {
-        // GET: Subscriptions
-        public async Task<ActionResult> Index(GymContext db)
+        private GymContext _db;
+
+        public SubscriptionsController(GymContext db)
         {
-            return View(await db.Subscriptions.ToListAsync());
+            _db = db;
+        }
+
+        // GET: Subscriptions
+        public async Task<ActionResult> Index()
+        {
+            return View(await _db.Subscriptions.ToListAsync());
         }
 
         // GET: Subscriptions/Details/5
-        public async Task<ActionResult> Details(GymContext db, int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
+            Subscription subscription = await _db.Subscriptions.FindAsync(id);
             if (subscription == null)
             {
                 return HttpNotFound();
@@ -47,12 +54,12 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(GymContext db, [Bind(Include = "Name,PricePerMonth,PricePerHalfYear,PricePerYear")] Subscription subscription)
+        public async Task<ActionResult> Create([Bind(Include = "Name,PricePerMonth,PricePerHalfYear,PricePerYear")] Subscription subscription)
         {
             if (ModelState.IsValid)
             {
-                db.Subscriptions.Add(subscription);
-                await db.SaveChangesAsync();
+                _db.Subscriptions.Add(subscription);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -60,13 +67,13 @@ namespace HERO.Controllers
         }
 
         // GET: Subscriptions/Edit/5
-        public async Task<ActionResult> Edit(GymContext db, int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
+            Subscription subscription = await _db.Subscriptions.FindAsync(id);
             if (subscription == null)
             {
                 return HttpNotFound();
@@ -79,25 +86,25 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(GymContext db, [Bind(Include = "Id,Name,PricePerMonth,PricePerHalfYear,PricePerYear")] Subscription subscription)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,PricePerMonth,PricePerHalfYear,PricePerYear")] Subscription subscription)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subscription).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(subscription).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(subscription);
         }
 
         // GET: Subscriptions/Delete/5
-        public async Task<ActionResult> Delete(GymContext db, int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
+            Subscription subscription = await _db.Subscriptions.FindAsync(id);
             if (subscription == null)
             {
                 return HttpNotFound();
@@ -108,20 +115,19 @@ namespace HERO.Controllers
         // POST: Subscriptions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(GymContext db, int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Subscription subscription = await db.Subscriptions.FindAsync(id);
-            db.Subscriptions.Remove(subscription);
-            await db.SaveChangesAsync();
+            Subscription subscription = await _db.Subscriptions.FindAsync(id);
+            _db.Subscriptions.Remove(subscription);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            GymContext db = new GymContext();
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

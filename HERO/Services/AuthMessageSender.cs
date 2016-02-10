@@ -9,12 +9,12 @@ using System.Web;
 
 namespace HERO.Services
 {
-    public class AuthMessageSender : IEmailSender
+    public class SmtpMessageSender : IEmailSender
     {
         public string SendGridUser { get; set; }
         public string SendGridPass { get; set; }
 
-        public AuthMessageSender()
+        public SmtpMessageSender()
         {
             SendGridUser = ConfigurationManager.AppSettings["SendGridUser"];
             SendGridPass = ConfigurationManager.AppSettings["SendGridPass"];

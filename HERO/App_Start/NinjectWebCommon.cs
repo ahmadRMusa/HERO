@@ -64,7 +64,7 @@ namespace HERO.App_Start
         {
             kernel.Bind<GymContext>().ToSelf().InRequestScope();
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
-            kernel.Bind<IEmailSender>().To<AuthMessageSender>().InRequestScope();
+            kernel.Bind<IEmailSender>().To<SmtpMessageSender>().InRequestScope();
         }
     }
 }

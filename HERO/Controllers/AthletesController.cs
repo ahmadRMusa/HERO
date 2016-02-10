@@ -16,20 +16,29 @@ namespace HERO.Controllers
 {
     public class AthletesController : Controller
     {
-        // GET: Athletes
-        public async Task<ActionResult> Index(GymContext db)
+        private GymContext _db;
+        private IEmailSender _emailSender;
+
+        public AthletesController(GymContext db, IEmailSender emailSender)
         {
-            return View(await db.Athletes.ToListAsync());
+            _db = db;
+            _emailSender = emailSender;
+        }
+
+        // GET: Athletes
+        public async Task<ActionResult> Index()
+        {
+            return View(await _db.Athletes.ToListAsync());
         }
 
         // GET: Athletes/Details/5
-        public async Task<ActionResult> Details(GymContext db, int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Athlete athlete = await db.Athletes.FindAsync(id);
+            Athlete athlete = await _db.Athletes.FindAsync(id);
             if (athlete == null)
             {
                 return HttpNotFound();
@@ -38,9 +47,9 @@ namespace HERO.Controllers
         }
 
         // GET: Athletes/Create
-        public ActionResult Create(GymContext db)
+        public ActionResult Create()
         {
-            List<Subscription> subscriptions = db.Subscriptions.ToList();
+            List<Subscription> subscriptions = _db.Subscriptions.ToList();
 
             ViewBag.SubscriptionLength = new SelectList(
                     ConstantValues.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value } ),
@@ -60,7 +69,7 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(GymContext db, IEmailSender emailSender, [Bind(Include = "FirstName,LastName,BirthDate,Gender,SubscriptionLength,SubscriptionId")] AthleteViewModel model)
+        public async Task<ActionResult> Create([Bind(Include = "FirstName,LastName,EmailAddress,BirthDate,Gender,SubscriptionLength,SubscriptionId")] AthleteViewModel model)
         {
             Athlete athlete = new Athlete
             {
@@ -69,19 +78,19 @@ namespace HERO.Controllers
                 EmailAddress = model.EmailAddress,
                 Gender = model.Gender,
                 BirthDate = model.BirthDate,
-                Subscription = db.Subscriptions.Single(x => x.Id.Equals(model.SubscriptionId)),
+                Subscription = _db.Subscriptions.Single(x => x.Id.Equals(model.SubscriptionId)),
                 SubscriptionLength = model.SubscriptionLength
             };
 
             if (ModelState.IsValid)
             {
-                db.Athletes.Add(athlete);
-                await db.SaveChangesAsync();
+                _db.Athletes.Add(athlete);
+                await _db.SaveChangesAsync();
 
                 /* Send Email */
                 Guid token = Guid.NewGuid();
                 string emailBody = ConstantValues.GetEmailBody(athlete.FirstName, "CrossFit Example", token);
-                await emailSender.SendEmailAsync(athlete.EmailAddress, "Welcome to CrossFit Example!", emailBody);
+                await _emailSender.SendEmailAsync(athlete.EmailAddress, "Welcome to CrossFit Example!", emailBody);
                 /* **** */
 
                 return RedirectToAction("Index");
@@ -91,13 +100,13 @@ namespace HERO.Controllers
         }
 
         // GET: Athletes/Edit/5
-        public async Task<ActionResult> Edit(GymContext db, int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Athlete athlete = await db.Athletes.FindAsync(id);
+            Athlete athlete = await _db.Athletes.FindAsync(id);
             if (athlete == null)
             {
                 return HttpNotFound();
@@ -110,25 +119,25 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(GymContext db, [Bind(Include = "Id,FirstName,LastName,Age,Gender,SubscriptionLength")] Athlete athlete)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,Age,Gender,SubscriptionLength")] Athlete athlete)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(athlete).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(athlete).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(athlete);
         }
 
         // GET: Athletes/Delete/5
-        public async Task<ActionResult> Delete(GymContext db, int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Athlete athlete = await db.Athletes.FindAsync(id);
+            Athlete athlete = await _db.Athletes.FindAsync(id);
             if (athlete == null)
             {
                 return HttpNotFound();
@@ -139,20 +148,19 @@ namespace HERO.Controllers
         // POST: Athletes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(GymContext db, int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Athlete athlete = await db.Athletes.FindAsync(id);
-            db.Athletes.Remove(athlete);
-            await db.SaveChangesAsync();
+            Athlete athlete = await _db.Athletes.FindAsync(id);
+            _db.Athletes.Remove(athlete);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            GymContext db = new GymContext();
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

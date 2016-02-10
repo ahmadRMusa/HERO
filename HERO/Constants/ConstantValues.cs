@@ -16,7 +16,7 @@ namespace HERO.Constants
 
         public static string GetEmailBody(string name, string gym, Guid token)
         {
-            return String.Format("<h1>Welcome to {0}</h1>{1}, thanks for signing up for a HERO CrossFit account! To set up your account details, <a href=\"www.google.com/{3}\">please click here</a>.</p>", gym, name, token.ToString());
+            return String.Format("<h1>Welcome to {0}</h1><p>Hey there {1}!</p><p>Thanks for signing up for a HERO CrossFit account! To set up your account details, <a href=\"www.google.com/{2}\">please click here</a>.</p>", gym, name, token.ToString());
         }
     }
 }
