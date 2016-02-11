@@ -180,13 +180,14 @@ namespace HERO.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AthleteInfoId = key.Athlete.Id };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
-                Athlete athlete = _db.Athletes.Single(a => a.Id.Equals(key.Athlete.Id));
-                athlete.ApplicationUserId = user.Id;
-                athlete.VerifiedUser = true;
-                await _db.SaveChangesAsync();
 
                 if (result.Succeeded)
                 {
+                    Athlete athlete = _db.Athletes.Single(a => a.Id.Equals(key.Athlete.Id));
+                    athlete.ApplicationUserId = user.Id;
+                    athlete.VerifiedUser = true;
+                    await _db.SaveChangesAsync();
+
                     if (model.AccountType == "Admin") await UserManager.AddToRoleAsync(user.Id, "Admin");
                     else await UserManager.AddToRoleAsync(user.Id, "Athlete");
 

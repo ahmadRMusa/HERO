@@ -13,6 +13,7 @@ namespace HERO.App_Start
     using Models;
     using Services;
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -63,10 +64,16 @@ namespace HERO.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            // DB Contexts
             kernel.Bind<GymContext>().ToSelf().InRequestScope();
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+
+            // Servies
             kernel.Bind<IEmailSender>().To<SmtpMessageSender>().InRequestScope();
-            kernel.Bind<UserManager<ApplicationUser>>().ToSelf().InRequestScope();
+
+            // Identity
+            kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>().InRequestScope().WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
+            kernel.Bind<UserManager<ApplicationUser>>().ToSelf().InRequestScope().WithConstructorArgument("store", kernel.Get<IUserStore<ApplicationUser>>());
         }
     }
 }

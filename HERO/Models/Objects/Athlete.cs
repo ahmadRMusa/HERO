@@ -31,6 +31,7 @@ namespace HERO.Models.Objects
         public int SubscriptionLength { get; set; }
         [StringLength(500)]
         public string Biography { get; set; }
+        [Display(Name = "Verified")]
         public bool VerifiedUser { get; set; }
         public string ApplicationUserId { get; set; }
         [Required]

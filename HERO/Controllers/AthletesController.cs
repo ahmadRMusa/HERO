@@ -137,6 +137,7 @@ namespace HERO.Controllers
 
             Athlete athlete = await _db.Athletes.FindAsync(id);
             var user = await _userManager.FindByIdAsync(athlete.ApplicationUserId);
+            await _userManager.DeleteAsync(user);
 
             if (athlete == null)
             {
