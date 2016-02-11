@@ -99,4 +99,5 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGridMail.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Net.Http.Formatting.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Net.Http.Formatting.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.CreateAthleteSignupKey.resources
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csprojResolveAssemblyReference.cache
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedAthleteInheretence.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.ApplicationDbContext.UserAthleteInfoId.resources

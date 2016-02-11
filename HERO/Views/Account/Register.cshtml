@@ -1,41 +1,44 @@
 ﻿@model HERO.Models.RegisterViewModel
+
 @{
-    ViewBag.Title = "Register for HERO";
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Landing.cshtml";
 }
 
-<div class="container center-div">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "register-form", role = "form" }))
+<div class="row">
+    <div class="alert alert-info">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        Press enter key or click the Submit button
+    </div>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "bootstrap-admin-login-form" }))
     {
         @Html.AntiForgeryToken()
-        <h1>Complete Your Registration</h1>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.ValidationSummary(true)
+
+        <h1>Register</h1>
         <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
+            <input class="form-control" type="text" name="Email" value="@ViewBag.Email">
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
+            <input class="form-control" type="password" name="Password" placeholder="Password">
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
+            <input class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Your Password">
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
-            </div>
-        </div>
+        <button class="btn btn-lg btn-primary" type="submit">Register</button>
     }
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            // Setting focus
+            $('input[name="UserName"]').focus();
+            // Setting width of the alert box
+            var formWidth = $('.bootstrap-admin-login-form').innerWidth();
+            var alertPadding = parseInt($('.alert').css('padding'));
+            $('.alert').width(formWidth - 2 * alertPadding);
+        });
+    </script>
 }

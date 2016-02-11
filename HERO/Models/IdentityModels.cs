@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using HERO.Models.Objects;
 
 namespace HERO.Models
 {
@@ -16,6 +17,8 @@ namespace HERO.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public int AthleteInfoId { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

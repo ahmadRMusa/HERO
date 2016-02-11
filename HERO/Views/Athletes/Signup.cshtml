@@ -1,73 +1,47 @@
-﻿@model HERO.Models.Objects.Athlete
+﻿@model HERO.Models.RegisterViewModel
 
 @{
     ViewBag.Title = "Signup";
     Layout = "~/Views/Shared/_Landing.cshtml";
 }
 
-<div class="container center-div">
-    @using (Html.BeginForm("Signup", "Athlete", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<div class="row">
+    <div class="alert alert-info">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        Press enter key or click the Submit button
+    </div>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "bootstrap-admin-login-form" }))
     {
         @Html.AntiForgeryToken()
-        <h1>Complete Your Registration</h1>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.ValidationSummary(true)
+
+        <h1>Register</h1>
         <div class="form-group">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                <input type="text" class="form-control" id="FirstName" name="FirstName"/>
-            </div>
+            <input class="form-control" type="text" name="Email" value="@ViewBag.Email">
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                <input type="text" class="form-control" id="LastName" name="LastName" />
-            </div>
+            <input class="form-control" type="password" name="Password" placeholder="Password">
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.EmailAddress, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                <input type="text" class="form-control" id="EmailAddress" name="EmailAddress" />
-            </div>
+            <input class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Your Password">
         </div>
-        <div class="form-group">
-            <label class="col-lg-2 control-label" for="birthdatepicker">Date of Birth</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control datepicker" id="birthdatepicker" value="02/16/12" name="BirthDate">
-            </div>
+        <div class="form-group" style="display:none">
+            <input type="text" name="SignupToken" value="@ViewBag.Token"/>
         </div>
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Gender</label>
-            <div class="col-lg-10">
-                @Html.RadioButton("Gender", "Male")
-                <label for="Gender">Male</label>
-                <br />
-                @Html.RadioButton("Gender", "Female")
-                <label for="Gender">Female</label>
-            </div>
-        </div>
-        <hr />
-        <div class="form-group">
-            <label class="col-lg-2 control-label" for="textarea-wysihtml5">Biography</label>
-            <div class="col-lg-10">
-                <textarea id="textarea-wysihtml5" class="form-control textarea-wysihtml5" placeholder="Enter text..." style="width: 100%; height: 200px"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
-            </div>
-        </div>
+        <button class="btn btn-lg btn-primary" type="submit">Register</button>
     }
 </div>
 
-@section scripts {
-    @Scripts.Render("~/bundles/vendors")
+@section scripts
+{
     <script type="text/javascript">
         $(function () {
-            $('.datepicker').datepicker();
-            $('.uniform_on').uniform();
-            $('.chzn-select').chosen();
+            // Setting focus
+            $('input[name="UserName"]').focus();
+            // Setting width of the alert box
+            var formWidth = $('.bootstrap-admin-login-form').innerWidth();
+            var alertPadding = parseInt($('.alert').css('padding'));
+            $('.alert').width(formWidth - 2 * alertPadding);
         });
     </script>
 }

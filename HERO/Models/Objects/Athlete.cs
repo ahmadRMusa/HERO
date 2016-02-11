@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace HERO.Models.Objects
 {
-    public class Athlete
+    public class Athlete 
     {
-        public int Id { get; set; }
+        public int Id { get; set;}
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -32,7 +32,8 @@ namespace HERO.Models.Objects
         [StringLength(500)]
         public string Biography { get; set; }
         public bool VerifiedUser { get; set; }
-        public int UserId { get; set; }
+        public string ApplicationUserId { get; set; }
+        [Required]
         public virtual Subscription Subscription { get; set; }
     }
 }

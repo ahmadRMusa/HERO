@@ -93,8 +93,11 @@ namespace HERO.Controllers
             return View(athlete);
         }
 
-        public ActionResult Signup()
+        public ActionResult Signup(string token)
         {
+            AthleteSignupKey key = _db.AthleteSignupKeys.Include(m => m.Athlete).Single(t => t.Token.Equals(token));
+            ViewBag.Email = key.Athlete.EmailAddress;
+            ViewBag.Token = token;
             return View();
         }
 

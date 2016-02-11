@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HERO.Models;
+using HERO.Models.Objects;
 
 namespace HERO.Controllers
 {
@@ -17,9 +18,11 @@ namespace HERO.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private GymContext _db;
 
-        public AccountController()
+        public AccountController(GymContext db)
         {
+            _db = db;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -151,7 +154,8 @@ namespace HERO.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                AthleteSignupKey key = _db.AthleteSignupKeys.Include("Athlete").Single(x => x.Token.Equals(model.SignupToken));
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AthleteInfoId = key.Athlete.Id };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
