@@ -34,7 +34,8 @@
                                 <td>@Html.DisplayFor(m => item.Subscription.Name)</td>
                                 <td>@Html.DisplayFor(m => item.SubscriptionLength) Months</td>
                                 <td>
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
+                                    @Html.ActionLink("Manage", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
                                 </td>
                             </tr>
                         }
@@ -44,4 +45,4 @@
         </div>
     </div>
 </div>
-<button class="btn btn-lg btn-primary">Add an Athlete</button>
+@Html.ActionLink("Add an Athlete", "Create", "Athletes", new { @class = "btn btn-lg btn-primary" } )

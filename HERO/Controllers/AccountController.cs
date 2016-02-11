@@ -21,16 +21,15 @@ namespace HERO.Controllers
         private GymContext _db;
 
 
-        public AccountController()
+        public AccountController(GymContext db)
         {
-
+            _db = db;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, GymContext db)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            _db = db;
         }
 
         public ApplicationSignInManager SignInManager
@@ -54,6 +53,18 @@ namespace HERO.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        public GymContext GymContext
+        {
+            get
+            {
+                return _db ?? new GymContext();
+            }
+            private set
+            {
+                _db = value;
             }
         }
 
@@ -147,6 +158,15 @@ namespace HERO.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult AthleteSignup(string token)
+        {
+            AthleteSignupKey key = _db.AthleteSignupKeys.Include("Athlete").Single(t => t.Token.Equals(token));
+            ViewBag.Email = key.Athlete.EmailAddress;
+            ViewBag.Token = token;
+            return View();
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -159,12 +179,17 @@ namespace HERO.Controllers
                 AthleteSignupKey key = _db.AthleteSignupKeys.Include("Athlete").Single(x => x.Token.Equals(model.SignupToken));
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AthleteInfoId = key.Athlete.Id };
 
-                if (model.AccountType == "Admin") _userManager.AddToRole(user.Id, "Admin");
-                else _userManager.AddToRole(user.Id, "Athlete");
-
                 var result = await UserManager.CreateAsync(user, model.Password);
+                Athlete athlete = _db.Athletes.Single(a => a.Id.Equals(key.Athlete.Id));
+                athlete.ApplicationUserId = user.Id;
+                athlete.VerifiedUser = true;
+                await _db.SaveChangesAsync();
+
                 if (result.Succeeded)
                 {
+                    if (model.AccountType == "Admin") await UserManager.AddToRoleAsync(user.Id, "Admin");
+                    else await UserManager.AddToRoleAsync(user.Id, "Athlete");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -179,7 +204,8 @@ namespace HERO.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            if (model.AccountType != null) return View(model);
+            else return RedirectToAction("AthleteSignup", new { token = model.SignupToken } );
         }
 
         //

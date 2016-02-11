@@ -32,7 +32,7 @@ namespace HERO.Migrations.ApplicationDbContext
             //
 
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            string[] roleNames = { "Admin", "Coach", "Athlete" };
+            string[] roleNames = { "Admin", "Athlete" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)

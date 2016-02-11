@@ -7,23 +7,25 @@
 
 @Html.Partial("_LeftMenu")
 
-<h2>Subscription Enrollment</h2>
-<p>Enrollment details for <b>@Model.Name</b>.</p>
+<h2>Manage "@Model.Name"</h2>
+@Html.ActionLink("Edit Subscription", "Edit", "Subscription", new { id = Model.Id }, new { @class = "btn btn-sm btn-default" })
+@Html.ActionLink("Delete Subscription", "Delete", "Subscription", new { id = Model.Id }, new { @class = "btn btn-sm btn-default" } )
 <hr />
 <div class="col-lg-10">
+    <p>Enrollment details for <b>@Model.Name</b>.</p>
     <table class="table table-condensed table-hovered sortableTable">
         <thead>
             <tr>
                 <th>Athlete Name <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-                <th>Subscription Length (In Months) <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+                <th>Subscription Length <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
             </tr>
         </thead>
         <tbody>
            @foreach(var item in Model.Athletes)
            {
                <tr>
-                   <td>@(item.FirstName + " " + item.LastName)</td>
-                   <td>@item.SubscriptionLength</td>
+                   <td>@Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { controller = "Athletes", id = item.Id } )</td>
+                   <td>@(item.SubscriptionLength + " Months")</td>
                </tr>
            }
         </tbody>

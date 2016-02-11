@@ -11,18 +11,21 @@ using HERO.Models;
 using HERO.Constants;
 using HERO.Models.Objects;
 using HERO.Services;
+using Microsoft.AspNet.Identity;
 
 namespace HERO.Controllers
 {
     public class AthletesController : Controller
     {
         private GymContext _db;
+        private UserManager<ApplicationUser> _userManager;
         private IEmailSender _emailSender;
 
-        public AthletesController(GymContext db, IEmailSender emailSender)
+        public AthletesController(GymContext db, IEmailSender emailSender, UserManager<ApplicationUser> userManager)
         {
             _db = db;
             _emailSender = emailSender;
+            _userManager = userManager;
         }
 
         // GET: Athletes
@@ -93,14 +96,6 @@ namespace HERO.Controllers
             return View(athlete);
         }
 
-        public ActionResult Signup(string token)
-        {
-            AthleteSignupKey key = _db.AthleteSignupKeys.Include(m => m.Athlete).Single(t => t.Token.Equals(token));
-            ViewBag.Email = key.Athlete.EmailAddress;
-            ViewBag.Token = token;
-            return View();
-        }
-
         // GET: Athletes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -139,7 +134,10 @@ namespace HERO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Athlete athlete = await _db.Athletes.FindAsync(id);
+            var user = await _userManager.FindByIdAsync(athlete.ApplicationUserId);
+
             if (athlete == null)
             {
                 return HttpNotFound();
