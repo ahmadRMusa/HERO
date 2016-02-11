@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HERO.Models;
 using HERO.Models.Objects;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace HERO.Controllers
 {
@@ -183,10 +185,25 @@ namespace HERO.Controllers
 
                 if (result.Succeeded)
                 {
-                    Athlete athlete = _db.Athletes.Single(a => a.Id.Equals(key.Athlete.Id));
+                    Athlete athlete = _db.Athletes.Include("Subscription").Single(a => a.Id.Equals(key.Athlete.Id));
                     athlete.ApplicationUserId = user.Id;
                     athlete.VerifiedUser = true;
-                    await _db.SaveChangesAsync();
+                    try
+                    {
+                        await _db.SaveChangesAsync();
+                    }
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                Trace.TraceInformation("Property: {0} Error: {1}",
+                                                        validationError.PropertyName,
+                                                        validationError.ErrorMessage);
+                            }
+                        }
+                    }
 
                     if (model.AccountType == "Admin") await UserManager.AddToRoleAsync(user.Id, "Admin");
                     else await UserManager.AddToRoleAsync(user.Id, "Athlete");

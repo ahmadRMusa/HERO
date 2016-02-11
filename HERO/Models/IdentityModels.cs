@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using HERO.Models.Objects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HERO.Models
 {
@@ -17,7 +18,7 @@ namespace HERO.Models
             // Add custom user claims here
             return userIdentity;
         }
-
+        [ForeignKey("Athlete")]
         public int AthleteInfoId { get; set; }
     }
 
