@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Signup";
-    Layout = "~/Views/Shared/_Landing.cshtml";
+    Layout = "~/Views/Shared/_CredentialsLayout.cshtml";
 }
 
 <div class="row">
@@ -15,15 +15,18 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
-        <h1>Register</h1>
+        <h1>Add Administrator</h1>
         <div class="form-group">
-            <input class="form-control" type="text" name="Email" value="@ViewBag.Email">
+            <input class="form-control" type="text" name="Email" placeholder="Email">
         </div>
         <div class="form-group">
             <input class="form-control" type="password" name="Password" placeholder="Password">
         </div>
         <div class="form-group">
             <input class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Your Password">
+        </div>
+        <div class="form-group" style="display:none;">
+            <input class="form-control" type="text" name="AccountType" value="Admin">
         </div>
         <button class="btn btn-lg btn-primary" type="submit">Register</button>
     }

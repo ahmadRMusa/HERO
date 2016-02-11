@@ -293,6 +293,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\agency.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1767,10 +1768,14 @@
     <Content Include="Content\Theme\vendors\uniform\www\stylesheets\multiple-themes.scss" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
-    <Content Include="img\jrocket.png" />
+    <Content Include="Scripts\agency.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\cbpAnimatedHeader.js" />
+    <Content Include="Scripts\classie.js" />
+    <Content Include="Scripts\contact_me.js" />
+    <Content Include="Scripts\jqBootstrapValidation.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
@@ -1800,7 +1805,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1824,7 +1828,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Landing.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Subscriptions\Delete.cshtml" />
@@ -1838,6 +1841,8 @@
     <Content Include="Views\Athletes\Edit.cshtml" />
     <Content Include="Views\Athletes\Index.cshtml" />
     <Content Include="Views\Athletes\Signup.cshtml" />
+    <Content Include="Views\Shared\_CredentialsLayout.cshtml" />
+    <Content Include="Views\Shared\_Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

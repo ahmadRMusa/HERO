@@ -20,15 +20,17 @@ namespace HERO.Controllers
         private ApplicationUserManager _userManager;
         private GymContext _db;
 
-        public AccountController(GymContext db)
+
+        public AccountController()
         {
-            _db = db;
+
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, GymContext db)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _db = db;
         }
 
         public ApplicationSignInManager SignInManager
@@ -156,6 +158,10 @@ namespace HERO.Controllers
             {
                 AthleteSignupKey key = _db.AthleteSignupKeys.Include("Athlete").Single(x => x.Token.Equals(model.SignupToken));
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AthleteInfoId = key.Athlete.Id };
+
+                if (model.AccountType == "Admin") _userManager.AddToRole(user.Id, "Admin");
+                else _userManager.AddToRole(user.Id, "Athlete");
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

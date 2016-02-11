@@ -79,8 +79,7 @@ namespace HERO.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
+        public string AccountType { get; set; }
         public string SignupToken { get; set; }
     }
 

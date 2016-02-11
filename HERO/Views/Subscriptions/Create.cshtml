@@ -46,14 +46,10 @@
                         </div>
                         <hr />
                         <button type="submit" value="Create" class="btn btn-primary">Create Subscription</button>
-                        <button type="reset" class="btn btn-default">Cancel</button>
+                        @Html.ActionLink("Cancel", "Index", "Subscriptions", new { @class = "btn btn-default"  } )
                     </fieldset>
                 }
             </div>
         </div>
     </div>
-</div>
-
-<div>
-    @Html.ActionLink("Back to Subscriptions", "Index", "Subscriptions")
 </div>

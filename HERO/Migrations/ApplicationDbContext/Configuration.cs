@@ -2,6 +2,7 @@ namespace HERO.Migrations.ApplicationDbContext
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -41,6 +42,18 @@ namespace HERO.Migrations.ApplicationDbContext
                     roleResult = RoleManager.Create(new IdentityRole(roleName));
                 }
             }
+
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            var user = new ApplicationUser
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = "admin@hero.com",
+                UserName = "admin@hero.com",
+            };
+            userManager.Create(user, "Heroadmin1!");
+            userManager.AddToRole(user.Id, "Admin");
+            context.Users.AddOrUpdate(user);
         }
     }
 }
