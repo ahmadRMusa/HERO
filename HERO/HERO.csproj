@@ -44,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DayPilot.Web.Mvc">
-      <HintPath>..\..\Examples\DayPilotProMvcTrial-8.1.5819\Binary\Mvc5\DayPilot.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -237,8 +234,6 @@
     <Compile Include="Constants\ConstantValues.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AthletesController.cs" />
-    <Compile Include="Controllers\CalendarController.cs" />
-    <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
@@ -287,6 +282,10 @@
     <Compile Include="Migrations\GymContext\201602112119251_AddedClasses.Designer.cs">
       <DependentUpon>201602112119251_AddedClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602112234109_RemovedClass.cs" />
+    <Compile Include="Migrations\GymContext\201602112234109_RemovedClass.Designer.cs">
+      <DependentUpon>201602112234109_RemovedClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
@@ -295,7 +294,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objects\Athlete.cs" />
     <Compile Include="Models\Objects\AthleteSignupKey.cs" />
-    <Compile Include="Models\Objects\Class.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEmailSender.cs" />
@@ -1852,15 +1850,9 @@
     <Content Include="Views\Shared\_CredentialsLayout.cshtml" />
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\Account\AthleteSignup.cshtml" />
-    <Content Include="Views\Classes\Create.cshtml" />
-    <Content Include="Views\Classes\Delete.cshtml" />
-    <Content Include="Views\Classes\Details.cshtml" />
-    <Content Include="Views\Classes\Edit.cshtml" />
-    <Content Include="Views\Classes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Calendar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1900,6 +1892,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602112119251_AddedClasses.resx">
       <DependentUpon>201602112119251_AddedClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602112234109_RemovedClass.resx">
+      <DependentUpon>201602112234109_RemovedClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
