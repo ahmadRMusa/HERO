@@ -12,6 +12,6 @@ namespace Scheduler
     public class Appointment
     {
         public DateTime Time { get; set; }
-        public string Name { get; set; }
+        public string Type { get; set; }
     }
 }

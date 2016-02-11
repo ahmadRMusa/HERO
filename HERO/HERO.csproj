@@ -295,6 +295,7 @@
     <Compile Include="Models\Objects\Athlete.cs" />
     <Compile Include="Models\Objects\AthleteSignupKey.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
+    <Compile Include="Models\Objects\WeeklyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEmailSender.cs" />
     <Compile Include="Services\SmtpMessageSender.cs" />
