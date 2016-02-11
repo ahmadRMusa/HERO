@@ -33,7 +33,6 @@ namespace HERO.Models.Objects
         public string Biography { get; set; }
         [Display(Name = "Verified")]
         public bool VerifiedUser { get; set; }
-        [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         [Required]
         public virtual Subscription Subscription { get; set; }

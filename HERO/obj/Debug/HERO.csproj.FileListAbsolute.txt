@@ -101,3 +101,7 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csprojResolveAssemblyReference.cache
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedClasses.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\DayPilot.Web.Mvc.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\DayPilot.Web.Mvc.xml

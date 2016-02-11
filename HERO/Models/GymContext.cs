@@ -26,6 +26,7 @@ namespace HERO.Models
         public virtual DbSet<Athlete> Athletes { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<AthleteSignupKey> AthleteSignupKeys { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
     }
 
     //public class MyEntity

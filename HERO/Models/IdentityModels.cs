@@ -18,7 +18,6 @@ namespace HERO.Models
             // Add custom user claims here
             return userIdentity;
         }
-        [ForeignKey("Athlete")]
         public int AthleteInfoId { get; set; }
     }
 
