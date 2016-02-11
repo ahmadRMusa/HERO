@@ -1897,6 +1897,12 @@
       <DependentUpon>201602112234109_RemovedClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Scheduler\Scheduler.csproj">
+      <Project>{e5351550-f569-49eb-9fa4-a8aba056aa46}</Project>
+      <Name>Scheduler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

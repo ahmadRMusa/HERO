@@ -1,0 +1,4 @@
+C:\Users\alexm\Documents\Projects\HERO\Scheduler\bin\Debug\Scheduler.dll
+C:\Users\alexm\Documents\Projects\HERO\Scheduler\bin\Debug\Scheduler.pdb
+C:\Users\alexm\Documents\Projects\HERO\Scheduler\obj\Debug\Scheduler.dll
+C:\Users\alexm\Documents\Projects\HERO\Scheduler\obj\Debug\Scheduler.pdb

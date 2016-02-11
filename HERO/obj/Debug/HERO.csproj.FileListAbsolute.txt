@@ -103,3 +103,6 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedClasses.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedClass.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Scheduler.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Scheduler.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csprojResolveAssemblyReference.cache
