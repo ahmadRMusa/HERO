@@ -21,12 +21,11 @@ namespace HERO.Models
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
-
         public virtual DbSet<Athlete> Athletes { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<AthleteSignupKey> AthleteSignupKeys { get; set; }
         public virtual DbSet<WeeklyClass> WeeklyClasses { get; set; }
+        public virtual DbSet<SingleClass> SingleClasses { get; set; }
         public virtual DbSet<Objects.DayOfWeek> DaysOfWeek { get; set; }
     }
 

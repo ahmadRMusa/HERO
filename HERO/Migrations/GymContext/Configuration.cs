@@ -1,6 +1,8 @@
 namespace HERO.Migrations.GymContext
 {
+    using HERO.Models.Objects;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -27,6 +29,22 @@ namespace HERO.Migrations.GymContext
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            List<Models.Objects.DayOfWeek> days = new List<Models.Objects.DayOfWeek>()
+            {
+                new Models.Objects.DayOfWeek { Day = Day.Monday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Day = Day.Tuesday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Day = Day.Wednesday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Day = Day.Thursday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Day = Day.Friday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Day = Day.Saturday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Day = Day.Sunday, Classes = new List<WeeklyClass>() }
+            };
+
+            foreach(var item in days)
+            {
+                context.DaysOfWeek.AddOrUpdate(item);
+            }
         }
     }
 }

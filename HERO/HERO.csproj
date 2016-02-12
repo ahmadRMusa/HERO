@@ -290,6 +290,10 @@
     <Compile Include="Migrations\GymContext\201602120012419_AddedWeeklyClass.Designer.cs">
       <DependentUpon>201602120012419_AddedWeeklyClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602120216015_AddingSingleClass.cs" />
+    <Compile Include="Migrations\GymContext\201602120216015_AddingSingleClass.Designer.cs">
+      <DependentUpon>201602120216015_AddingSingleClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
@@ -299,6 +303,7 @@
     <Compile Include="Models\Objects\Athlete.cs" />
     <Compile Include="Models\Objects\AthleteSignupKey.cs" />
     <Compile Include="Models\Objects\DayOfWeek.cs" />
+    <Compile Include="Models\Objects\SingleClass.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
     <Compile Include="Models\Objects\WeeklyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1905,6 +1910,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602120012419_AddedWeeklyClass.resx">
       <DependentUpon>201602120012419_AddedWeeklyClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602120216015_AddingSingleClass.resx">
+      <DependentUpon>201602120216015_AddingSingleClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
