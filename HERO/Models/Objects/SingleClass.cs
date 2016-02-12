@@ -10,12 +10,16 @@ namespace HERO.Models.Objects
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Class Duration")]
+        [Display(Name = "Duration")]
         public float Duration { get; set; }
-        [Display(Name = "Max Attendnace")]
+        [Required]
+        [Display(Name = "Type of Class")]
+        public string Type { get; set; }
+        [Display(Name = "Max Attendance")]
         public int MaxAttendance { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Date")]
         public DateTime Date { get; set; }
         [Required]
         public virtual IList<Athlete> Attendance { get; set; }

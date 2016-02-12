@@ -236,7 +236,9 @@
     <Compile Include="Controllers\AthletesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SingleClassesController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
+    <Compile Include="Controllers\WeeklyClassesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -293,6 +295,14 @@
     <Compile Include="Migrations\GymContext\201602120216015_AddingSingleClass.cs" />
     <Compile Include="Migrations\GymContext\201602120216015_AddingSingleClass.Designer.cs">
       <DependentUpon>201602120216015_AddingSingleClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602120231560_ModifiedWeeklyClass.cs" />
+    <Compile Include="Migrations\GymContext\201602120231560_ModifiedWeeklyClass.Designer.cs">
+      <DependentUpon>201602120231560_ModifiedWeeklyClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602120241427_ModifiedSingleClass.cs" />
+    <Compile Include="Migrations\GymContext\201602120241427_ModifiedSingleClass.Designer.cs">
+      <DependentUpon>201602120241427_ModifiedSingleClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1862,6 +1872,16 @@
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\Account\AthleteSignup.cshtml" />
     <Content Include="Views\Home\TestCalendar.cshtml" />
+    <Content Include="Views\WeeklyClasses\Create.cshtml" />
+    <Content Include="Views\WeeklyClasses\Delete.cshtml" />
+    <Content Include="Views\WeeklyClasses\Details.cshtml" />
+    <Content Include="Views\WeeklyClasses\Edit.cshtml" />
+    <Content Include="Views\WeeklyClasses\Index.cshtml" />
+    <Content Include="Views\SingleClasses\Create.cshtml" />
+    <Content Include="Views\SingleClasses\Delete.cshtml" />
+    <Content Include="Views\SingleClasses\Details.cshtml" />
+    <Content Include="Views\SingleClasses\Edit.cshtml" />
+    <Content Include="Views\SingleClasses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1913,6 +1933,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602120216015_AddingSingleClass.resx">
       <DependentUpon>201602120216015_AddingSingleClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602120231560_ModifiedWeeklyClass.resx">
+      <DependentUpon>201602120231560_ModifiedWeeklyClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602120241427_ModifiedSingleClass.resx">
+      <DependentUpon>201602120241427_ModifiedSingleClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

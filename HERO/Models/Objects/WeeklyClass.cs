@@ -7,13 +7,16 @@ using System.Web;
 
 namespace HERO.Models.Objects
 {
-    public class WeeklyClass : WeeklySchedule
+    public class WeeklyClass
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Class Duration")]
+        [Display(Name = "Duration")]
         public float Duration { get; set; }
-        [Display(Name = "Max Attendnace")]
+        [Required]
+        [Display(Name = "Type of Class")]
+        public string Type { get; set; }
+        [Display(Name = "Max Attendance")]
         public int MaxAttendance { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -24,6 +27,7 @@ namespace HERO.Models.Objects
         [Required]
         public virtual IList<Athlete> Attendance { get; set; }
         [Required]
+        [Display(Name = "Class Days")]
         public virtual IList<DayOfWeek> Days { get; set; }
     }
 }

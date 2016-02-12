@@ -108,3 +108,5 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Scheduler.pdb
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csprojResolveAssemblyReference.cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedWeeklyClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddingSingleClass.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ModifiedWeeklyClass.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ModifiedSingleClass.resources
