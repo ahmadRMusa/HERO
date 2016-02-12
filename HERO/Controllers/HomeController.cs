@@ -12,5 +12,10 @@ namespace HERO.Controllers
         {
             return View();
         }
+
+        public ActionResult TestCalendar()
+        {
+            return View();
+        }
     }
 }

@@ -286,6 +286,10 @@
     <Compile Include="Migrations\GymContext\201602112234109_RemovedClass.Designer.cs">
       <DependentUpon>201602112234109_RemovedClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602120012419_AddedWeeklyClass.cs" />
+    <Compile Include="Migrations\GymContext\201602120012419_AddedWeeklyClass.Designer.cs">
+      <DependentUpon>201602120012419_AddedWeeklyClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
@@ -294,6 +298,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objects\Athlete.cs" />
     <Compile Include="Models\Objects\AthleteSignupKey.cs" />
+    <Compile Include="Models\Objects\DayOfWeek.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
     <Compile Include="Models\Objects\WeeklyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1851,6 +1856,7 @@
     <Content Include="Views\Shared\_CredentialsLayout.cshtml" />
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\Account\AthleteSignup.cshtml" />
+    <Content Include="Views\Home\TestCalendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1896,6 +1902,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602112234109_RemovedClass.resx">
       <DependentUpon>201602112234109_RemovedClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602120012419_AddedWeeklyClass.resx">
+      <DependentUpon>201602120012419_AddedWeeklyClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
