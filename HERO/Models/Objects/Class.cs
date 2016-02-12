@@ -24,6 +24,8 @@ namespace HERO.Models.Objects
         public int MaxAttendance { get; set; }
         [Required]
         public virtual IList<Athlete> Attendance { get; set; }
+        [Required]
+        public virtual IList<DayOfWeekModel> DaysOfWeek { get; set; }
         public virtual WeeklyClass WeeklyClass { get; set; }
     }
 }

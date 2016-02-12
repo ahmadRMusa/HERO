@@ -67,16 +67,14 @@ namespace HERO.Controllers
             List<DayOfWeekModel> days = db.DaysOfWeek.Where(d => chosenDays.Contains(d.Day)).ToList();
             weeklyClass.Days = days;
 
+            // Create Classes
             WeeklySchedule weeklySchedule = new WeeklySchedule
             {
                 TimeOfDay = weeklyClass.Time,
                 SchedulingRange = new Period(weeklyClass.StartDate, weeklyClass.EndDate)
             };
-
             weeklySchedule.SetDays(chosenDays);
-
             var schedules = new List<Schedule>() { weeklySchedule };
-
             List<Class> classes = _calendarGenerator.GenerateCalendar(ConstantValues.calendarPeriod, schedules).ToList();
 
             foreach(var item in classes)
@@ -96,6 +94,12 @@ namespace HERO.Controllers
             {
                 db.WeeklyClasses.Add(weeklyClass);
                 db.Classes.AddRange(classes);
+
+                foreach (var day in days)
+                {
+                    day.Classes = classes.Where(x => x.Time.DayOfWeek.Equals(day.Day)).ToList();
+                }
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             } else

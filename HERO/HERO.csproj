@@ -233,6 +233,7 @@
     <Compile Include="Constants\ConstantValues.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AthletesController.cs" />
+    <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
@@ -313,6 +314,10 @@
     <Compile Include="Migrations\GymContext\201602121708433_LastMigrationBeforeCreateTest.cs" />
     <Compile Include="Migrations\GymContext\201602121708433_LastMigrationBeforeCreateTest.Designer.cs">
       <DependentUpon>201602121708433_LastMigrationBeforeCreateTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602121935483_DaysOfWeekToClass.cs" />
+    <Compile Include="Migrations\GymContext\201602121935483_DaysOfWeekToClass.Designer.cs">
+      <DependentUpon>201602121935483_DaysOfWeekToClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1899,6 +1904,11 @@
     <Content Include="Views\WeeklyClasses\Details.cshtml" />
     <Content Include="Views\WeeklyClasses\Edit.cshtml" />
     <Content Include="Views\WeeklyClasses\Index.cshtml" />
+    <Content Include="Views\Classes\Create.cshtml" />
+    <Content Include="Views\Classes\Delete.cshtml" />
+    <Content Include="Views\Classes\Details.cshtml" />
+    <Content Include="Views\Classes\Edit.cshtml" />
+    <Content Include="Views\Classes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1965,6 +1975,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602121708433_LastMigrationBeforeCreateTest.resx">
       <DependentUpon>201602121708433_LastMigrationBeforeCreateTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602121935483_DaysOfWeekToClass.resx">
+      <DependentUpon>201602121935483_DaysOfWeekToClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
