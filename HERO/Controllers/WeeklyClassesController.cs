@@ -38,6 +38,11 @@ namespace HERO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            IEnumerable<string> items = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().Select(d => d.ToString()).ToList();
+
+            ViewBag.Days = new MultiSelectList(items);
+
             WeeklyClass weeklyClass = await db.WeeklyClasses.FindAsync(id);
             if (weeklyClass == null)
             {

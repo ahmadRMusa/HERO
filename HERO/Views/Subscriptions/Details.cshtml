@@ -14,10 +14,51 @@
     @Html.AntiForgeryToken();
     @Html.TextBox("id", Model.Id, new { style = "display:none;" } )
 }
-@Html.ActionLink("Edit Subscription", "Edit", "Subscription", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary" })
-<a href="javascript:document.getElementById('delete-form').submit()" class="btn btn-sm btn-default confirm">Delete</a>
 <hr />
 <div class="col-lg-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Edit @Model.Name</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Edit", "Subscriptions", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                    @Html.AntiForgeryToken();
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PricePerMonth, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.PricePerMonth, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PricePerHalfYear, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.PricePerHalfYear, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PricePerYear, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.PricePerYear, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="Edit" class="btn btn-primary">Save Changes</button>
+                        <a href="javascript:document.getElementById('delete-form').submit()" class="btn btn-default confirm">Delete</a>
+                        @Html.ActionLink("Cancel", "Index", "Subscriptions", new { @class = "btn btn-default" })
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
     <p>Enrollment details for <b>@Model.Name</b>.</p>
     <table class="table table-condensed table-hovered sortableTable">
         <thead>
@@ -27,13 +68,13 @@
             </tr>
         </thead>
         <tbody>
-           @foreach(var item in Model.Athletes)
-           {
-               <tr>
-                   <td>@Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { controller = "Athletes", id = item.Id } )</td>
-                   <td>@(item.SubscriptionLength + " Months")</td>
-               </tr>
-           }
+            @foreach (var item in Model.Athletes)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { controller = "Athletes", id = item.Id })</td>
+                    <td>@(item.SubscriptionLength + " Months")</td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
