@@ -29,16 +29,16 @@ namespace HERO.Migrations.GymContext
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
+             
             List<Models.Objects.DayOfWeek> days = new List<Models.Objects.DayOfWeek>()
             {
-                new Models.Objects.DayOfWeek { Day = Day.Monday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Day = Day.Tuesday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Day = Day.Wednesday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Day = Day.Thursday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Day = Day.Friday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Day = Day.Saturday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Day = Day.Sunday, Classes = new List<WeeklyClass>() }
+                new Models.Objects.DayOfWeek { Id = (int)Day.Monday, Day = Day.Monday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Id = (int)Day.Tuesday, Day = Day.Tuesday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Id = (int)Day.Wednesday, Day = Day.Wednesday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Id = (int)Day.Thursday, Day = Day.Thursday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Id = (int)Day.Friday, Day = Day.Friday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Id = (int)Day.Saturday, Day = Day.Saturday, Classes = new List<WeeklyClass>() },
+                new Models.Objects.DayOfWeek { Id = (int)Day.Sunday, Day = Day.Sunday, Classes = new List<WeeklyClass>() }
             };
 
             foreach(var item in days)

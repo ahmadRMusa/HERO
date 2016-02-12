@@ -25,8 +25,8 @@ namespace HERO.Models
         public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<AthleteSignupKey> AthleteSignupKeys { get; set; }
         public virtual DbSet<WeeklyClass> WeeklyClasses { get; set; }
-        public virtual DbSet<SingleClass> SingleClasses { get; set; }
         public virtual DbSet<Objects.DayOfWeek> DaysOfWeek { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
     }
 
     //public class MyEntity

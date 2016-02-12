@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scheduler;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -45,6 +46,10 @@ namespace HERO.Controllers
         // GET: WeeklyClasses/Create
         public ActionResult Create()
         {
+            IEnumerable<string> items = Enum.GetValues(typeof(Day)).Cast<Day>().Select(d => d.ToString()).ToList();
+
+            ViewBag.Days = new MultiSelectList(items);
+
             return View();
         }
 
@@ -53,8 +58,17 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Duration,MaxAttendance,StartDate,EndDate,SchedulingRange,TimeOfDay,Name")] WeeklyClass weeklyClass)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance,StartDate,EndDate,SelectedDays")] WeeklyClass weeklyClass)
         {
+            List<Day> chosenDays = weeklyClass.SelectedDays.Select(x => (Day)Enum.Parse(typeof(Day), x)).ToList();
+            List<Models.Objects.DayOfWeek> days = db.DaysOfWeek.Where(d => chosenDays.Contains(d.Day)).ToList();
+            weeklyClass.Days = days;
+
+            var weekly = new WeeklySchedule
+            {
+
+            };
+
             if (ModelState.IsValid)
             {
                 db.WeeklyClasses.Add(weeklyClass);

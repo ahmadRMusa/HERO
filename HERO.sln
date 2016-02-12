@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HERO", "HERO\HERO.csproj", "{780629E1-A16A-476E-9025-A75DB3FF45BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler", "Scheduler\Scheduler.csproj", "{E5351550-F569-49EB-9FA4-A8ABA056AA46}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{780629E1-A16A-476E-9025-A75DB3FF45BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{780629E1-A16A-476E-9025-A75DB3FF45BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{780629E1-A16A-476E-9025-A75DB3FF45BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5351550-F569-49EB-9FA4-A8ABA056AA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5351550-F569-49EB-9FA4-A8ABA056AA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5351550-F569-49EB-9FA4-A8ABA056AA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5351550-F569-49EB-9FA4-A8ABA056AA46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

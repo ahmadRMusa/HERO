@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,10 @@ namespace HERO.Models.Objects
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Duration")]
+        [DataType(DataType.Time)]
+        public TimeSpan Time { get; set; }
+        [Required]
+        [Display(Name = "Class Duration")]
         public float Duration { get; set; }
         [Required]
         [Display(Name = "Type of Class")]
@@ -19,15 +23,17 @@ namespace HERO.Models.Objects
         [Display(Name = "Max Attendance")]
         public int MaxAttendance { get; set; }
         [Required]
+        [Display(Name = "Period Start")]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
         [Required]
+        [Display(Name = "Period End")]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
         [Required]
-        public virtual IList<Athlete> Attendance { get; set; }
-        [Required]
         [Display(Name = "Class Days")]
         public virtual IList<DayOfWeek> Days { get; set; }
+        [NotMapped]
+        public string[] SelectedDays { get; set; }
     }
 }

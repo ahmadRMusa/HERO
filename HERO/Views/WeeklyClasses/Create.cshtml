@@ -1,84 +1,106 @@
 ﻿@model HERO.Models.Objects.WeeklyClass
 
+@using MvcBootstrapTimepicker
+
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Add a Weekly Class";
 }
 
-<h2>Create</h2>
+@section AddToHead {
+    <link rel="stylesheet" href="~/Content/TimePicker/bootstrap-timepicker.css" type="text/css"/>
+    <link rel="stylesheet" href="~/Content/TimePicker/MvcBootstrapTimepicker.css" type="text/css" />
+}
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>WeeklyClass</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
-            </div>
-        </div>
+@Html.Partial("_LeftMenu")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaxAttendance, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaxAttendance, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaxAttendance, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SchedulingRange, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SchedulingRange, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SchedulingRange, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TimeOfDay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeOfDay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TimeOfDay, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Add Weekly Class</h1>
         </div>
     </div>
-}
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Weekly Class Details</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Create", "WeeklyClasses", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken();
+                    <fieldset>
+                        <legend>Enter Weekly Class Details</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Type, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Type, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Time, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.BootstrapTimePickerFor(m => m.Time).Time("8:00").MinuteStep(30).Class("form-control col-md-6");
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Class Days", new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.ListBoxFor(model => model.SelectedDays, (MultiSelectList)ViewBag.Days, new { @class = "form-control col-md-6" } )
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Duration, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Duration, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MaxAttendance, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.MaxAttendance, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="startdatepicker">Start Date</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control datepicker" id="startdatepicker" value="@DateTime.Now" name="StartDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="enddatepicker">End Date</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control datepicker" id="enddatepicker" value="@DateTime.Now.AddYears(1)" name="EndDate">
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="Create" class="btn btn-primary">Create Weekly Class</button>
+                        @Html.ActionLink("Cancel", "Index", "Subscriptions", new { @class = "btn btn-default" })
+                    </fieldset>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/MvcBootstrapTimepicker.js"></script>
+    @Scripts.Render("~/bundles/vendors")
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker();
+            $('.uniform_on').uniform();
+            $('.chzn-select').chosen();
+            $('.textarea-wysihtml5').wysihtml5({
+                stylesheets: [
+                    'vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/stylesheets/bootstrap-wysihtml5/wysiwyg-color.css'
+                ]
+            });
+        });
+    </script>
+}
