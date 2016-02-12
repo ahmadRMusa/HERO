@@ -14,7 +14,12 @@ namespace HERO.Controllers
 {
     public class ClassesController : Controller
     {
-        private GymContext db = new GymContext();
+        private GymContext db;
+
+        public ClassesController(GymContext context)
+        {
+            db = context;
+        }
 
         // GET: Classes
         public async Task<ActionResult> Index()
@@ -115,6 +120,23 @@ namespace HERO.Controllers
             db.Classes.Remove(@class);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetScheduledClasses()
+        {
+            List<Class> classes = await db.Classes.ToListAsync();
+            List<ClassJsonModel> jsonModel = classes.Select(x => new ClassJsonModel {
+                id = x.Id,
+                title = x.Type,
+                editable = false,
+                allDay = false,
+                start = x.Time.ToString("s"),
+                end = x.Time.AddHours(x.Duration).ToString("s"),
+                url = Url.Action("Details", new { id = x.Id } )
+            }).ToList();
+
+            return Json(jsonModel);
         }
 
         protected override void Dispose(bool disposing)
