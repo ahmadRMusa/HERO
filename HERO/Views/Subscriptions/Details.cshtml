@@ -8,8 +8,14 @@
 @Html.Partial("_LeftMenu")
 
 <h2>Manage "@Model.Name"</h2>
-@Html.ActionLink("Edit Subscription", "Edit", "Subscription", new { id = Model.Id }, new { @class = "btn btn-sm btn-default" })
-@Html.ActionLink("Delete Subscription", "Delete", "Subscription", new { id = Model.Id }, new { @class = "btn btn-sm btn-default" } )
+
+@using (Html.BeginForm("Delete", "Subscriptions", FormMethod.Post, new { style = "display:none;", id = "delete-form" } ))
+{
+    @Html.AntiForgeryToken();
+    @Html.TextBox("id", Model.Id, new { style = "display:none;" } )
+}
+@Html.ActionLink("Edit Subscription", "Edit", "Subscription", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary" })
+<a href="javascript:document.getElementById('delete-form').submit()" class="btn btn-sm btn-default confirm">Delete</a>
 <hr />
 <div class="col-lg-10">
     <p>Enrollment details for <b>@Model.Name</b>.</p>
@@ -34,8 +40,13 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/vendors")
+    <script type="text/javascript" src="~/Scripts/jquery.confirm.js"></script>
     <script type="text/javascript">
-        $(function () { dashboard(); });
-        $(".sortableTable").tablesorter();
+        $('.sortableTable').tablesorter();
+        $('.confirm').confirm({
+            text: "Are you sure you want to delete @Model.Name?",
+            confirmButton: "Go for it",
+            cancelButton: "No go back!"
+        });
     </script>
 }

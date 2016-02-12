@@ -25,18 +25,14 @@
                             <th>@Html.DisplayNameFor(m => m.PricePerMonth)</th>
                             <th>@Html.DisplayNameFor(m => m.PricePerHalfYear)</th>
                             <th>@Html.DisplayNameFor(m => m.PricePerYear)</th>
-                            <th>Actions</th>
                         </tr>
                         @foreach(var item in Model)
                         {
                             <tr>
-                                <td>@Html.DisplayFor(m => item.Name)</td>
+                                <td>@Html.ActionLink(item.Name, "Details", new { controller = "Subscriptions", id = item.Id } )</td>
                                 <td>@Html.DisplayFor(m => item.PricePerMonth)</td>
                                 <td>@Html.DisplayFor(m => item.PricePerHalfYear)</td>
                                 <td>@Html.DisplayFor(m => item.PricePerYear)</td>
-                                <td>
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
-                                </td>
                             </tr>
                         }
                     </thead>
