@@ -17,6 +17,13 @@ namespace HERO.Constants
 
         public static Period calendarPeriod = new Period(DateTime.Now, new DateTime(2100, 1, 1));
 
+        public static DateTime UnixTimestampToDateTime(double unixTimestamp)
+        {
+            DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            date = date.AddSeconds(unixTimestamp).ToLocalTime();
+            return date;
+        }
+
         public static string GetEmailBody(string name, string gym, Guid token)
         {
             string head = String.Format("<h1>Welcome to {0}</h1>", gym);

@@ -122,10 +122,12 @@ namespace HERO.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public async Task<JsonResult> GetScheduledClasses()
+        public async Task<JsonResult> GetScheduledClasses(string start, string end)
         {
-            List<Class> classes = await db.Classes.ToListAsync();
+            DateTime startDate = Constants.ConstantValues.UnixTimestampToDateTime(Convert.ToDouble(start));
+            DateTime endDate = Constants.ConstantValues.UnixTimestampToDateTime(Convert.ToDouble(end));
+
+            List<Class> classes = await db.Classes.Where(x => x.Time >= startDate && x.Time <= endDate).ToListAsync();
             List<ClassJsonModel> jsonModel = classes.Select(x => new ClassJsonModel {
                 id = x.Id,
                 title = x.Type,
@@ -136,7 +138,7 @@ namespace HERO.Controllers
                 url = Url.Action("Details", new { id = x.Id } )
             }).ToList();
 
-            return Json(jsonModel);
+            return Json(jsonModel, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

@@ -44,6 +44,7 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.Web.Common.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.Web.Mvc.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Owin.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGrid.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGridMail.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Net.Http.Formatting.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Web.Helpers.dll
@@ -106,8 +107,7 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedSingleClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddClas.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.LastMigrationBeforeCreateTest.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.DaysOfWeekToClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
-C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGrid.dll
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.DaysOfWeekToClass.resources
