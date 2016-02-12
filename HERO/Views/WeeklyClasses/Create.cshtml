@@ -63,13 +63,13 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" for="startdatepicker">Start Date</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control datepicker" id="startdatepicker" value="@DateTime.Now" name="StartDate">
+                                <input type="text" class="form-control datepicker" id="startdatepicker" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="StartDate">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" for="enddatepicker">End Date</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control datepicker" id="enddatepicker" value="@DateTime.Now.AddYears(1)" name="EndDate">
+                                <input type="text" class="form-control datepicker" id="enddatepicker" value="@DateTime.Now.AddYears(1).ToString("MM/dd/yyyy")" name="EndDate">
                             </div>
                         </div>
                         <hr />

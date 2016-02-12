@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler
+namespace HERO.Scheduler
 {
     /// <summary>
     /// Creates an appointment list.
     /// </summary>
-    public class CalendarGenerator
+    public class CalendarGenerator : ICalendarGenerator
     {
         public IEnumerable<Class> GenerateCalendar(Period period, IEnumerable<Schedule> schedules)
         {

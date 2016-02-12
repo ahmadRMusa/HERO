@@ -30,15 +30,15 @@ namespace HERO.Migrations.GymContext
             //    );
             //
              
-            List<Models.Objects.DayOfWeek> days = new List<Models.Objects.DayOfWeek>()
+            List<DayOfWeekModel> days = new List<DayOfWeekModel>()
             {
-                new Models.Objects.DayOfWeek { Id = (int)Day.Monday, Day = Day.Monday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Id = (int)Day.Tuesday, Day = Day.Tuesday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Id = (int)Day.Wednesday, Day = Day.Wednesday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Id = (int)Day.Thursday, Day = Day.Thursday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Id = (int)Day.Friday, Day = Day.Friday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Id = (int)Day.Saturday, Day = Day.Saturday, Classes = new List<WeeklyClass>() },
-                new Models.Objects.DayOfWeek { Id = (int)Day.Sunday, Day = Day.Sunday, Classes = new List<WeeklyClass>() }
+                new DayOfWeekModel { Id = (int)DayOfWeek.Monday, Day = DayOfWeek.Monday, Classes = new List<Class>() },
+                new DayOfWeekModel { Id = (int)DayOfWeek.Tuesday, Day = DayOfWeek.Tuesday, Classes = new List<Class>() },
+                new DayOfWeekModel { Id = (int)DayOfWeek.Wednesday, Day = DayOfWeek.Wednesday, Classes = new List<Class>() },
+                new DayOfWeekModel { Id = (int)DayOfWeek.Thursday, Day = DayOfWeek.Thursday, Classes = new List<Class>() },
+                new DayOfWeekModel { Id = (int)DayOfWeek.Friday, Day = DayOfWeek.Friday, Classes = new List<Class>() },
+                new DayOfWeekModel { Id = (int)DayOfWeek.Saturday, Day = DayOfWeek.Saturday, Classes = new List<Class>() },
+                new DayOfWeekModel { Id = (int)DayOfWeek.Sunday, Day = DayOfWeek.Sunday, Classes = new List<Class>() }
             };
 
             foreach(var item in days)

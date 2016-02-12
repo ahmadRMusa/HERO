@@ -25,15 +25,19 @@
                             <th>@Html.DisplayNameFor(m => m.Days)</th>
                             <th>@Html.DisplayNameFor(m => m.Duration)</th>
                             <th>@Html.DisplayNameFor(m => m.MaxAttendance)</th>
+                            <th>@Html.DisplayNameFor(m => m.StartDate)</th>
+                            <th>@Html.DisplayNameFor(m => m.EndDate)</th>
                             <th>Actions</th>
                         </tr>
                         @foreach (var item in Model)
                         {
                             <tr>
                                 <td>@Html.DisplayFor(m => item.Type)</td>
-                                <td>@string.Join(", ", item.Days)</td>
-                                <td>@Html.DisplayFor(m => item.Duration)</td>
+                                <td>@string.Join(", ", item.Days.Select(x => x.Day.ToString()))</td>
+                                <td>@(item.Duration + " Hours")</td>
                                 <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                <td>@Html.DisplayFor(m => item.StartDate)</td>
+                                <td>@Html.DisplayFor(m => item.EndDate)</td>
                                 <td>
                                     @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
                                 </td>

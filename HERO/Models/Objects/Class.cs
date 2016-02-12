@@ -1,4 +1,4 @@
-﻿using Scheduler;
+﻿using HERO.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +13,7 @@ namespace HERO.Models.Objects
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Date")]
-        public DateTime Time { get; set; }
+        public DateTime Time { get; set; } // Used for Calendar
         [Required]
         [Display(Name = "Duration")]
         public float Duration { get; set; }
@@ -24,5 +24,6 @@ namespace HERO.Models.Objects
         public int MaxAttendance { get; set; }
         [Required]
         public virtual IList<Athlete> Attendance { get; set; }
+        public virtual WeeklyClass WeeklyClass { get; set; }
     }
 }

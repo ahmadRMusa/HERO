@@ -5,9 +5,8 @@ namespace HERO.App_Start
 {
     using System;
     using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
+    using HERO.Scheduler;
     using Ninject;
     using Ninject.Web.Common;
     using Models;
@@ -70,6 +69,7 @@ namespace HERO.App_Start
 
             // Servies
             kernel.Bind<IEmailSender>().To<SmtpMessageSender>().InRequestScope();
+            kernel.Bind<ICalendarGenerator>().To<CalendarGenerator>().InRequestScope();
 
             // Identity
             kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>().InRequestScope().WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());

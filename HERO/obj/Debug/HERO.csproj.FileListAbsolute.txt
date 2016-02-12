@@ -38,13 +38,12 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Microsof
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\MvcBootstrapTimepicker.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Newtonsoft.Json.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.Web.Common.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Ninject.Web.Mvc.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Owin.dll
-C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGrid.dll
-C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGrid.SmtpApi.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGridMail.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Net.Http.Formatting.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\System.Web.Helpers.dll
@@ -98,9 +97,6 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AthleteAndSubscriptionUpdate.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.CreateAthleteSignupKey.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedAthleteInheretence.resources
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedClasses.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedWeeklyClass.resources
@@ -108,5 +104,9 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ModifiedWeeklyClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ModifiedSingleClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedSingleClass.resources
-C:\Users\alexm\Documents\Projects\HERO\HERO\bin\MvcBootstrapTimepicker.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddClas.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.LastMigrationBeforeCreateTest.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\SendGrid.dll

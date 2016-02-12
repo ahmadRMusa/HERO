@@ -1,4 +1,4 @@
-﻿using Scheduler;
+﻿using HERO.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,8 +31,9 @@ namespace HERO.Models.Objects
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
         [Required]
-        [Display(Name = "Class Days")]
-        public virtual IList<DayOfWeek> Days { get; set; }
+        public virtual IList<DayOfWeekModel> Days { get; set; }
+        [Required]
+        public virtual IList<Class> GeneratedClasses { get; set; }
         [NotMapped]
         public string[] SelectedDays { get; set; }
     }

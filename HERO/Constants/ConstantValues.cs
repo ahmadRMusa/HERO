@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HERO.Scheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,8 @@ namespace HERO.Constants
             { "6 Months", 6 },
             { "12 Months", 12 }
         };
+
+        public static Period calendarPeriod = new Period(DateTime.Now, new DateTime(2100, 1, 1));
 
         public static string GetEmailBody(string name, string gym, Guid token)
         {

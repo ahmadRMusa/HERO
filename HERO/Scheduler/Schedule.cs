@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler
+namespace HERO.Scheduler
 {
     /// <summary>
     /// The Schedule class is the base class for all types that implement scheduling rules.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler
+namespace HERO.Scheduler
 {
     /// <summary>
     /// The simplest scheduling class allows for a single appointment at a given date and time. 

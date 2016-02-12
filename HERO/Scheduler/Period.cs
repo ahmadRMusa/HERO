@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler
+namespace HERO.Scheduler
 {
     /// <summary>
     /// The Period class holds a start and end date that are set using the constructor and held in read-only DateTime properties.

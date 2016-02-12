@@ -1,25 +1,28 @@
-﻿using Scheduler;
+﻿using HERO.Constants;
+using HERO.Models;
+using HERO.Models.Objects;
+using HERO.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using HERO.Models;
-using HERO.Models.Objects;
 
 namespace HERO.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class WeeklyClassesController : Controller
     {
         private GymContext db;
+        private ICalendarGenerator _calendarGenerator;
 
-        public WeeklyClassesController(GymContext context)
+        public WeeklyClassesController(GymContext context, ICalendarGenerator calendarGenerator)
         {
             db = context;
+            _calendarGenerator = calendarGenerator;
         }
 
         // GET: WeeklyClasses
@@ -46,7 +49,7 @@ namespace HERO.Controllers
         // GET: WeeklyClasses/Create
         public ActionResult Create()
         {
-            IEnumerable<string> items = Enum.GetValues(typeof(Day)).Cast<Day>().Select(d => d.ToString()).ToList();
+            IEnumerable<string> items = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().Select(d => d.ToString()).ToList();
 
             ViewBag.Days = new MultiSelectList(items);
 
@@ -60,20 +63,44 @@ namespace HERO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance,StartDate,EndDate,SelectedDays")] WeeklyClass weeklyClass)
         {
-            List<Day> chosenDays = weeklyClass.SelectedDays.Select(x => (Day)Enum.Parse(typeof(Day), x)).ToList();
-            List<Models.Objects.DayOfWeek> days = db.DaysOfWeek.Where(d => chosenDays.Contains(d.Day)).ToList();
+            List<DayOfWeek> chosenDays = weeklyClass.SelectedDays.Select(x => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), x)).ToList();
+            List<DayOfWeekModel> days = db.DaysOfWeek.Where(d => chosenDays.Contains(d.Day)).ToList();
             weeklyClass.Days = days;
 
-            var weekly = new WeeklySchedule
+            WeeklySchedule weeklySchedule = new WeeklySchedule
             {
-
+                TimeOfDay = weeklyClass.Time,
+                SchedulingRange = new Period(weeklyClass.StartDate, weeklyClass.EndDate)
             };
 
+            weeklySchedule.SetDays(chosenDays);
+
+            var schedules = new List<Schedule>() { weeklySchedule };
+
+            List<Class> classes = _calendarGenerator.GenerateCalendar(ConstantValues.calendarPeriod, schedules).ToList();
+
+            foreach(var item in classes)
+            {
+                item.Duration = weeklyClass.Duration;
+                item.MaxAttendance = weeklyClass.MaxAttendance;
+                item.Type = weeklyClass.Type;
+                item.WeeklyClass = weeklyClass;
+                item.Attendance = new List<Athlete>();
+            }
+
+            weeklyClass.GeneratedClasses = classes;
+
+            ModelState.Remove("Days");
+            ModelState.Remove("GeneratedClasses");
             if (ModelState.IsValid)
             {
                 db.WeeklyClasses.Add(weeklyClass);
+                db.Classes.AddRange(classes);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
+            } else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
             }
 
             return View(weeklyClass);
