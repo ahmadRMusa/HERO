@@ -12,104 +12,84 @@ using HERO.Models.Objects;
 
 namespace HERO.Controllers
 {
-    [Authorize]
-    public class ClassesController : Controller
+    public class SingleClassSetupsController : Controller
     {
         private GymContext db;
 
-        public ClassesController(GymContext context)
+        public SingleClassSetupsController(GymContext context)
         {
             db = context;
         }
 
-        // GET: Classes
-        public ActionResult Index()
+        // GET: SingleClassSetups
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await db.SingleClasses.ToListAsync());
         }
 
-        // GET: Classes/Details/5
+        // GET: SingleClassSetups/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Class @class = await db.Classes.FindAsync(id);
-            if (@class == null)
+            SingleClassSetup singleClassSetup = await db.SingleClasses.FindAsync(id);
+            if (singleClassSetup == null)
             {
                 return HttpNotFound();
             }
-            return View(@class);
+            return View(singleClassSetup);
         }
 
-        // GET: Classes/Create
+        // GET: SingleClassSetups/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Classes/Create
+        // POST: SingleClassSetups/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] Class @class)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] SingleClassSetup singleClassSetup)
         {
             if (ModelState.IsValid)
             {
-                db.Classes.Add(@class);
+                db.SingleClasses.Add(singleClassSetup);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(@class);
+            return View(singleClassSetup);
         }
-
-        // POST: Classes/Edit/5
+        
+        // POST: SingleClassSetups/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] Class @class)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] SingleClassSetup singleClassSetup)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@class).State = EntityState.Modified;
+                db.Entry(singleClassSetup).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(@class);
+            return View(singleClassSetup);
         }
 
-        // POST: Classes/Delete/5
+        // POST: SingleClassSetups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Class @class = await db.Classes.FindAsync(id);
-            db.Classes.Remove(@class);
+            SingleClassSetup singleClassSetup = await db.SingleClasses.FindAsync(id);
+            db.SingleClasses.Remove(singleClassSetup);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        public async Task<JsonResult> GetScheduledClasses(string start, string end)
-        {
-            DateTime startDate = Constants.ConstantValues.UnixTimestampToDateTime(Convert.ToDouble(start));
-            DateTime endDate = Constants.ConstantValues.UnixTimestampToDateTime(Convert.ToDouble(end));
-
-            List<Class> classes = await db.Classes.Where(x => x.Time >= startDate && x.Time <= endDate).ToListAsync();
-            List<ClassJsonModel> jsonModel = classes.Select(x => new ClassJsonModel {
-                id = x.Id,
-                title = x.Type,
-                editable = false,
-                allDay = false,
-                start = x.Time.ToString("s"),
-                end = x.Time.AddHours(x.Duration).ToString("s"),
-                url = Url.Action("Details", new { id = x.Id } )
-            }).ToList();
-
-            return Json(jsonModel, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

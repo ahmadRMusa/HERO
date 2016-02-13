@@ -43,7 +43,7 @@ namespace HERO.Controllers
 
             ViewBag.Days = new MultiSelectList(items);
 
-            WeeklyClass weeklyClass = await db.WeeklyClasses.FindAsync(id);
+            WeeklyClassSetup weeklyClass = await db.WeeklyClasses.FindAsync(id);
             if (weeklyClass == null)
             {
                 return HttpNotFound();
@@ -66,7 +66,7 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance,StartDate,EndDate,SelectedDays")] WeeklyClass weeklyClass)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance,StartDate,EndDate,SelectedDays")] WeeklyClassSetup weeklyClass)
         {
             List<DayOfWeek> chosenDays = weeklyClass.SelectedDays.Select(x => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), x)).ToList();
             List<DayOfWeekModel> days = db.DaysOfWeek.Where(d => chosenDays.Contains(d.Day)).ToList();
@@ -122,7 +122,7 @@ namespace HERO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WeeklyClass weeklyClass = await db.WeeklyClasses.FindAsync(id);
+            WeeklyClassSetup weeklyClass = await db.WeeklyClasses.FindAsync(id);
             if (weeklyClass == null)
             {
                 return HttpNotFound();
@@ -135,7 +135,7 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Duration,MaxAttendance,StartDate,EndDate,SchedulingRange,TimeOfDay,Name")] WeeklyClass weeklyClass)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Duration,MaxAttendance,StartDate,EndDate,SchedulingRange,TimeOfDay,Name")] WeeklyClassSetup weeklyClass)
         {
             if (ModelState.IsValid)
             {
@@ -153,7 +153,7 @@ namespace HERO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WeeklyClass weeklyClass = await db.WeeklyClasses.FindAsync(id);
+            WeeklyClassSetup weeklyClass = await db.WeeklyClasses.FindAsync(id);
             if (weeklyClass == null)
             {
                 return HttpNotFound();
@@ -166,7 +166,7 @@ namespace HERO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            WeeklyClass weeklyClass = await db.WeeklyClasses.FindAsync(id);
+            WeeklyClassSetup weeklyClass = await db.WeeklyClasses.FindAsync(id);
             db.WeeklyClasses.Remove(weeklyClass);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

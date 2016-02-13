@@ -6,11 +6,17 @@ using System.Web;
 
 namespace HERO.Models.Objects
 {
-    public class SingleClass
+    public class SingleClassSetup
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Duration")]
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
+        [Required]
+        [DataType(DataType.Time)]
+        public TimeSpan Time { get; set; }
+        [Required]
+        [Display(Name = "Class Duration")]
         public float Duration { get; set; }
         [Required]
         [Display(Name = "Type of Class")]
@@ -18,10 +24,6 @@ namespace HERO.Models.Objects
         [Display(Name = "Max Attendance")]
         public int MaxAttendance { get; set; }
         [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Date")]
-        public DateTime Date { get; set; }
-        [Required]
-        public virtual IList<Athlete> Attendance { get; set; }
+        public virtual Class GeneratedClass { get; set; }
     }
 }

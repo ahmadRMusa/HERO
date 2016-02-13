@@ -236,8 +236,9 @@
     <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SingleClassSetupsController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
-    <Compile Include="Controllers\WeeklyClassesController.cs" />
+    <Compile Include="Controllers\WeeklyClassSetupsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -319,6 +320,14 @@
     <Compile Include="Migrations\GymContext\201602121935483_DaysOfWeekToClass.Designer.cs">
       <DependentUpon>201602121935483_DaysOfWeekToClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602132233363_AddedSingleClass.cs" />
+    <Compile Include="Migrations\GymContext\201602132233363_AddedSingleClass.Designer.cs">
+      <DependentUpon>201602132233363_AddedSingleClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602132250492_ModifiedSingleClass1.cs" />
+    <Compile Include="Migrations\GymContext\201602132250492_ModifiedSingleClass1.Designer.cs">
+      <DependentUpon>201602132250492_ModifiedSingleClass1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
@@ -330,8 +339,9 @@
     <Compile Include="Models\Objects\AthleteSignupKey.cs" />
     <Compile Include="Models\Objects\Class.cs" />
     <Compile Include="Models\Objects\DayOfWeekModel.cs" />
+    <Compile Include="Models\Objects\SingleClassSetup.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
-    <Compile Include="Models\Objects\WeeklyClass.cs" />
+    <Compile Include="Models\Objects\WeeklyClassSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\CalendarGenerator.cs" />
     <Compile Include="Scheduler\ICalendarGenerator.cs" />
@@ -1896,14 +1906,15 @@
     <Content Include="Views\Shared\_CredentialsLayout.cshtml" />
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\Account\AthleteSignup.cshtml" />
-    <Content Include="Views\WeeklyClasses\Create.cshtml" />
-    <Content Include="Views\WeeklyClasses\Details.cshtml" />
-    <Content Include="Views\WeeklyClasses\Index.cshtml" />
+    <Content Include="Views\WeeklyClassSetups\Create.cshtml" />
+    <Content Include="Views\WeeklyClassSetups\Details.cshtml" />
+    <Content Include="Views\WeeklyClassSetups\Index.cshtml" />
     <Content Include="Views\Classes\Create.cshtml" />
-    <Content Include="Views\Classes\Delete.cshtml" />
     <Content Include="Views\Classes\Details.cshtml" />
-    <Content Include="Views\Classes\Edit.cshtml" />
     <Content Include="Views\Classes\Index.cshtml" />
+    <Content Include="Views\SingleClassSetups\Create.cshtml" />
+    <Content Include="Views\SingleClassSetups\Details.cshtml" />
+    <Content Include="Views\SingleClassSetups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1973,6 +1984,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602121935483_DaysOfWeekToClass.resx">
       <DependentUpon>201602121935483_DaysOfWeekToClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602132233363_AddedSingleClass.resx">
+      <DependentUpon>201602132233363_AddedSingleClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602132250492_ModifiedSingleClass1.resx">
+      <DependentUpon>201602132250492_ModifiedSingleClass1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

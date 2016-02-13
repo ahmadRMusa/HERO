@@ -12,7 +12,7 @@ using HERO.Models.Objects;
 
 namespace HERO.Controllers
 {
-    // [Authorize(Roles = "Admin, Coach")]
+    [Authorize(Roles = "Admin, Coach")]
     public class SubscriptionsController : Controller
     {
         private GymContext _db;

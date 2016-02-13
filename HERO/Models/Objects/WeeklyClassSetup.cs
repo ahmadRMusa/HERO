@@ -8,7 +8,7 @@ using System.Web;
 
 namespace HERO.Models.Objects
 {
-    public class WeeklyClass
+    public class WeeklyClassSetup
     {
         public int Id { get; set; }
         [Required]

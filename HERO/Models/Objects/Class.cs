@@ -26,6 +26,6 @@ namespace HERO.Models.Objects
         public virtual IList<Athlete> Attendance { get; set; }
         [Required]
         public virtual IList<DayOfWeekModel> DaysOfWeek { get; set; }
-        public virtual WeeklyClass WeeklyClass { get; set; }
+        public virtual WeeklyClassSetup WeeklyClass { get; set; }
     }
 }

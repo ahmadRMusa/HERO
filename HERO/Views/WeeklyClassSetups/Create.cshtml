@@ -1,28 +1,22 @@
-﻿@model HERO.Models.Objects.WeeklyClass
+﻿@model HERO.Models.Objects.WeeklyClassSetup
 
 @using MvcBootstrapTimepicker
 
 @{
-    ViewBag.Title = "Weekly Class Details";
+    ViewBag.Title = "Add a Weekly Class";
 }
 
 @section AddToHead {
-    <link rel="stylesheet" href="~/Content/TimePicker/bootstrap-timepicker.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/TimePicker/bootstrap-timepicker.css" type="text/css"/>
     <link rel="stylesheet" href="~/Content/TimePicker/MvcBootstrapTimepicker.css" type="text/css" />
 }
 
 @Html.Partial("_LeftMenu")
 
-@using (Html.BeginForm("Delete", "WeeklyClasses", FormMethod.Post, new { style = "display:none;", id = "delete-form" }))
-{
-    @Html.AntiForgeryToken();
-    @Html.TextBox("id", Model.Id, new { style = "display:none;" })
-}
-
 <div class="col-md-10">
     <div class="row">
         <div class="bootstrap-admin-content-title">
-            <h1>Manage @Model.Type</h1>
+            <h1>Add a Weekly Class</h1>
         </div>
     </div>
     <div class="row">
@@ -31,10 +25,11 @@
                 <div class="text-muted bootstrap-admin-box-title">Weekly Class Details</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Edit", "WeeklyClasses", FormMethod.Post, new { @class = "form-horizontal" }))
+                @using (Html.BeginForm("Create", "WeeklyClassSetups", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken();
                     <fieldset>
+                        <legend>Enter Weekly Class Details</legend>
                         <div class="form-group">
                             @Html.LabelFor(m => m.Type, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
@@ -44,13 +39,13 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.Time, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.BootstrapTimePickerFor(m => m.Time).Time(Model.Time.ToString()).MinuteStep(30).Class("form-control col-md-6")
+                                @Html.BootstrapTimePickerFor(m => m.Time).Time("8:00").MinuteStep(30).Class("form-control col-md-6");
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.Label("Class Days", new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.ListBoxFor(model => model.SelectedDays, (MultiSelectList)ViewBag.Days, new { @class = "form-control col-md-6" })
+                                @Html.ListBoxFor(model => model.SelectedDays, (MultiSelectList)ViewBag.Days, new { @class = "form-control col-md-6" } )
                             </div>
                         </div>
                         <div class="form-group">
@@ -65,50 +60,30 @@
                                 @Html.TextBoxFor(m => m.MaxAttendance, new { @class = "form-control col-md-6", autocomplete = "off" })
                             </div>
                         </div>
-                        @if (Model.StartDate >= DateTime.Now)
-                        {
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label" for="startdatepicker">Start Date</label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control datepicker" id="startdatepicker" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="StartDate">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="startdatepicker">Start Date</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control datepicker" id="startdatepicker" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="StartDate">
                             </div>
-                        }
+                        </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" for="enddatepicker">End Date</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control datepicker" id="enddatepicker" name="EndDate" value="@Model.EndDate.ToString("MM/dd/yyyy")">
+                                <input type="text" class="form-control datepicker" id="enddatepicker" value="@DateTime.Now.AddYears(1).ToString("MM/dd/yyyy")" name="EndDate">
                             </div>
                         </div>
                         <hr />
-                        <button type="submit" value="Edit" class="btn btn-primary">Save Changes</button>
-                        <a href="javascript:document.getElementById('delete-form').submit()" class="btn btn-default confirm">Delete</a>
-                        @Html.ActionLink("Cancel", "Index", "WeeklyClass", new { @class = "btn btn-default" })
+                        <button type="submit" value="Create" class="btn btn-primary">Create Weekly Class</button>
+                        @Html.ActionLink("Cancel", "Index", "WeeklyClassSetups", new { @class = "btn btn-default" })
                     </fieldset>
                 }
             </div>
         </div>
     </div>
-    <p>@Model.Type classes:</p>
-    <table class="table table-condensed table-hovered sortableTable">
-        <thead>
-            <tr>
-                <th>Class ID <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-                <th>Date <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-                <th>Time <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.GeneratedClasses)
-            {
-                <tr>
-                    <td>@Html.ActionLink("Class " + item.Id, "Details", new { controller = "Classes", id = item.Id } )</td>
-                    <td>@item.Time.Date.ToString("MM/dd/yyyy")</td>
-                    <td>@item.Time.TimeOfDay.ToString()</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section scripts {

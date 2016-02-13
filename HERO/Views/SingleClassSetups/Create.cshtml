@@ -1,13 +1,13 @@
-﻿@model HERO.Models.Objects.WeeklyClass
+﻿@model HERO.Models.Objects.SingleClassSetup
 
 @using MvcBootstrapTimepicker
 
 @{
-    ViewBag.Title = "Add a Weekly Class";
+    ViewBag.Title = "Add a Single Class";
 }
 
 @section AddToHead {
-    <link rel="stylesheet" href="~/Content/TimePicker/bootstrap-timepicker.css" type="text/css"/>
+    <link rel="stylesheet" href="~/Content/TimePicker/bootstrap-timepicker.css" type="text/css" />
     <link rel="stylesheet" href="~/Content/TimePicker/MvcBootstrapTimepicker.css" type="text/css" />
 }
 
@@ -16,20 +16,20 @@
 <div class="col-md-10">
     <div class="row">
         <div class="bootstrap-admin-content-title">
-            <h1>Add a Weekly Class</h1>
+            <h1>Add a Single Class</h1>
         </div>
     </div>
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">Weekly Class Details</div>
+                <div class="text-muted bootstrap-admin-box-title">Single Class Detail</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Create", "WeeklyClasses", FormMethod.Post, new { @class = "form-horizontal" }))
+                @using (Html.BeginForm("Create", "SingleClassSetups", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken();
                     <fieldset>
-                        <legend>Enter Weekly Class Details</legend>
+                        <legend>Enter Single Class Details</legend>
                         <div class="form-group">
                             @Html.LabelFor(m => m.Type, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
@@ -39,13 +39,13 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.Time, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.BootstrapTimePickerFor(m => m.Time).Time("8:00").MinuteStep(30).Class("form-control col-md-6");
+                                @Html.BootstrapTimePickerFor(m => m.Time).Time("8:00").MinuteStep(30).Class("form-control col-md-6")
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("Class Days", new { @class = "col-lg-2 control-label" })
+                            <label class="col-lg-2 control-label" for="datepicker">Date</label>
                             <div class="col-lg-10">
-                                @Html.ListBoxFor(model => model.SelectedDays, (MultiSelectList)ViewBag.Days, new { @class = "form-control col-md-6" } )
+                                <input type="text" class="form-control datepicker" id="datepicker" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="Date">
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,21 +60,9 @@
                                 @Html.TextBoxFor(m => m.MaxAttendance, new { @class = "form-control col-md-6", autocomplete = "off" })
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" for="startdatepicker">Start Date</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control datepicker" id="startdatepicker" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="StartDate">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" for="enddatepicker">End Date</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control datepicker" id="enddatepicker" value="@DateTime.Now.AddYears(1).ToString("MM/dd/yyyy")" name="EndDate">
-                            </div>
-                        </div>
                         <hr />
-                        <button type="submit" value="Create" class="btn btn-primary">Create Weekly Class</button>
-                        @Html.ActionLink("Cancel", "Index", "WeeklyClass", new { @class = "btn btn-default" })
+                        <button type="submit" value="Create" class="btn btn-primary">Create Single Class</button>
+                        @Html.ActionLink("Cancel", "Index", "SingleClassSetups", new { @class = "btn btn-default" })
                     </fieldset>
                 }
             </div>

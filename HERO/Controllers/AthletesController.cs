@@ -15,6 +15,7 @@ using Microsoft.AspNet.Identity;
 
 namespace HERO.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AthletesController : Controller
     {
         private GymContext _db;
