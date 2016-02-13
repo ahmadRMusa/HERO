@@ -7,15 +7,18 @@
 
 @Html.Partial("_LeftMenu")
 
-<h2>Manage "@Model.Name"</h2>
-
 @using (Html.BeginForm("Delete", "Subscriptions", FormMethod.Post, new { style = "display:none;", id = "delete-form" } ))
 {
     @Html.AntiForgeryToken();
     @Html.TextBox("id", Model.Id, new { style = "display:none;" } )
 }
-<hr />
+
 <div class="col-lg-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Manage @Model.Name</h1>
+        </div>
+    </div>
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">

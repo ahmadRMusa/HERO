@@ -4,7 +4,6 @@
 
 @{
     ViewBag.Title = "Weekly Class Details";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 @section AddToHead {
@@ -13,6 +12,12 @@
 }
 
 @Html.Partial("_LeftMenu")
+
+@using (Html.BeginForm("Delete", "WeeklyClasses", FormMethod.Post, new { style = "display:none;", id = "delete-form" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.TextBox("id", Model.Id, new { style = "display:none;" })
+}
 
 <div class="col-md-10">
     <div class="row">
@@ -77,6 +82,7 @@
                         </div>
                         <hr />
                         <button type="submit" value="Edit" class="btn btn-primary">Save Changes</button>
+                        <a href="javascript:document.getElementById('delete-form').submit()" class="btn btn-default confirm">Delete</a>
                         @Html.ActionLink("Cancel", "Index", "WeeklyClass", new { @class = "btn btn-default" })
                     </fieldset>
                 }

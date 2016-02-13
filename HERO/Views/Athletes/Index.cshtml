@@ -12,35 +12,55 @@
             <h1>Manage Athletes</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">Current Athletes</div>
-            </div>
-            <div class="bootstrap-admin-panel-content">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>@Html.DisplayNameFor(m => m.EmailAddress)</th>
-                            <th>@Html.DisplayNameFor(m => m.VerifiedUser)</th>
-                            <th>@Html.DisplayNameFor(m => m.Subscription.Name)</th>
-                            <th>@Html.DisplayNameFor(m => m.SubscriptionLength)</th>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { controller = "Athletes", id = item.Id })</td>
-                                <td>@item.EmailAddress</td>
-                                <td>@item.VerifiedUser</td>
-                                <td>@Html.DisplayFor(m => item.Subscription.Name)</td>
-                                <td>@Html.DisplayFor(m => item.SubscriptionLength) Months</td>
-                            </tr>
-                        }
-                    </thead>
-                </table>
+
+    @if (Model.Count() == 0)
+    {
+        <div class="row bootstrap-admin-no-edges-padding">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">No Athletes Found</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <p>Woops, it looks like you don't have any athletes stored in the system. Click on the "Add an Athlete" button below to add one!</p>
+                    </div>
+                </div>
+                @Html.ActionLink("Add an Athlete", "Create", "Athletes", new { @class = "btn btn-lg btn-primary" })
             </div>
         </div>
-        @Html.ActionLink("Add an Athlete", "Create", "Athletes", new { @class = "btn btn-lg btn-primary" })
-    </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Current Athletes</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>@Html.DisplayNameFor(m => m.EmailAddress)</th>
+                                <th>@Html.DisplayNameFor(m => m.VerifiedUser)</th>
+                                <th>@Html.DisplayNameFor(m => m.Subscription.Name)</th>
+                                <th>@Html.DisplayNameFor(m => m.SubscriptionLength)</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { controller = "Athletes", id = item.Id })</td>
+                                    <td>@item.EmailAddress</td>
+                                    <td>@item.VerifiedUser</td>
+                                    <td>@Html.DisplayFor(m => item.Subscription.Name)</td>
+                                    <td>@Html.DisplayFor(m => item.SubscriptionLength) Months</td>
+                                </tr>
+                            }
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            @Html.ActionLink("Add an Athlete", "Create", "Athletes", new { @class = "btn btn-lg btn-primary" })
+        </div>
+    }
 </div>

@@ -1896,7 +1896,6 @@
     <Content Include="Views\Shared\_CredentialsLayout.cshtml" />
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\Account\AthleteSignup.cshtml" />
-    <Content Include="Views\Home\TestCalendar.cshtml" />
     <Content Include="Views\WeeklyClasses\Create.cshtml" />
     <Content Include="Views\WeeklyClasses\Details.cshtml" />
     <Content Include="Views\WeeklyClasses\Index.cshtml" />

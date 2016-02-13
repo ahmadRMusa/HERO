@@ -73,7 +73,7 @@ namespace HERO.App_Start
 
             // Identity
             kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>().InRequestScope().WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
-            kernel.Bind<UserManager<ApplicationUser>>().ToSelf().InRequestScope().WithConstructorArgument("store", kernel.Get<IUserStore<ApplicationUser>>());
+            kernel.Bind<UserManager<ApplicationUser>>().ToSelf().InRequestScope();
         }
     }
 }

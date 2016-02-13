@@ -41,11 +41,26 @@ namespace HERO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Athlete athlete = await _db.Athletes.FindAsync(id);
+
             if (athlete == null)
             {
                 return HttpNotFound();
             }
+
+            List<Subscription> subscriptions = _db.Subscriptions.ToList();
+
+            ViewBag.SubscriptionLength = new SelectList(
+                    ConstantValues.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value }),
+                    "value",
+                    "text");
+
+            ViewBag.SubscriptionId = new SelectList(
+                    subscriptions.Select(x => new { text = x.Name, value = x.Id }),
+                    "value",
+                    "text");
+
             return View(athlete);
         }
 
@@ -96,21 +111,6 @@ namespace HERO.Controllers
             return View(athlete);
         }
 
-        // GET: Athletes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Athlete athlete = await _db.Athletes.FindAsync(id);
-            if (athlete == null)
-            {
-                return HttpNotFound();
-            }
-            return View(athlete);
-        }
-
         // POST: Athletes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -127,25 +127,6 @@ namespace HERO.Controllers
             return View(athlete);
         }
 
-        // GET: Athletes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Athlete athlete = await _db.Athletes.FindAsync(id);
-            var user = await _userManager.FindByIdAsync(athlete.ApplicationUserId);
-            await _userManager.DeleteAsync(user);
-
-            if (athlete == null)
-            {
-                return HttpNotFound();
-            }
-            return View(athlete);
-        }
-
         // POST: Athletes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -153,6 +134,10 @@ namespace HERO.Controllers
         {
             Athlete athlete = await _db.Athletes.FindAsync(id);
             _db.Athletes.Remove(athlete);
+
+            var user = await _userManager.FindByIdAsync(athlete.ApplicationUserId);
+            await _userManager.DeleteAsync(user);
+
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

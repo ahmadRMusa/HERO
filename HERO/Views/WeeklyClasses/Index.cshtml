@@ -12,39 +12,59 @@
             <h1>Manage Weekly Classes</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">Current Weekly Classes</div>
-            </div>
-            <div class="bootstrap-admin-panel-content">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>@Html.DisplayNameFor(m => m.Id)</th>
-                            <th>@Html.DisplayNameFor(m => m.Type)</th>
-                            <th>@Html.DisplayNameFor(m => m.Days)</th>
-                            <th>@Html.DisplayNameFor(m => m.Duration)</th>
-                            <th>@Html.DisplayNameFor(m => m.MaxAttendance)</th>
-                            <th>@Html.DisplayNameFor(m => m.StartDate)</th>
-                            <th>@Html.DisplayNameFor(m => m.EndDate)</th>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@Html.ActionLink(item.Id.ToString(), "Details", new { controller = "WeeklyClasses", id = item.Id })</td>
-                                <td>@Html.DisplayFor(m => item.Type)</td>
-                                <td>@string.Join(", ", item.Days.Select(x => x.Day.ToString()))</td>
-                                <td>@(item.Duration + " Hours")</td>
-                                <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
-                                <td>@Html.DisplayFor(m => item.StartDate)</td>
-                                <td>@Html.DisplayFor(m => item.EndDate)</td>
-                            </tr>
-                        }
-                    </thead>
-                </table>
+
+    @if (Model.Count() == 0)
+    {
+        <div class="row bootstrap-admin-no-edges-padding">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">No Weekly Classes Found</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <p>Woops, it looks like you don't have any weekly classes stored in the system. Click on the "Add a Weekly Class" button below to add one!</p>
+                    </div>
+                </div>
+                @Html.ActionLink("Add a Weekly Class", "Create", "WeeklyClasses", new { @class = "btn btn-lg btn-primary" })
             </div>
         </div>
-        @Html.ActionLink("Add a Weekly Class", "Create", "WeeklyClasses", new { @class = "btn btn-lg btn-primary" })
-    </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Current Weekly Classes</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.Id)</th>
+                                <th>@Html.DisplayNameFor(m => m.Type)</th>
+                                <th>@Html.DisplayNameFor(m => m.Days)</th>
+                                <th>@Html.DisplayNameFor(m => m.Duration)</th>
+                                <th>@Html.DisplayNameFor(m => m.MaxAttendance)</th>
+                                <th>@Html.DisplayNameFor(m => m.StartDate)</th>
+                                <th>@Html.DisplayNameFor(m => m.EndDate)</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(item.Id.ToString(), "Details", new { controller = "WeeklyClasses", id = item.Id })</td>
+                                    <td>@Html.DisplayFor(m => item.Type)</td>
+                                    <td>@string.Join(", ", item.Days.Select(x => x.Day.ToString()))</td>
+                                    <td>@(item.Duration + " Hours")</td>
+                                    <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                    <td>@Html.DisplayFor(m => item.StartDate)</td>
+                                    <td>@Html.DisplayFor(m => item.EndDate)</td>
+                                </tr>
+                            }
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            @Html.ActionLink("Add a Weekly Class", "Create", "WeeklyClasses", new { @class = "btn btn-lg btn-primary" })
+        </div>
+    }
 </div>
