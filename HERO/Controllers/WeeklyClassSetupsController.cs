@@ -14,12 +14,12 @@ using System.Web.Mvc;
 namespace HERO.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class WeeklyClassesController : Controller
+    public class WeeklyClassSetupsController : Controller
     {
         private GymContext db;
         private ICalendarGenerator _calendarGenerator;
 
-        public WeeklyClassesController(GymContext context, ICalendarGenerator calendarGenerator)
+        public WeeklyClassSetupsController(GymContext context, ICalendarGenerator calendarGenerator)
         {
             db = context;
             _calendarGenerator = calendarGenerator;

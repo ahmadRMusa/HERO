@@ -1,51 +1,95 @@
 ﻿@model HERO.Models.Objects.SingleClassSetup
 
+@using MvcBootstrapTimepicker
+
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Manage Single Class";
 }
 
-<h2>Details</h2>
+@section AddToHead {
+    <link rel="stylesheet" href="~/Content/TimePicker/bootstrap-timepicker.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/TimePicker/MvcBootstrapTimepicker.css" type="text/css" />
+}
 
-<div>
-    <h4>SingleClassSetup</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
+@Html.Partial("_LeftMenu")
 
-        <dd>
-            @Html.DisplayFor(model => model.Time)
-        </dd>
+@using (Html.BeginForm("Delete", "SingleClassSetups", FormMethod.Post, new { style = "display:none;", id = "delete-form" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.TextBox("id", Model.Id, new { style = "display:none;" })
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxAttendance)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaxAttendance)
-        </dd>
-
-    </dl>
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Manage @Model.Type</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Single Class Details</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Edit", "SingleClassSetups", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken();
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Type, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Type, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Time, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.BootstrapTimePickerFor(m => m.Time).Time("8:00").MinuteStep(30).Class("form-control col-md-6")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="datepicker">Date</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control datepicker" id="datepicker" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="Date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Duration, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Duration, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MaxAttendance, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.MaxAttendance, new { @class = "form-control col-md-6", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="Edit" class="btn btn-primary">Save Changes</button>
+                        <a href="javascript:document.getElementById('delete-form').submit()" class="btn btn-default confirm">Delete</a>
+                        @Html.ActionLink("Cancel", "Index", "WeeklyClassSetups", new { @class = "btn btn-default" })
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/MvcBootstrapTimepicker.js"></script>
+    @Scripts.Render("~/bundles/vendors")
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker();
+            $('.uniform_on').uniform();
+            $('.chzn-select').chosen();
+            $('.textarea-wysihtml5').wysihtml5({
+                stylesheets: [
+                    'vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/stylesheets/bootstrap-wysihtml5/wysiwyg-color.css'
+                ]
+            });
+        });
+    </script>
+}

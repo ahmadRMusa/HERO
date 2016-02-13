@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using HERO.Models;
 using HERO.Models.Objects;
+using System.Data.Entity.Validation;
 
 namespace HERO.Controllers
 {
@@ -53,12 +54,34 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] SingleClassSetup singleClassSetup)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Date,Time,Duration,Type,MaxAttendance")] SingleClassSetup singleClassSetup)
         {
+            singleClassSetup.GeneratedClass = new Class();
+            ModelState.Remove("GeneratedClass");
             if (ModelState.IsValid)
             {
                 db.SingleClasses.Add(singleClassSetup);
-                await db.SaveChangesAsync();
+
+                try
+                {
+                    await db.SaveChangesAsync();
+                } catch(DbEntityValidationException e)
+                {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = e.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(e.Message, " The validation errors are: ", fullErrorMessage);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage, e.EntityValidationErrors);
+                }
+
                 return RedirectToAction("Index");
             }
 
