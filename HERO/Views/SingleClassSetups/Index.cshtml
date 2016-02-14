@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>@Html.ActionLink(item.Id.ToString(), "Details", new { controller = "SingleClassSetups", id = item.Id })</td>
                                     <td>@Html.DisplayFor(m => item.Type)</td>
-                                    <td>@Html.DisplayFor(m => item.Time)</td>
+                                    <td>@item.Time.ToString(@"hh\:mm")</td>
                                     <td>@Html.DisplayFor(m => item.Date)</td>
                                     <td>@(item.Duration + " Hours")</td>
                                     <td>@Html.DisplayFor(m => item.MaxAttendance)</td>

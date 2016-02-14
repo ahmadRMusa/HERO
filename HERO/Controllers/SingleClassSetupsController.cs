@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using HERO.Constants;
 using HERO.Models;
 using HERO.Models.Objects;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace HERO.Controllers
 {
@@ -56,8 +54,16 @@ namespace HERO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Date,Time,Duration,Type,MaxAttendance")] SingleClassSetup singleClassSetup)
         {
-            singleClassSetup.GeneratedClass = new Class();
-            ModelState.Remove("GeneratedClass");
+            Class c = new Class();
+            c.MaxAttendance = singleClassSetup.MaxAttendance;
+            c.Type = singleClassSetup.Type;
+            c.Duration = singleClassSetup.Duration;
+            c.DaysOfWeek = new List<DayOfWeekModel>() { db.DaysOfWeek.Single(d => d.Day == singleClassSetup.Date.DayOfWeek) };
+            c.Time = singleClassSetup.Date;
+            c.Attendance = new List<Athlete>();
+
+            singleClassSetup.GeneratedClass = c;
+
             if (ModelState.IsValid)
             {
                 db.SingleClasses.Add(singleClassSetup);
@@ -67,19 +73,7 @@ namespace HERO.Controllers
                     await db.SaveChangesAsync();
                 } catch(DbEntityValidationException e)
                 {
-                    // Retrieve the error messages as a list of strings.
-                    var errorMessages = e.EntityValidationErrors
-                            .SelectMany(x => x.ValidationErrors)
-                            .Select(x => x.ErrorMessage);
-
-                    // Join the list to a single string.
-                    var fullErrorMessage = string.Join("; ", errorMessages);
-
-                    // Combine the original exception message with the new one.
-                    var exceptionMessage = string.Concat(e.Message, " The validation errors are: ", fullErrorMessage);
-
-                    // Throw a new DbEntityValidationException with the improved exception message.
-                    throw new DbEntityValidationException(exceptionMessage, e.EntityValidationErrors);
+                    ConstantValues.ThrowDetailedEntityValidationErrors(e);
                 }
 
                 return RedirectToAction("Index");
