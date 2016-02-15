@@ -332,10 +332,15 @@
     <Compile Include="Migrations\GymContext\201602151526225_SingleClass1-1Class.Designer.cs">
       <DependentUpon>201602151526225_SingleClass1-1Class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602152001123_ManyManyAthleteClass.cs" />
+    <Compile Include="Migrations\GymContext\201602152001123_ManyManyAthleteClass.Designer.cs">
+      <DependentUpon>201602152001123_ManyManyAthleteClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
     <Compile Include="Models\ClassJSONModel.cs" />
+    <Compile Include="Models\ClassSignupViewModel.cs" />
     <Compile Include="Models\GymContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1919,6 +1924,7 @@
     <Content Include="Views\SingleClassSetups\Create.cshtml" />
     <Content Include="Views\SingleClassSetups\Details.cshtml" />
     <Content Include="Views\SingleClassSetups\Index.cshtml" />
+    <Content Include="Views\Classes\SignupSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1997,6 +2003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602151526225_SingleClass1-1Class.resx">
       <DependentUpon>201602151526225_SingleClass1-1Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602152001123_ManyManyAthleteClass.resx">
+      <DependentUpon>201602152001123_ManyManyAthleteClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

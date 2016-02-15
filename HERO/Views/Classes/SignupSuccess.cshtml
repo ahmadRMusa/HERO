@@ -1,37 +1,22 @@
 ﻿@model HERO.Models.ClassSignupViewModel
 
-@using Microsoft.AspNet.Identity
-
 @{
-    ViewBag.Title = "Signup for a Class";
-    bool AthleteInClass = Model.Class.Attendance.Contains(Model.Athlete);
+    ViewBag.Title = "Class Signup Success!";
 }
 
 @Html.Partial("_LeftMenu")
-
-@if (!AthleteInClass)
-{
-    using (Html.BeginForm("Signup", "Classes", FormMethod.Post, new { style = "display:none;", id = "class-form" }))
-    {
-        @Html.AntiForgeryToken()
-        <input name="userId" type="hidden" value="@User.Identity.GetUserId()" />
-        <input name="classId" type="hidden" value="@Model.Class.Id" />
-    }
-}
-else
-{
-    using (Html.BeginForm("Cancel", "Classes", FormMethod.Post, new { style = "display:none;", id = "class-form" }))
-    {
-        @Html.AntiForgeryToken()
-        <input name="userId" type="hidden" value="@User.Identity.GetUserId()" />
-        <input name="classId" type="hidden" value="@Model.Class.Id" />
-    }
-}
 
 <div class="col-md-10">
     <div class="row">
         <div class="bootstrap-admin-content-title">
             <h1>@Model.Class.Type</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="alert alert-success bootstrap-admin-alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>@ViewData["SuccessHeader"].ToString()</h4>
+            @ViewData["SuccessBody"].ToString()
         </div>
     </div>
     <div class="row bootstrap-admin-no-edges-padding">
@@ -47,22 +32,12 @@ else
                     @{ int spaces = Model.Class.MaxAttendance - Model.Class.Attendance.Count(); }
                     <p><b>Spaces Remaining:</b> @spaces</p>
                     <hr />
-                    @if (User.IsInRole("Admin"))
+
+                    @if (Model.Class.Attendance.Contains(Model.Athlete))
                     {
-                        if (Model.Class.SingleClass != null)
-                        {
-                            @Html.ActionLink("Manage", "Details", "SingleClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-lg btn-primary" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Manage", "Details", "WeeklyClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-lg btn-primary" })
-                        }
+                        <a href="javascript:document.getElementById('signup-form').submit()" class="btn btn-lg btn-primary">Signup</a>
+                        @Html.ActionLink("Back to Home", "Index", new { controller = "Home" } , new { @class = "btn btn-lg btn-default" })
                     }
-                    else
-                    {
-                        <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Signup</a>
-                    }
-                    @Html.ActionLink("Cancel", "Index", "Classes", new { @class = "btn btn-lg btn-default" })
                 </div>
             </div>
         </div>
@@ -74,7 +49,7 @@ else
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var athlete in Model.Class.Attendance)
+                    @foreach (var athlete in Model.Class.Attendance)
                     {
                         <tr><td>@(athlete.FirstName + " " + athlete.LastName)</td></tr>
                     }

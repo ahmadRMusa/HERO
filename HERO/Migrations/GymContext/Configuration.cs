@@ -29,22 +29,25 @@ namespace HERO.Migrations.GymContext
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-             
-            List<DayOfWeekModel> days = new List<DayOfWeekModel>()
-            {
-                new DayOfWeekModel { Id = (int)DayOfWeek.Monday, Day = DayOfWeek.Monday, Classes = new List<Class>() },
-                new DayOfWeekModel { Id = (int)DayOfWeek.Tuesday, Day = DayOfWeek.Tuesday, Classes = new List<Class>() },
-                new DayOfWeekModel { Id = (int)DayOfWeek.Wednesday, Day = DayOfWeek.Wednesday, Classes = new List<Class>() },
-                new DayOfWeekModel { Id = (int)DayOfWeek.Thursday, Day = DayOfWeek.Thursday, Classes = new List<Class>() },
-                new DayOfWeekModel { Id = (int)DayOfWeek.Friday, Day = DayOfWeek.Friday, Classes = new List<Class>() },
-                new DayOfWeekModel { Id = (int)DayOfWeek.Saturday, Day = DayOfWeek.Saturday, Classes = new List<Class>() },
-                new DayOfWeekModel { Id = (int)DayOfWeek.Sunday, Day = DayOfWeek.Sunday, Classes = new List<Class>() }
-            };
 
-            foreach(var item in days)
+            if (context.DaysOfWeek.ToList().Count() == 0)
             {
-                context.DaysOfWeek.AddOrUpdate(item);
-            }
+                List<DayOfWeekModel> days = new List<DayOfWeekModel>()
+                {
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Monday, Day = DayOfWeek.Monday, Classes = new List<Class>() },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Tuesday, Day = DayOfWeek.Tuesday, Classes = new List<Class>() },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Wednesday, Day = DayOfWeek.Wednesday, Classes = new List<Class>() },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Thursday, Day = DayOfWeek.Thursday, Classes = new List<Class>() },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Friday, Day = DayOfWeek.Friday, Classes = new List<Class>() },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Saturday, Day = DayOfWeek.Saturday, Classes = new List<Class>() },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Sunday, Day = DayOfWeek.Sunday, Classes = new List<Class>() }
+                };
+
+                foreach (var item in days)
+                {
+                    context.DaysOfWeek.AddOrUpdate(item);
+                }
+            } 
         }
     }
 }

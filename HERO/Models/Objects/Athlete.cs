@@ -36,5 +36,6 @@ namespace HERO.Models.Objects
         public string ApplicationUserId { get; set; }
         [Required]
         public virtual Subscription Subscription { get; set; }
+        public virtual IList<Class> Classes { get; set; }
     }
 }

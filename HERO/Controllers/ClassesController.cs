@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using HERO.Models;
 using HERO.Models.Objects;
+using Microsoft.AspNet.Identity;
 
 namespace HERO.Controllers
 {
@@ -35,19 +36,60 @@ namespace HERO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Class @class = await db.Classes.FindAsync(id);
-            if (@class == null)
+
+            string userId = HttpContext.User.Identity.GetUserId();
+
+            try
             {
-                return HttpNotFound();
+                Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+                Class cls = await db.Classes.FindAsync(id);
+                if (cls == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ClassSignupViewModel model = new ClassSignupViewModel { Athlete = athlete, Class = cls };
+                return View(model);
             }
-            return View(@class);
+            catch
+            {
+                Class cls = await db.Classes.FindAsync(id);
+                if (cls == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ClassSignupViewModel model = new ClassSignupViewModel { Class = cls };
+                return View(model);
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Signup()
+        public async Task<ActionResult> Signup(string userId, string classId)
         {
+            if (userId == null || classId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            int ClassId = Convert.ToInt32(classId);
+
+            Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+            Class cls = await db.Classes.SingleAsync(c => c.Id.Equals(ClassId));
+
+            if (!cls.Attendance.Contains(athlete))
+            {
+                ViewData["SuccessHeader"] = String.Format("Success!");
+                ViewData["SuccessBody"] = String.Format("You were added to {0}!", cls.Type);
+                cls.Attendance.Add(athlete);
+                await db.SaveChangesAsync();
+            }
+
+            ViewData["SuccessHeader"] = String.Format("We've got you!");
+            ViewData["SuccessBody"] = String.Format("You've already been added to {0}!", cls.Type);
+            ClassSignupViewModel model = new ClassSignupViewModel { Athlete = athlete, Class = cls };
+            return View("SignupSuccess", model);
         }
 
         public async Task<JsonResult> GetScheduledClasses(string start, string end)
