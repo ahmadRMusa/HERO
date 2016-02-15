@@ -59,7 +59,6 @@ namespace HERO.Controllers
             c.MaxAttendance = singleClassSetup.MaxAttendance;
             c.Type = singleClassSetup.Type;
             c.Duration = singleClassSetup.Duration;
-            c.DaysOfWeek = new List<DayOfWeekModel>() { db.DaysOfWeek.ToList().Single(d => d.Day == singleClassSetup.Date.Value.DayOfWeek) };
             c.Time = ((DateTime)singleClassSetup.Date).Add(singleClassSetup.Time);
             c.Attendance = new List<Athlete>();
 
@@ -95,7 +94,6 @@ namespace HERO.Controllers
             cls.MaxAttendance = singleClassSetup.MaxAttendance;
             cls.Type = singleClassSetup.Type;
             cls.Duration = singleClassSetup.Duration;
-            cls.DaysOfWeek[0] = db.DaysOfWeek.ToList().Single(d => d.Day == singleClassSetup.Date.Value.DayOfWeek);
             cls.Time = singleClassSetup.Date;
             cls.Attendance = cls.Attendance;
 

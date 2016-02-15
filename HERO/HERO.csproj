@@ -336,6 +336,10 @@
     <Compile Include="Migrations\GymContext\201602152001123_ManyManyAthleteClass.Designer.cs">
       <DependentUpon>201602152001123_ManyManyAthleteClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602152322259_RemovedManyOneClassDayOfWeek.cs" />
+    <Compile Include="Migrations\GymContext\201602152322259_RemovedManyOneClassDayOfWeek.Designer.cs">
+      <DependentUpon>201602152322259_RemovedManyOneClassDayOfWeek.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppointmentsViewModel.cs" />
@@ -352,6 +356,7 @@
     <Compile Include="Models\Objects\SingleClassSetup.cs" />
     <Compile Include="Models\Objects\Subscription.cs" />
     <Compile Include="Models\Objects\WeeklyClassSetup.cs" />
+    <Compile Include="Models\Objects\WOD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\CalendarGenerator.cs" />
     <Compile Include="Scheduler\ICalendarGenerator.cs" />
@@ -2006,6 +2011,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602152001123_ManyManyAthleteClass.resx">
       <DependentUpon>201602152001123_ManyManyAthleteClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602152322259_RemovedManyOneClassDayOfWeek.resx">
+      <DependentUpon>201602152322259_RemovedManyOneClassDayOfWeek.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

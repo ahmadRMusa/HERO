@@ -9,6 +9,5 @@ namespace HERO.Models.Objects
     {
         public int Id { get; set; }
         public DayOfWeek Day { get; set; }
-        public virtual IList<Class> Classes { get; set; }
     }
 }

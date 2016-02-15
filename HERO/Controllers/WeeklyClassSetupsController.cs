@@ -99,12 +99,6 @@ namespace HERO.Controllers
             {
                 db.WeeklyClasses.Add(weeklyClass);
                 db.Classes.AddRange(classes);
-
-                foreach (var day in days)
-                {
-                    day.Classes = classes.Where(x => ((DateTime)x.Time).DayOfWeek.Equals(day.Day)).ToList();
-                }
-
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             } else

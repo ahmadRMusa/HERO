@@ -34,13 +34,13 @@ namespace HERO.Migrations.GymContext
             {
                 List<DayOfWeekModel> days = new List<DayOfWeekModel>()
                 {
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Monday, Day = DayOfWeek.Monday, Classes = new List<Class>() },
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Tuesday, Day = DayOfWeek.Tuesday, Classes = new List<Class>() },
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Wednesday, Day = DayOfWeek.Wednesday, Classes = new List<Class>() },
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Thursday, Day = DayOfWeek.Thursday, Classes = new List<Class>() },
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Friday, Day = DayOfWeek.Friday, Classes = new List<Class>() },
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Saturday, Day = DayOfWeek.Saturday, Classes = new List<Class>() },
-                    new DayOfWeekModel { Id = (int)DayOfWeek.Sunday, Day = DayOfWeek.Sunday, Classes = new List<Class>() }
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Monday, Day = DayOfWeek.Monday },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Tuesday, Day = DayOfWeek.Tuesday },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Wednesday, Day = DayOfWeek.Wednesday },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Thursday, Day = DayOfWeek.Thursday },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Friday, Day = DayOfWeek.Friday },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Saturday, Day = DayOfWeek.Saturday },
+                    new DayOfWeekModel { Id = (int)DayOfWeek.Sunday, Day = DayOfWeek.Sunday }
                 };
 
                 foreach (var item in days)
