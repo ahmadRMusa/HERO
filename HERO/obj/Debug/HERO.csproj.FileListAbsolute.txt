@@ -113,3 +113,4 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Twitter.
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.SingleClass11Class.resources

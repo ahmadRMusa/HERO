@@ -104,8 +104,8 @@ namespace HERO.Controllers
                 title = x.Type,
                 editable = false,
                 allDay = false,
-                start = x.Time.ToString("s"),
-                end = x.Time.AddHours(x.Duration).ToString("s"),
+                start = ((DateTime)x.Time).ToString("s"),
+                end = ((DateTime)x.Time).AddHours(x.Duration).ToString("s"),
                 url = Url.Action("Details", new { id = x.Id } )
             }).ToList();
 

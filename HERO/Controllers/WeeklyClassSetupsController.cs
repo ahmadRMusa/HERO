@@ -102,7 +102,7 @@ namespace HERO.Controllers
 
                 foreach (var day in days)
                 {
-                    day.Classes = classes.Where(x => x.Time.DayOfWeek.Equals(day.Day)).ToList();
+                    day.Classes = classes.Where(x => ((DateTime)x.Time).DayOfWeek.Equals(day.Day)).ToList();
                 }
 
                 await db.SaveChangesAsync();

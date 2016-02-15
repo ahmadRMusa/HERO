@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,7 @@ namespace HERO.Models.Objects
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Date")]
-        public DateTime Time { get; set; } // Used for Calendar
+        public DateTime? Time { get; set; } // Used for Calendar
         [Required]
         [Display(Name = "Duration")]
         public float Duration { get; set; }
@@ -27,5 +28,6 @@ namespace HERO.Models.Objects
         [Required]
         public virtual IList<DayOfWeekModel> DaysOfWeek { get; set; }
         public virtual WeeklyClassSetup WeeklyClass { get; set; }
+        public virtual SingleClassSetup SingleClass { get; set; }
     }
 }

@@ -40,7 +40,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>@Html.DisplayNameFor(m => m.Id)</th>
                                 <th>@Html.DisplayNameFor(m => m.Type)</th>
                                 <th>@Html.DisplayNameFor(m => m.Time)</th>
                                 <th>@Html.DisplayNameFor(m => m.Date)</th>
@@ -50,8 +49,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@Html.ActionLink(item.Id.ToString(), "Details", new { controller = "SingleClassSetups", id = item.Id })</td>
-                                    <td>@Html.DisplayFor(m => item.Type)</td>
+                                    <td>@Html.ActionLink(item.Type, "Details", new { controller = "SingleClassSetups", id = item.ClassId } )</td>
                                     <td>@item.Time.ToString(@"hh\:mm")</td>
                                     <td>@Html.DisplayFor(m => item.Date)</td>
                                     <td>@(item.Duration + " Hours")</td>
