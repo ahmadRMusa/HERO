@@ -1,51 +1,49 @@
 ﻿@model HERO.Models.Objects.Class
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Signup for a Class";
 }
 
-<h2>Details</h2>
+@Html.Partial("_LeftMenu")
 
-<div>
-    <h4>Class</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxAttendance)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaxAttendance)
-        </dd>
-
-    </dl>
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>@Model.Type</h1>
+        </div>
+    </div>
+    <div class="row bootstrap-admin-no-edges-padding">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Class Details</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <p><b>Date:</b> @Model.Time.Value.Date.DayOfWeek, @Model.Time.Value.Date.ToString("MMMM") @Model.Time.Value.Date.Day</p>
+                    <p><b>Time:</b> @Model.Time.Value.ToString(@"hh\:mm tt")</p>
+                    <p><b>Duration:</b> @Model.Duration Hours</p>
+                    @{ int spaces = Model.MaxAttendance - Model.Attendance.Count(); }
+                    <p><b>Spaces Remaining:</b> @spaces</p>
+                    <hr />
+                    @Html.ActionLink("Signup", "Signup", "Classes", new { @class = "btn btn-lg btn-primary" })
+                    @Html.ActionLink("Cancel", "Index", "Classes", new { @class = "btn btn-lg btn-default" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-condensed table-hovered sortableTable">
+                <thead>
+                    <tr>
+                        <th>Athlete Name <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var athlete in Model.Attendance)
+                    {
+                        <tr><td>@(athlete.FirstName + " " + athlete.LastName)</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
