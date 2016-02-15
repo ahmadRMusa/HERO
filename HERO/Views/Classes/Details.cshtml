@@ -34,6 +34,16 @@ else
             <h1>@Model.Class.Type</h1>
         </div>
     </div>
+    @if (ViewData["SuccessHeader"] != null)
+    {
+        <div class="row">
+            <div class="alert alert-success bootstrap-admin-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4>@ViewData["SuccessHeader"].ToString()</h4>
+                @ViewData["SuccessBody"].ToString()
+            </div>
+        </div>
+    }
     <div class="row bootstrap-admin-no-edges-padding">
         <div class="col-md-6">
             <div class="panel panel-default">
@@ -60,9 +70,16 @@ else
                     }
                     else
                     {
-                        <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Signup</a>
+                        if (!AthleteInClass)
+                        {
+                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Signup</a>
+                        }
+                        else
+                        {
+                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Cancel Signup</a>
+                        }
                     }
-                    @Html.ActionLink("Cancel", "Index", "Classes", new { @class = "btn btn-lg btn-default" })
+                    @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-lg btn-default" })
                 </div>
             </div>
         </div>

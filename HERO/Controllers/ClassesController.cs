@@ -80,16 +80,49 @@ namespace HERO.Controllers
 
             if (!cls.Attendance.Contains(athlete))
             {
-                ViewData["SuccessHeader"] = String.Format("Success!");
-                ViewData["SuccessBody"] = String.Format("You were added to {0}!", cls.Type);
+                ViewData["SuccessHeader"] = String.Format("Success");
+                ViewData["SuccessBody"] = String.Format("You were added to {0}.", cls.Type);
                 cls.Attendance.Add(athlete);
+                athlete.Classes.Add(cls);
                 await db.SaveChangesAsync();
+            } else
+            {
+                ViewData["SuccessHeader"] = String.Format("We've got you");
+                ViewData["SuccessBody"] = String.Format("You've already been added to {0}.", cls.Type);
             }
 
-            ViewData["SuccessHeader"] = String.Format("We've got you!");
-            ViewData["SuccessBody"] = String.Format("You've already been added to {0}!", cls.Type);
             ClassSignupViewModel model = new ClassSignupViewModel { Athlete = athlete, Class = cls };
-            return View("SignupSuccess", model);
+            return View("Details", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Cancel(string userId, string classId)
+        {
+            if (userId == null || classId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            int ClassId = Convert.ToInt32(classId);
+            Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+            Class cls = await db.Classes.SingleAsync(c => c.Id.Equals(ClassId));
+
+            if (cls.Attendance.Contains(athlete))
+            {
+                ViewData["SuccessHeader"] = "Success";
+                ViewData["SuccessBody"] = String.Format("We've removed you from {0}.", cls.Type);
+                cls.Attendance.Remove(athlete);
+                athlete.Classes.Remove(cls);
+                await db.SaveChangesAsync();
+            } else
+            {
+                ViewData["SuccessHeader"] = String.Format("Woops");
+                ViewData["SuccessBody"] = String.Format("Looks like you weren't signed up for {0}.", cls.Type);
+            }
+            
+            ClassSignupViewModel model = new ClassSignupViewModel { Athlete = athlete, Class = cls };
+            return View("Details", model);
         }
 
         public async Task<JsonResult> GetScheduledClasses(string start, string end)

@@ -38,6 +38,11 @@
                         <a href="javascript:document.getElementById('signup-form').submit()" class="btn btn-lg btn-primary">Signup</a>
                         @Html.ActionLink("Back to Home", "Index", new { controller = "Home" } , new { @class = "btn btn-lg btn-default" })
                     }
+                    else
+                    {
+                        @Html.ActionLink("Back to Home", "Index", new { controller = "Home" }, new { @class = "btn btn-lg btn-default" })
+
+                    }
                 </div>
             </div>
         </div>
