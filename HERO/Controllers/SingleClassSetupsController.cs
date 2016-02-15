@@ -105,6 +105,7 @@ namespace HERO.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(singleClassSetup).State = EntityState.Modified;
+                db.Entry(cls).State = EntityState.Modified;
 
                 try
                 {
@@ -125,7 +126,9 @@ namespace HERO.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             SingleClassSetup singleClassSetup = await db.SingleClasses.FindAsync(id);
+            Class cls = await db.Classes.FindAsync(id);
             db.SingleClasses.Remove(singleClassSetup);
+            db.Classes.Remove(cls);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
