@@ -1,4 +1,5 @@
-﻿using HERO.Scheduler;
+﻿using HERO.Models;
+using HERO.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;

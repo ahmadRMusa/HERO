@@ -1,0 +1,125 @@
+﻿@model HERO.Models.AppointmentsViewModel
+
+@{
+    ViewBag.Title = "Your CrossFit Classes";
+}
+
+@Html.Partial("_LeftMenu")
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>CrossFit Classes</h1>
+        </div>
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <p>@ViewData["Message"].ToString()</p>
+    }
+    else
+    {
+        if (Model.UpcomingClasses.Count() == 0)
+        {
+            <div class="row bootstrap-admin-no-edges-padding">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="text-muted bootstrap-admin-box-title">No Upcoming Classes</div>
+                        </div>
+                        <div class="bootstrap-admin-panel-content">
+                            <p>You're currently not signed up for any upcoming classes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">Current Classes</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Class Type</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Duration</th>
+                                    <th>Attendance</th>
+                                </tr>
+                                @foreach (var item in Model.UpcomingClasses)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(item.Type, "Details", new { controller = "Classes", id = item.Id })</td>
+                                        <td>@Html.DisplayFor(m => item.Time)</td>
+                                        <td>@item.Time.Value.TimeOfDay.ToString(@"hh\:mm")</td>
+                                        <td>@(item.Duration + " Hours")</td>
+                                        <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                    </tr>
+                                }
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                @Html.ActionLink("Go to Calendar", "Index", new { controller = "Classes" }, new { @class = "btn btn-lg btn-primary" })
+            </div>
+        }
+
+        <hr />
+
+        if (Model.PastClasses.Count() == 0)
+        {
+            <div class="row bootstrap-admin-no-edges-padding">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="text-muted bootstrap-admin-box-title">No Past Classes</div>
+                        </div>
+                        <div class="bootstrap-admin-panel-content">
+                            <p>You haven't attended any classes.</p>
+                        </div>
+                    </div>
+                    @Html.ActionLink("Go to Performance", "Index", "Classes", new { @class = "btn btn-lg btn-primary" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">Past Classes</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>@Html.Display("Class Type")</th>
+                                    <th>@Html.Display("Date")</th>
+                                    <th>@Html.Display("Time")</th>
+                                    <th>@Html.Display("Duration")</th>
+                                    <th>@Html.Display("Max Attendance")</th>
+                                </tr>
+                                @foreach (var item in Model.PastClasses)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(item.Type, "Details", new { controller = "Classes", id = item.Id })</td>
+                                        <td>@Html.DisplayFor(m => item.Time)</td>
+                                        <td>@item.Time.Value.TimeOfDay.ToString(@"hh\:mm")</td>
+                                        <td>@(item.Duration + " Hours")</td>
+                                        <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                    </tr>
+                                }
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                @Html.ActionLink("Go to Performance", "Index", new { controller = "Classes" }, new { @class = "btn btn-lg btn-primary" })
+            </div>
+        }
+    }
+</div>
+

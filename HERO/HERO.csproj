@@ -338,6 +338,7 @@
     </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AppointmentsViewModel.cs" />
     <Compile Include="Models\AthleteViewModel.cs" />
     <Compile Include="Models\ClassJSONModel.cs" />
     <Compile Include="Models\ClassSignupViewModel.cs" />
@@ -1923,7 +1924,7 @@
     <Content Include="Views\SingleClassSetups\Create.cshtml" />
     <Content Include="Views\SingleClassSetups\Details.cshtml" />
     <Content Include="Views\SingleClassSetups\Index.cshtml" />
-    <Content Include="Views\Classes\CurrentAppointments.cshtml" />
+    <Content Include="Views\Classes\Appointments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
