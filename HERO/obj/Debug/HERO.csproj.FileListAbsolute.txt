@@ -114,3 +114,4 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Microsof
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.SingleClass11Class.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csprojResolveAssemblyReference.cache

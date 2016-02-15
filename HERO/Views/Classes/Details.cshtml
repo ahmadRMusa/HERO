@@ -25,7 +25,20 @@
                     @{ int spaces = Model.MaxAttendance - Model.Attendance.Count(); }
                     <p><b>Spaces Remaining:</b> @spaces</p>
                     <hr />
-                    @Html.ActionLink("Signup", "Signup", "Classes", new { @class = "btn btn-lg btn-primary" })
+                    @if (User.IsInRole("Admin"))
+                    {
+                        if (Model.SingleClass != null)
+                        {
+                            @Html.ActionLink("Manage", "Details", "SingleClassSetups", new { id = Model.Id }, new { @class = "btn btn-lg btn-primary" })
+                        } else
+                        {
+                            @Html.ActionLink("Manage", "Details", "WeeklyClassSetups", new { id = Model.Id }, new { @class = "btn btn-lg btn-primary" })
+                        }
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Signup", "Signup", "Classes", new { @class = "btn btn-lg btn-primary" })
+                    }
                     @Html.ActionLink("Cancel", "Index", "Classes", new { @class = "btn btn-lg btn-default" })
                 </div>
             </div>

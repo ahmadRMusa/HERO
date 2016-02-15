@@ -43,54 +43,11 @@ namespace HERO.Controllers
             return View(@class);
         }
 
-        // GET: Classes/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Classes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] Class @class)
+        public async Task<ActionResult> Signup()
         {
-            if (ModelState.IsValid)
-            {
-                db.Classes.Add(@class);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
 
-            return View(@class);
-        }
-
-        // POST: Classes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Time,Duration,Type,MaxAttendance")] Class @class)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(@class).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(@class);
-        }
-
-        // POST: Classes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Class @class = await db.Classes.FindAsync(id);
-            db.Classes.Remove(@class);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
         }
 
         public async Task<JsonResult> GetScheduledClasses(string start, string end)
