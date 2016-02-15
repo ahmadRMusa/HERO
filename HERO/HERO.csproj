@@ -1918,13 +1918,12 @@
     <Content Include="Views\WeeklyClassSetups\Create.cshtml" />
     <Content Include="Views\WeeklyClassSetups\Details.cshtml" />
     <Content Include="Views\WeeklyClassSetups\Index.cshtml" />
-    <Content Include="Views\Classes\Create.cshtml" />
     <Content Include="Views\Classes\Details.cshtml" />
     <Content Include="Views\Classes\Index.cshtml" />
     <Content Include="Views\SingleClassSetups\Create.cshtml" />
     <Content Include="Views\SingleClassSetups\Details.cshtml" />
     <Content Include="Views\SingleClassSetups\Index.cshtml" />
-    <Content Include="Views\Classes\SignupSuccess.cshtml" />
+    <Content Include="Views\Classes\CurrentAppointments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

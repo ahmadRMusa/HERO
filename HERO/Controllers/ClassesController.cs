@@ -29,6 +29,21 @@ namespace HERO.Controllers
             return View();
         }
 
+        public async Task<ActionResult> CurrentAppointments()
+        {
+            string userId = HttpContext.User.Identity.GetUserId();
+
+            try
+            {
+                Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+                return View(athlete.Classes);
+            } catch
+            {
+                ViewData["Message"] = "Please log in with your athlete account to view your classes.";
+                return View();
+            }
+        }
+
         // GET: Classes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
