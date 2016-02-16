@@ -28,6 +28,7 @@ namespace HERO.Models
         public virtual DbSet<SingleClassSetup> SingleClasses { get; set; }
         public virtual DbSet<DayOfWeekModel> DaysOfWeek { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<WOD> WODs { get; set; }
     }
 
     //public class MyEntity

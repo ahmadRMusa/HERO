@@ -18,7 +18,7 @@ namespace HERO.Models.Objects
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Birth Date")]
+        [Display(Name = "Date of Birth")]
         public DateTime BirthDate { get; set; }
         [Required]
         public string Gender { get; set; }
