@@ -82,7 +82,7 @@
                             <p>You haven't attended any classes.</p>
                         </div>
                     </div>
-                    @Html.ActionLink("Go to Performance", "Index", "Classes", new { @class = "btn btn-lg btn-primary" })
+                    @Html.ActionLink("Go to Performance", "Index", new { controller = "Classes" }, new { @class = "btn btn-lg btn-primary" })
                 </div>
             </div>
         }

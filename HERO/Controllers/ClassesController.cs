@@ -29,20 +29,33 @@ namespace HERO.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Appointments()
+        public async Task<ActionResult> UpcomingClasses()
         {
             string userId = HttpContext.User.Identity.GetUserId();
-
             try
             {
                 Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
-                AppointmentsViewModel model = new AppointmentsViewModel();
-                model.UpcomingClasses = athlete.Classes.Where(c => c.Time > DateTime.Now).ToList();
-                model.PastClasses = athlete.Classes.Where(c => c.Time < DateTime.Now).ToList();
-                return View(model);
+                List<Class> classes = athlete.Classes.Where(c => c.Time >= DateTime.Now).ToList();
+                return View(classes);
             } catch
             {
-                ViewData["Message"] = "Please log in with your athlete account to view your classes.";
+                ViewBag.Error = "Please log in with your athlete account to view your classes.";
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> PastClasses()
+        {
+            string userId = HttpContext.User.Identity.GetUserId();
+            try
+            {
+                Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+                List<Class> classes = athlete.Classes.Where(c => c.Time < DateTime.Now).ToList();
+                return View(classes);
+            }
+            catch
+            {
+                ViewBag.Error = "Please log in with your athlete account to view your classes.";
                 return View();
             }
         }

@@ -354,7 +354,6 @@
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\AddWODToClassViewModel.cs" />
     <Compile Include="Models\ViewModels\AddWodViewModel.cs" />
-    <Compile Include="Models\ViewModels\AppointmentsViewModel.cs" />
     <Compile Include="Models\ViewModels\AthleteViewModel.cs" />
     <Compile Include="Models\ClassJSONModel.cs" />
     <Compile Include="Models\ViewModels\ClassSignupViewModel.cs" />
@@ -1941,11 +1940,12 @@
     <Content Include="Views\SingleClassSetups\Create.cshtml" />
     <Content Include="Views\SingleClassSetups\Details.cshtml" />
     <Content Include="Views\SingleClassSetups\Index.cshtml" />
-    <Content Include="Views\Classes\Appointments.cshtml" />
     <Content Include="Views\WOD\Create.cshtml" />
     <Content Include="Views\WOD\Details.cshtml" />
     <Content Include="Views\WOD\Index.cshtml" />
     <Content Include="Views\WOD\AddToClass.cshtml" />
+    <Content Include="Views\Classes\UpcomingClasses.cshtml" />
+    <Content Include="Views\Classes\PastClasses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

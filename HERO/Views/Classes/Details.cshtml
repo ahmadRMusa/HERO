@@ -81,11 +81,11 @@ else
                     {
                         if (!AthleteInClass)
                         {
-                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Signup</a>
+                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
                         }
                         else
                         {
-                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Cancel Signup</a>
+                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
                         }
                     }
                     @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-default" })
@@ -102,9 +102,9 @@ else
                     {
                         <div class="bootstrap-admin-panel-content">
                             @Html.Raw(Model.Class.WOD.Description)
-                            <hr />
                             @if (User.IsInRole("Admin"))
                             {
+                                <hr />
                                 @Html.ActionLink("Change WOD", "AddToClass", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
                                 <a href="javascript:document.getElementById('remove-wod-form').submit()" class="btn btn-default">Remove WOD</a>
                             }
