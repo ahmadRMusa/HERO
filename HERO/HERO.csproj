@@ -240,6 +240,7 @@
     <Compile Include="Controllers\SubscriptionsController.cs" />
     <Compile Include="Controllers\WeeklyClassSetupsController.cs" />
     <Compile Include="Controllers\WODController.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1941,9 +1942,7 @@
     <Content Include="Views\SingleClassSetups\Index.cshtml" />
     <Content Include="Views\Classes\Appointments.cshtml" />
     <Content Include="Views\WOD\Create.cshtml" />
-    <Content Include="Views\WOD\Delete.cshtml" />
     <Content Include="Views\WOD\Details.cshtml" />
-    <Content Include="Views\WOD\Edit.cshtml" />
     <Content Include="Views\WOD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

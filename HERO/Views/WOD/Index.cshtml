@@ -1,40 +1,65 @@
 ﻿@model IEnumerable<HERO.Models.Objects.WOD>
 
+@using HERO.Extensions
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Manage WOD's";
 }
 
-<h2>Index</h2>
+@Html.Partial("_LeftMenu")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Scoring)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Manage WOD's</h1>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Scoring)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    @if (Model.Count() == 0)
+    {
+        <div class="row bootstrap-admin-no-edges-padding">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">No WOD's Found</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <p>Woops, it looks like you don't have any WOD's stored in the system. Click on the "Add a WOD" button below to add one!</p>
+                    </div>
+                </div>
+                @Html.ActionLink("Add a WOD", "Create", new { controller = "WOD" }, new { @class = "btn btn-lg btn-primary" })
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Current WOD's</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.Name)</th>
+                                <th>@Html.DisplayNameFor(m => m.Id)</th>
+                                <th>@Html.DisplayNameFor(m => m.Scoring)</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(item.Name, "Details", new { controller = "WOD", id = item.Id })</td>
+                                    <td>@Html.DisplayFor(m => item.Id)</td>
+                                    @{ var enumDisplay = item.Scoring.GetDisplayName(); }
+                                    <td>@enumDisplay</td>
+                                </tr>
+                            }
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            @Html.ActionLink("Add a WOD", "Create", new { controller = "WOD" }, new { @class = "btn btn-lg btn-primary" })
+        </div>
+    }
+</div>

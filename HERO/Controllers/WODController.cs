@@ -101,50 +101,21 @@ namespace HERO.Controllers
             }
         }
 
-        // GET: WOD/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WOD wOD = await db.WODs.FindAsync(id);
-            if (wOD == null)
-            {
-                return HttpNotFound();
-            }
-            return View(wOD);
-        }
-
         // POST: WOD/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Scoring,Description")] WOD wOD)
+        [ValidateInput(false)]
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Scoring,Description")] WOD wod)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(wOD).State = EntityState.Modified;
+                db.Entry(wod).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(wOD);
-        }
-
-        // GET: WOD/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WOD wOD = await db.WODs.FindAsync(id);
-            if (wOD == null)
-            {
-                return HttpNotFound();
-            }
-            return View(wOD);
+            return View(wod);
         }
 
         // POST: WOD/Delete/5
@@ -152,8 +123,15 @@ namespace HERO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            WOD wOD = await db.WODs.FindAsync(id);
-            db.WODs.Remove(wOD);
+            WOD wod = await db.WODs.FindAsync(id);
+            List<Class> classes = db.Classes.Where(c => c.WOD.Id.Equals(wod.Id)).ToList();
+
+            foreach(var cls in classes)
+            {
+                cls.WOD = null;
+            }
+
+            db.WODs.Remove(wod);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

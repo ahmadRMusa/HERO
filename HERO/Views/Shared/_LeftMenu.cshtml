@@ -4,11 +4,8 @@
         @Html.MenuItem("About", "Index", "Home")
         @if (User.IsInRole("Admin"))
         {
-            @Html.MenuItem("Subscriptions", "Index", "Subscriptions")
-            @Html.MenuItem("Athletes", "Index", "Athletes")
             @Html.MenuItem("Weekly Classes", "Index", "WeeklyClassSetups")
             @Html.MenuItem("Single Classes", "Index", "SingleClassSetups")
-            @Html.MenuItem("WOD's", "Index", "WOD")
             @Html.MenuItem("Calendar", "Index", "Classes")
         }
         else
