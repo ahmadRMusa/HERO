@@ -99,4 +99,31 @@ else
             </table>
         </div>
     </div>
+    <div class="row bootstrap-admin-no-edges-padding">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Class WOD</div>
+                </div>
+                @if (Model.Class.WOD != null)
+                {
+                    <div class="bootstrap-admin-panel-content">
+                        <h1>@Model.Class.WOD.Name</h1>
+                        @Model.Class.WOD.Description
+                        <hr />
+                        @Html.ActionLink("Change WOD", "Index", new { controller = "WOD" }, new { @class = "btn btn-lg btn-primary" } )
+                    </div>
+                }
+                else
+                {
+                    <div class="bootstrap-admin-panel-content">
+                        <p>It looks like you haven't added a WOD to this class yet.</p>
+                        <hr />
+                        @Html.ActionLink("Add a WOD", "Index", new { controller = "WOD" }, new { @class = "btn btn-lg btn-primary" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+

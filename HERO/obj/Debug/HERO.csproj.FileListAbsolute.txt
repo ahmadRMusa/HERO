@@ -117,3 +117,4 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ManyManyAthleteClass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedManyOneClassDayOfWeek.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovingUnneccessaryRequired.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedWOD.resources

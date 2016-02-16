@@ -345,6 +345,10 @@
     <Compile Include="Migrations\GymContext\201602152327521_RemovingUnneccessaryRequired.Designer.cs">
       <DependentUpon>201602152327521_RemovingUnneccessaryRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602161412266_AddedWOD.cs" />
+    <Compile Include="Migrations\GymContext\201602161412266_AddedWOD.Designer.cs">
+      <DependentUpon>201602161412266_AddedWOD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppointmentsViewModel.cs" />
@@ -2027,6 +2031,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602152327521_RemovingUnneccessaryRequired.resx">
       <DependentUpon>201602152327521_RemovingUnneccessaryRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602161412266_AddedWOD.resx">
+      <DependentUpon>201602161412266_AddedWOD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
