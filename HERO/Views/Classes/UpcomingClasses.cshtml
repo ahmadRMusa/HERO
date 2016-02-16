@@ -54,7 +54,7 @@
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Duration</th>
-                                    <th>Attendance</th>
+                                    <th>Spots Left</th>
                                 </tr>
                                 @foreach (var item in Model)
                                 {
@@ -63,7 +63,8 @@
                                         <td>@Html.DisplayFor(m => item.Time)</td>
                                         <td>@item.Time.Value.TimeOfDay.ToString(@"hh\:mm")</td>
                                         <td>@(item.Duration + " Hours")</td>
-                                        <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                        @{ var spots = item.MaxAttendance - item.Attendance.Count(); }
+                                        <td>@spots</td>
                                     </tr>
                                 }
                             </thead>

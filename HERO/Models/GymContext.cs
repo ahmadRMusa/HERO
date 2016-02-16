@@ -29,6 +29,8 @@ namespace HERO.Models
         public virtual DbSet<DayOfWeekModel> DaysOfWeek { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<WOD> WODs { get; set; }
+
+        public System.Data.Entity.DbSet<HERO.Models.Objects.Performance> Performances { get; set; }
     }
 
     //public class MyEntity

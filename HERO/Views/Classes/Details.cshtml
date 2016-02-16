@@ -110,6 +110,7 @@ else
                             }
                             else if (User.IsInRole("Athlete") && Model.Class.Time.Value <= DateTime.Now)
                             {
+                                <hr />
                                 @Html.ActionLink("Record Performance", "Index", new { controller = "WOD" }, new { @class = "btn btn-primary" })
                             }
                         </div>

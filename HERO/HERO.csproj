@@ -236,6 +236,7 @@
     <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PerformancesController.cs" />
     <Compile Include="Controllers\SingleClassSetupsController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
     <Compile Include="Controllers\WeeklyClassSetupsController.cs" />
@@ -350,7 +351,20 @@
     <Compile Include="Migrations\GymContext\201602161412266_AddedWOD.Designer.cs">
       <DependentUpon>201602161412266_AddedWOD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602162206386_AddedPerformance.cs" />
+    <Compile Include="Migrations\GymContext\201602162206386_AddedPerformance.Designer.cs">
+      <DependentUpon>201602162206386_AddedPerformance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602162225397_AddedPerformance1.cs" />
+    <Compile Include="Migrations\GymContext\201602162225397_AddedPerformance1.Designer.cs">
+      <DependentUpon>201602162225397_AddedPerformance1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602162239479_ChangeAthlete.cs" />
+    <Compile Include="Migrations\GymContext\201602162239479_ChangeAthlete.Designer.cs">
+      <DependentUpon>201602162239479_ChangeAthlete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
+    <Compile Include="Models\Objects\Performance.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\AddWODToClassViewModel.cs" />
     <Compile Include="Models\ViewModels\AddWodViewModel.cs" />
@@ -368,6 +382,7 @@
     <Compile Include="Models\Objects\Subscription.cs" />
     <Compile Include="Models\Objects\WeeklyClassSetup.cs" />
     <Compile Include="Models\Objects\WOD.cs" />
+    <Compile Include="Models\ViewModels\PastClassesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\CalendarGenerator.cs" />
     <Compile Include="Scheduler\ICalendarGenerator.cs" />
@@ -1946,6 +1961,9 @@
     <Content Include="Views\WOD\AddToClass.cshtml" />
     <Content Include="Views\Classes\UpcomingClasses.cshtml" />
     <Content Include="Views\Classes\PastClasses.cshtml" />
+    <Content Include="Views\Performances\Create.cshtml" />
+    <Content Include="Views\Performances\Details.cshtml" />
+    <Content Include="Views\Performances\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2036,6 +2054,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602161412266_AddedWOD.resx">
       <DependentUpon>201602161412266_AddedWOD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602162206386_AddedPerformance.resx">
+      <DependentUpon>201602162206386_AddedPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602162225397_AddedPerformance1.resx">
+      <DependentUpon>201602162225397_AddedPerformance1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602162239479_ChangeAthlete.resx">
+      <DependentUpon>201602162239479_ChangeAthlete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

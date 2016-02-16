@@ -1,0 +1,51 @@
+﻿@model HERO.Models.Objects.Performance
+
+@using HERO.Extensions;
+
+@{
+    ViewBag.Title = "Add Your Performance";
+    HERO.Models.Objects.Class cls = ViewData["Class"] as HERO.Models.Objects.Class;
+    HERO.Models.Objects.WOD wod = ViewData["WOD"] as HERO.Models.Objects.WOD;
+}
+
+@Html.Partial("_LeftMenu")
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Add Your Performance</h1>
+        </div>
+    </div>
+    <div class="row bootstrap-admin-no-edges-padding">
+        <div class="col-md-6">
+            <div class="panel panel-default bootstrap-admin-no-table-panel">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Enter Performance</div>
+                </div>
+                <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                    @using (Html.BeginForm("Create", "Performances", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken();
+
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">WOD Details</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <p><b>Name</b>: @Html.ActionLink(wod.Name, "Details", new { controller = "WOD", id = wod.Id } )</p>
+                    <p><b>Date</b>: @cls.Time.Value.Date.ToString("MM/dd/yyyy") @cls.Time.Value.ToString(@"hh\:mm tt")</p>
+                    @{ var scoring = wod.Scoring.GetDisplayName(); }
+                    <p><b>Scoring</b>: @scoring</p>
+                    @Html.Raw(wod.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
