@@ -47,7 +47,8 @@ namespace HERO.Controllers
         {
             if (classId == null)
             {
-                return View();
+                AddWodViewModel model = new AddWodViewModel { WOD = null, ClassId = null };
+                return View(model);
             } else
             {
                 AddWodViewModel model = new AddWodViewModel { WOD = new WOD(), ClassId = classId };
@@ -55,9 +56,48 @@ namespace HERO.Controllers
             }
         }
 
+        // GET: WOD/AddToClass
         public ActionResult AddToClass(int classId)
         {
-            throw new NotImplementedException();
+            string classType = db.Classes.Find(classId).Type;
+            var model = new AddWODToClassViewModel { ClassId = classId, ClassType = classType };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddToClass(AddWODToClassViewModel model)
+        {
+            Class cls = db.Classes.Find(model.ClassId);
+            try
+            {
+                WOD wod = db.WODs.Single(w => w.Name == model.WODName);
+                cls.WOD = wod;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Details", new { controller = "Classes", id = model.ClassId });
+            } catch
+            {
+                model.ClassType = cls.Type;
+                ViewBag.Error = "No WOD was found by that name.";
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RemoveWodFromClass(int? classId)
+        {
+            Class cls = await db.Classes.FindAsync(classId);
+            cls.WOD = null;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Details", new { controller = "Classes", id = classId } );
+        }
+
+        public JsonResult Autocomplete(string term)
+        {
+            List<string> items = db.WODs.Select(w => w.Name).ToList();
+            IEnumerable<string> filteredItems = items.Where(item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0);
+            return Json(filteredItems, JsonRequestBehavior.AllowGet);
         }
 
         // POST: WOD/Create

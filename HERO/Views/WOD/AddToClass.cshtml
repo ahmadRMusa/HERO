@@ -1,0 +1,68 @@
+﻿@model HERO.Models.AddWODToClassViewModel
+
+@{
+    ViewBag.Title = "Add to Class";
+}
+
+@Html.Partial("_LeftMenu")
+
+@section AddToHead {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Add WOD to @Model.ClassType</h1>
+            <p>This page allows you to search through your currently configured WOD's. To create a new WOD, @Html.ActionLink("click here", "Create", new { controller = "WOD", classId = Model.ClassId } ).</p>
+        </div>
+    </div>
+    @if (ViewBag.Error != null)
+    {
+        <div class="row">
+            <div class="alert alert-danger">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                @ViewBag.Error
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">WOD Search</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("AddToClass", "WOD", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken();
+                    <fieldset>
+                        <div class="form-group" style="display:none;">
+                            <input type="hidden" name="ClassId", value="@Model.ClassId"/>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Search by Name", new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.WODName, new { @class = "form-control col-md-6", id = "wod-name-input"})
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="AddToClass" class="btn btn-primary">Add WOD to Class</button>
+                        @Html.ActionLink("Cancel", "Index", new { controller = "Classes" }, new { @class = "btn btn-default" })
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#wod-name-input").autocomplete({
+                source: '@Url.Action("Autocomplete", new { controller = "WOD"})'
+            });
+        });
+    </script>
+}

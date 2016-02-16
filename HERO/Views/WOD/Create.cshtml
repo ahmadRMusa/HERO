@@ -18,7 +18,7 @@
         <div class="row">
             <div class="alert alert-info">
                 <a class="close" data-dismiss="alert" href="#">&times;</a>
-                <strong>Notice!</strong> You are adding this WOD to a specific Class (ID: @Model.ClassId). If you instead want to add the stand-alone WOD, click here.
+                <strong>Notice!</strong> You are creating a new WOD for this specific class (ID: @Model.ClassId). If you instead want to add the stand-alone WOD, @Html.ActionLink("click here", "Create", new { controller = "WOD" }).
             </div>
         </div>
     }
@@ -59,7 +59,7 @@
                             </div>
                         }
                         <hr />
-                        <button type="submit" value="Create" class="btn btn-primary">Add Wod to Class</button>
+                        <button type="submit" value="Create" class="btn btn-primary">Add WOD to Class</button>
                         @Html.ActionLink("Cancel", "Index", new { controller = "Classes" } , new { @class = "btn btn-default" })
                     </fieldset>
                 }
