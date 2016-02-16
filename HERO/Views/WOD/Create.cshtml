@@ -1,4 +1,4 @@
-﻿@model HERO.Models.Objects.WOD
+﻿@model HERO.Models.AddWodViewModel
 
 @{
     ViewBag.Title = "Create a WOD";
@@ -14,6 +14,15 @@
             <h1>Create a WOD</h1>
         </div>
     </div>
+    @if (Model.ClassId != null)
+    {
+        <div class="row">
+            <div class="alert alert-info">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <strong>Notice!</strong> You are adding this WOD to a specific Class (ID: @Model.ClassId). If you instead want to add the stand-alone WOD, click here.
+            </div>
+        </div>
+    }
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
@@ -26,27 +35,33 @@
                     <fieldset>
                         <legend>Enter WOD Details</legend>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Name, new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(m => m.WOD.Name, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control col-md-6", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.WOD.Name, new { @class = "form-control col-md-6", autocomplete = "off" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Scoring, new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(m => m.WOD.Scoring, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.EnumDropDownListFor(m => m.Scoring, new { @class = "form-control col-md-6" } )
+                                @Html.EnumDropDownListFor(m => m.WOD.Scoring, new { @class = "form-control col-md-6" } )
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Description, new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(m => m.WOD.Description, new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                <textarea class="form-control col-md-6" placeholder="Enter WOD Description..." style="height:200px" name="Description"></textarea>
-                                <!-- <textarea id="bootstrap-editor" class="form-control" placeholder="Enter WOD description..." style="height: 200px" name="Description"></textarea> -->
+                                <!-- <textarea class="form-control col-md-6" placeholder="Enter WOD Description..." style="height:200px" name="WOD.Description"></textarea> -->
+                                <textarea id="bootstrap-editor" class="form-control" placeholder="Enter WOD description..." style="height: 200px" name="WOD.Description"></textarea>
                             </div>
                         </div>
+                        @if (Model.ClassId != null)
+                        {
+                            <div class="form-group" style="display:none;">
+                                @Html.TextBoxFor(m => m.ClassId, new { type = "hidden", value = Model.ClassId })
+                            </div>
+                        }
                         <hr />
-                        <button type="submit" value="Create" class="btn btn-primary">Create Weekly Class</button>
-                        @Html.ActionLink("Cancel", "Index", "WeeklyClassSetups", new { @class = "btn btn-default" })
+                        <button type="submit" value="Create" class="btn btn-primary">Add Wod to Class</button>
+                        @Html.ActionLink("Cancel", "Index", new { controller = "Classes" } , new { @class = "btn btn-default" })
                     </fieldset>
                 }
             </div>

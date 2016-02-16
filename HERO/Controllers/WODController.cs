@@ -43,26 +43,62 @@ namespace HERO.Controllers
         }
 
         // GET: WOD/Create
-        public ActionResult Create()
+        public ActionResult Create(int? classId)
         {
-            return View();
+            if (classId == null)
+            {
+                return View();
+            } else
+            {
+                AddWodViewModel model = new AddWodViewModel { WOD = new WOD(), ClassId = classId };
+                return View(model);
+            }
         }
 
         // POST: WOD/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // [Bind(Include = "Id,Name,Scoring,Description")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Scoring,Description")] WOD wod)
+        [ValidateInput(false)]
+        public async Task<ActionResult> Create([Bind(Include = "WOD,ClassId")] AddWodViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                db.WODs.Add(wod);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+            Class cls = null;
 
-            return View(wod);
+            if (model.ClassId == null)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.WODs.Add(model.WOD);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index", new { controller = "Classes" });
+                } else
+                {
+                    return View(model);
+                }
+            } else
+            {
+                try
+                {
+                    cls = await db.Classes.FindAsync(model.ClassId);
+                    if (ModelState.IsValid)
+                    {
+                        cls.WOD = model.WOD;
+                        db.WODs.Add(model.WOD);
+                        await db.SaveChangesAsync();
+                        return RedirectToAction("Index", new { controller = "Classes" });
+                    }
+                    else
+                    {
+                        return View(model);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message + ": " + e.InnerException);
+                }
+            }
         }
 
         // GET: WOD/Edit/5
