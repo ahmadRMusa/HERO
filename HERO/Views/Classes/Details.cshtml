@@ -61,11 +61,11 @@ else
                     {
                         if (Model.Class.SingleClass != null)
                         {
-                            @Html.ActionLink("Manage", "Details", "SingleClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-lg btn-primary" })
+                            @Html.ActionLink("Manage", "Details", "SingleClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-primary" })
                         }
                         else
                         {
-                            @Html.ActionLink("Manage", "Details", "WeeklyClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-lg btn-primary" })
+                            @Html.ActionLink("Manage", "Details", "WeeklyClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-primary" })
                         }
                     }
                     else
@@ -79,7 +79,50 @@ else
                             <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-lg btn-primary">Cancel Signup</a>
                         }
                     }
-                    @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-lg btn-default" })
+                    @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+        <div class="row bootstrap-admin-no-edges-padding">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">Class WOD: @Model.Class.Type</div>
+                    </div>
+                    @if (Model.Class.WOD != null)
+                    {
+                        <div class="bootstrap-admin-panel-content">
+                            @Html.Raw(Model.Class.WOD.Description)
+                            <hr />
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Change WOD", "Index", new { controller = "WOD" }, new { @class = "btn btn-primary" })
+                            }
+                            else if (User.IsInRole("Athlete") && Model.Class.Time.Value <= DateTime.Now)
+                            {
+                                @Html.ActionLink("Record Performance", "Index", new { controller = "WOD" }, new { @class = "btn btn-primary" })
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <div class="bootstrap-admin-panel-content">
+                                <p>It looks like you haven't added a WOD to this class yet.</p>
+                                <hr />
+                                @Html.ActionLink("Add a WOD", "Create", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="bootstrap-admin-panel-content">
+                                <p>A WOD has not been assigned for this class yet.</p>
+                                <hr />
+                                @Html.ActionLink("Add a WOD", "Create", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -87,7 +130,7 @@ else
             <table class="table table-condensed table-hovered sortableTable">
                 <thead>
                     <tr>
-                        <th>Athlete Name <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+                        <th>Attendance <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,31 +140,6 @@ else
                     }
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="row bootstrap-admin-no-edges-padding">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="text-muted bootstrap-admin-box-title">Class WOD: @Model.Class.Type</div>
-                </div>
-                @if (Model.Class.WOD != null)
-                {
-                    <div class="bootstrap-admin-panel-content">
-                        @Html.Raw(Model.Class.WOD.Description)
-                        <hr />
-                        @Html.ActionLink("Change WOD", "Index", new { controller = "WOD" }, new { @class = "btn btn-lg btn-primary" } )
-                    </div>
-                }
-                else
-                {
-                    <div class="bootstrap-admin-panel-content">
-                        <p>It looks like you haven't added a WOD to this class yet.</p>
-                        <hr />
-                        @Html.ActionLink("Add a WOD", "Create", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-lg btn-primary" })
-                    </div>
-                }
-            </div>
         </div>
     </div>
 </div>

@@ -89,7 +89,6 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.OAuth.xm
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csprojResolveAssemblyReference.cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.ApplicationDbContext.Initial.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.ApplicationDbContext.UserAthleteInfoId.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.Initial.resources
