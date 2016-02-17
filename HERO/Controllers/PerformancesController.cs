@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using HERO.Models;
 using HERO.Models.Objects;
 using Microsoft.AspNet.Identity;
+using System.Globalization;
 
 namespace HERO.Controllers
 {
@@ -52,25 +53,47 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Score,Description,Prescribed")] Performance performance, int classId)
+        public async Task<ActionResult> Create([Bind(Include = "Id,ScoreInput,Description,Prescribed")] Performance performance, int classId)
         {
             Task<Class> clsTask = db.Classes.FindAsync(classId);
             string userId = HttpContext.User.Identity.GetUserId();
-            Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+            Athlete athlete = db.Athletes.Single(a => a.ApplicationUserId.Equals(userId));
             Class cls = await clsTask;
+
+            switch(cls.WOD.Scoring)
+            {
+                case WODScoring.TotalReps:
+                    performance.ScoreActual = Convert.ToDouble(performance.ScoreInput);
+                    break;
+                case WODScoring.TotalRounds:
+                    performance.ScoreActual = Convert.ToDouble(performance.ScoreInput);
+                    break;
+                case WODScoring.TotalTime:
+                    TimeSpan time;
+                    if (!TimeSpan.TryParseExact(performance.ScoreInput, @"mm\:ss", CultureInfo.CurrentCulture, out time))
+                    {
+                        throw new Exception("TimeSpan parse failed.");
+                    }
+                    performance.ScoreActual = Convert.ToDouble(time.TotalSeconds);
+                    break;
+            }
 
             performance.Class = cls;
             performance.Athlete = athlete;
             performance.WOD = cls.WOD;
 
+            ModelState.Remove("Description");
+            ModelState.Remove("Prescribed");
             if (ModelState.IsValid)
             {
                 db.Performances.Add(performance);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { controller = "Performances" } );
+            } else
+            {
+                var errorMessages = ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage);
+                throw new Exception(String.Join(", ", errorMessages));
             }
-
-            return View(performance);
         }
 
         // GET: Performances/Edit/5

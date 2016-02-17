@@ -4,15 +4,18 @@
         @Html.MenuItem("About", "Index", "Home")
         @if (User.IsInRole("Admin"))
         {
-            @Html.MenuItem("Weekly Classes", "Index", "WeeklyClassSetups")
-            @Html.MenuItem("Single Classes", "Index", "SingleClassSetups")
+            @Html.MenuItem("Athletes", "Index", "Athletes")
             @Html.MenuItem("Calendar", "Index", "Classes")
+            @Html.MenuItem("Single Classes", "Index", "SingleClassSetups")
+            @Html.MenuItem("Weekly Classes", "Index", "WeeklyClassSetups")
+            @Html.MenuItem("WODs", "Index", "WOD")
         }
         else
         {
             @Html.MenuItem("Calendar", "Index", "Classes")
-            @Html.MenuItem("Upcoming Classes", "UpcomingClasses", "Classes")
             @Html.MenuItem("Past Classes", "PastClasses", "Classes")
+            @Html.MenuItem("Performances", "Index", "Performances")
+            @Html.MenuItem("Upcoming Classes", "UpcomingClasses", "Classes")
         }
     </ul>
 </div>

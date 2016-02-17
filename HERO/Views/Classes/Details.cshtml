@@ -79,13 +79,16 @@ else
                     }
                     else
                     {
-                        if (!AthleteInClass)
+                        if (Model.Class.Time.Value > DateTime.Now)
                         {
-                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
-                        }
-                        else
-                        {
-                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
+                            if (!AthleteInClass)
+                            {
+                                <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
+                            }
                         }
                     }
                     @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-default" })
@@ -111,7 +114,14 @@ else
                             else if (User.IsInRole("Athlete") && Model.Class.Time.Value <= DateTime.Now)
                             {
                                 <hr />
-                                @Html.ActionLink("Record Performance", "Index", new { controller = "WOD" }, new { @class = "btn btn-primary" })
+                                if (Model.Athlete.Performances.Any(p => p.WOD == Model.Class.WOD))
+                                {
+                                    @Html.ActionLink("Edit Performance", "Create", new { controller = "Performances", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Record Performance", "Create", new { controller = "Performances", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                                }
                             }
                         </div>
                     }

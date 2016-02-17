@@ -32,19 +32,19 @@
                                 case HERO.Models.Objects.WODScoring.TotalReps:
                                     @Html.Label("Reps:", new { @class = "col-lg-2 control-label" })
                                     <div class="col-md-9 col-md-offset-1">
-                                        @Html.TextBoxFor(m => m.Score, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 252" })
+                                        @Html.TextBoxFor(m => m.ScoreInput, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 252" })
                                     </div>
                                     break;
                                 case HERO.Models.Objects.WODScoring.TotalRounds:
                                     @Html.Label("Rounds:", new { @class = "col-lg-2 control-label" })
                                     <div class="col-md-9 col-md-offset-1">
-                                        @Html.TextBoxFor(m => m.Score, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 3" })
+                                        @Html.TextBoxFor(m => m.ScoreInput, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 3" })
                                     </div>
                                     break;
                                 case HERO.Models.Objects.WODScoring.TotalTime:
-                                    @Html.Label("Time:", new { @class = "col-lg-1 control-label" })
+                                    @Html.Label("Time:", new { @class = "col-lg-2 control-label" })
                                     <div class="col-md-9 col-md-offset-1">
-                                        @Html.TextBoxFor(m => m.Score, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 3:56" })
+                                        @Html.TextBoxFor(m => m.ScoreInput, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 3:56" })
                                     </div>
                                     break;
                             }
@@ -58,13 +58,13 @@
                         <div class="form-group">
                             @Html.Label("Prescribed:", new { @class = "col-lg-2 control-label" } )
                             <div class="col-md-9 col-md-offset-1">
-                                <input type="checkbox" id="checkbox67" class="css-checkbox lrg" checked="checked" name="Prescribed"/>
+                                <input type="checkbox" id="checkbox67" class="css-checkbox lrg" name="Prescribed"/>
                                 <label for="checkbox67" name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
                             </div>
                         </div>
                         <hr />
                         <button type="submit" value="Create" class="btn btn-primary">Add Performance</button>
-                        @Html.ActionLink("Cancel", "PastClasses", "Classes", new { @class = "btn btn-default" })
+                        @Html.ActionLink("Cancel", "PastClasses", new { controller = "Classes" }, new { @class = "btn btn-default" })
                     }
                 </div>
             </div>
@@ -79,6 +79,7 @@
                     <p><b>Date</b>: @cls.Time.Value.Date.ToString("MM/dd/yyyy") @cls.Time.Value.ToString(@"hh\:mm tt")</p>
                     @{ var scoring = wod.Scoring.GetDisplayName(); }
                     <p><b>Scoring</b>: @scoring</p>
+                    <hr />
                     @Html.Raw(wod.Description)
                 </div>
             </div>
