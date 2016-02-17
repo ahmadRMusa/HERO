@@ -147,20 +147,32 @@ else
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <table class="table table-condensed table-hovered sortableTable">
-                <thead>
-                    <tr>
-                        <th>Attendance <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var athlete in Model.Class.Attendance)
-                    {
-                        <tr><td>@(athlete.FirstName + " " + athlete.LastName)</td></tr>
-                    }
-                </tbody>
-            </table>
+        <div class="bootstrap-admin-no-edges-padding">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">Class Scores</div>
+                    </div>
+                    <table class="table table-condensed table-hovered sortableTable">
+                        <thead>
+                            <tr>
+                                <th>Name <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+                                <th>Score <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var athlete in Model.Class.Attendance)
+                            {
+                                var performance = athlete.Performances.Single(p => p.Class.Id.Equals(Model.Class.Id));
+                                <tr>
+                                    <td>@(athlete.FirstName + " " + athlete.LastName)</td>
+                                    <td>@Html.WODScore(Model.Class.WOD.Scoring, performance.ScoreActual)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
