@@ -4,6 +4,8 @@
     ViewBag.Title = "Past Classes";
 }
 
+@using HERO.HtmlHelperExtensions
+
 @Html.Partial("_LeftMenu")
 
 <div class="col-md-10">
@@ -52,7 +54,6 @@
                                 <tr>
                                     <th>Class Type</th>
                                     <th>Date</th>
-                                    <th>Time</th>
                                     <th>WOD</th>
                                     <th>Performance</th>
                                 </tr>
@@ -61,7 +62,6 @@
                                     <tr>
                                         <td>@Html.ActionLink(item.Type, "Details", new { controller = "Classes", id = item.Id })</td>
                                         <td>@Html.DisplayFor(m => item.Time)</td>
-                                        <td>@item.Time.Value.TimeOfDay.ToString(@"hh\:mm")</td>
                                         <td>@item.WOD.Name</td>
                                         @if (!Model.RecordedWods.Contains(item.WOD.Name))
                                         {
@@ -70,7 +70,7 @@
                                         else
                                         {
                                             var performance = item.Performances.Single(p => p.Athlete.Id == Model.AthleteId);
-                                            <td>@performance.ScoreActual</td>
+                                            <td>@Html.WODScore(item.WOD.Scoring, performance.ScoreActual)</td>
                                         }
                                     </tr>
                                 }

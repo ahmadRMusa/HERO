@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<HERO.Models.Objects.Performance>
 
 @using HERO.Extensions
+@using HERO.HtmlHelperExtensions
 
 @{
     ViewBag.Title = "View Performances";
@@ -52,11 +53,11 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@Html.ActionLink(item.Class.Time.Value.ToString("MM/dd/yyyy"), "Details", new { controller = "Classes" } )</td>
+                                    <td>@Html.ActionLink(item.Class.Time.Value.ToString("MM/dd/yyyy"), "Details", new { controller = "Classes", id = item.Class.Id } )</td>
                                     <td>@item.WOD.Name</td>
                                     @{ var scoreDisplay = item.WOD.Scoring.GetDisplayName(); }
                                     <td>@scoreDisplay</td>
-                                    <td>@item.ScoreActual</td>
+                                    <td>@Html.WODScore(item.WOD.Scoring, item.ScoreActual)</td>
                                     <td>@item.Prescribed</td>
                                     <td>@item.Description</td>
                                 </tr>

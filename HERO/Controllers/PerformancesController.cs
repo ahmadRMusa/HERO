@@ -55,10 +55,9 @@ namespace HERO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,ScoreInput,Description,Prescribed")] Performance performance, int classId)
         {
-            Task<Class> clsTask = db.Classes.FindAsync(classId);
+            Class cls = await db.Classes.FindAsync(classId);
             string userId = HttpContext.User.Identity.GetUserId();
             Athlete athlete = db.Athletes.Single(a => a.ApplicationUserId.Equals(userId));
-            Class cls = await clsTask;
 
             switch(cls.WOD.Scoring)
             {

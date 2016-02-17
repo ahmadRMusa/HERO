@@ -56,10 +56,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("Prescribed:", new { @class = "col-lg-2 control-label" } )
+                            @Html.Label("Performance:", new { @class = "col-lg-2 control-label" } )
                             <div class="col-md-9 col-md-offset-1">
-                                <input type="checkbox" id="checkbox67" class="css-checkbox lrg" name="Prescribed"/>
-                                <label for="checkbox67" name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        @Html.CheckBoxFor(m => m.Prescribed) Prescribed
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <hr />

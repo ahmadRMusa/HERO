@@ -246,6 +246,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelperExtensions\MenuExtensions.cs" />
+    <Compile Include="HtmlHelperExtensions\TextExtensions.cs" />
     <Compile Include="Migrations\ApplicationDbContext\201602092118430_Initial.cs" />
     <Compile Include="Migrations\ApplicationDbContext\201602092118430_Initial.Designer.cs">
       <DependentUpon>201602092118430_Initial.cs</DependentUpon>
