@@ -74,7 +74,7 @@ else
                         }
                         else
                         {
-                            @Html.ActionLink("Manage", "Details", "WeeklyClassSetups", new { id = Model.Class.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Manage", "Details", "WeeklyClassSetups", new { id = Model.Class.WeeklyClass.Id }, new { @class = "btn btn-primary" })
                         }
                     }
                     else
@@ -105,7 +105,7 @@ else
                     {
                         <div class="bootstrap-admin-panel-content">
                             @Html.Raw(Model.Class.WOD.Description)
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("Admin") && Model.Class.Time.Value >= DateTime.Now)
                             {
                                 <hr />
                                 @Html.ActionLink("Change WOD", "AddToClass", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })

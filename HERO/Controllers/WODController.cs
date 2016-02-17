@@ -84,6 +84,30 @@ namespace HERO.Controllers
             }
         }
 
+        public ActionResult AddToDates(string start, string end)
+        {
+            DateTime startDate = Constants.ConstantValues.GetDateTimeFromFullCalendar(start);
+            DateTime endDate = Constants.ConstantValues.GetDateTimeFromFullCalendar(end);
+
+            var model = new AddWODToDatesViewModel { StartDate = startDate, EndDate = endDate };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddToDates(AddWODToDatesViewModel model)
+        {
+            List<Class> classes = db.Classes.ToList().Where(c => c.Time.Value.Date >= model.StartDate.Date && c.Time.Value.Date <= model.EndDate.Date).ToList();
+            WOD wod = await db.WODs.SingleAsync(w => w.Name.Equals(model.WODName));
+            foreach(var cls in classes)
+            {
+                cls.WOD = wod;
+            }
+            await db.SaveChangesAsync();
+            ViewBag.Success = true;
+            return RedirectToAction("Index", new { controller = "Classes" });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveWodFromClass(int? classId)
@@ -133,7 +157,7 @@ namespace HERO.Controllers
                         cls.WOD = model.WOD;
                         db.WODs.Add(model.WOD);
                         await db.SaveChangesAsync();
-                        return RedirectToAction("Index", new { controller = "Classes" });
+                        return RedirectToAction("Index", new { controller = "WOD" });
                     }
                     else
                     {

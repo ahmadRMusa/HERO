@@ -44,22 +44,17 @@
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            selectable: false,
+            @if (User.IsInRole("Admin"))
+            {
+            <text>selectable: true,</text>
+            }
+            else
+            {
+            <text>selectable: false,</text>
+            }
             selectHelper: true,
             select: function (start, end, allDay) {
-                var title = prompt('Event Title:');
-                if (title) {
-                    calendar.fullCalendar('renderEvent',
-                            {
-                                title: title,
-                                start: start,
-                                end: end,
-                                allDay: allDay
-                            },
-                    true // make the event "stick"
-                            );
-                }
-                calendar.fullCalendar('unselect');
+                window.location.href = "http://localhost:11700/" + "@Url.Action("AddToDates", new { controller = "WOD" } )" + "?start=" + start + "&end=" + end;
             },
             @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {

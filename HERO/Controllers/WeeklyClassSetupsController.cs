@@ -71,6 +71,10 @@ namespace HERO.Controllers
             List<DayOfWeek> chosenDays = weeklyClass.SelectedDays.Select(x => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), x)).ToList();
             List<DayOfWeekModel> days = db.DaysOfWeek.Where(d => chosenDays.Contains(d.Day)).ToList();
             weeklyClass.Days = days;
+            foreach(var day in days)
+            {
+                day.WeeklyClassSetups.Add(weeklyClass);
+            }
 
             // Create Classes
             WeeklySchedule weeklySchedule = new WeeklySchedule

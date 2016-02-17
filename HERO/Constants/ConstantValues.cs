@@ -3,7 +3,9 @@ using HERO.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace HERO.Constants
@@ -24,6 +26,17 @@ namespace HERO.Constants
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             date = date.AddSeconds(unixTimestamp).ToLocalTime();
             return date;
+        }
+
+        public static DateTime GetDateTimeFromFullCalendar(string date)
+        {
+            Regex regex = new Regex(@"^\w{3}\s\w{3}\s\d{1,2}\s\d{4}");
+            string[] stringArr = regex.Match(date).Value.Split(' ');
+            int month = DateTime.ParseExact(stringArr[1], "MMM", CultureInfo.InvariantCulture).Month;
+            int day = Convert.ToInt32(stringArr[2]);
+            int year = Convert.ToInt32(stringArr[3]);
+
+            return new DateTime(year, month, day);
         }
 
         public static void ThrowDetailedEntityValidationErrors(DbEntityValidationException e)
