@@ -121,3 +121,6 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedDescToPerformance.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedPrescribedToPerformance.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.RemovedRequireds.resources

@@ -23,10 +23,48 @@
                     <div class="text-muted bootstrap-admin-box-title">Enter Performance</div>
                 </div>
                 <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                    @using (Html.BeginForm("Create", "Performances", FormMethod.Post, new { @class = "form-horizontal" }))
+                    @using (Html.BeginForm("Create", "Performances", new { classId = cls.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
                     {
                         @Html.AntiForgeryToken();
-
+                        <div class="form-group">
+                            @switch (wod.Scoring)
+                            {
+                                case HERO.Models.Objects.WODScoring.TotalReps:
+                                    @Html.Label("Reps:", new { @class = "col-lg-2 control-label" })
+                                    <div class="col-md-9 col-md-offset-1">
+                                        @Html.TextBoxFor(m => m.Score, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 252" })
+                                    </div>
+                                    break;
+                                case HERO.Models.Objects.WODScoring.TotalRounds:
+                                    @Html.Label("Rounds:", new { @class = "col-lg-2 control-label" })
+                                    <div class="col-md-9 col-md-offset-1">
+                                        @Html.TextBoxFor(m => m.Score, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 3" })
+                                    </div>
+                                    break;
+                                case HERO.Models.Objects.WODScoring.TotalTime:
+                                    @Html.Label("Time:", new { @class = "col-lg-1 control-label" })
+                                    <div class="col-md-9 col-md-offset-1">
+                                        @Html.TextBoxFor(m => m.Score, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. 3:56" })
+                                    </div>
+                                    break;
+                            }
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Comments:", new { @class = "col-lg-2 control-label" })
+                            <div class="col-md-9 col-md-offset-1">
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-6", autocomplete = "off", placeholder = "Ex. Add more weight." })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Prescribed:", new { @class = "col-lg-2 control-label" } )
+                            <div class="col-md-9 col-md-offset-1">
+                                <input type="checkbox" id="checkbox67" class="css-checkbox lrg" checked="checked" name="Prescribed"/>
+                                <label for="checkbox67" name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
+                            </div>
+                        </div>
+                        <hr />
+                        <button type="submit" value="Create" class="btn btn-primary">Add Performance</button>
+                        @Html.ActionLink("Cancel", "PastClasses", "Classes", new { @class = "btn btn-default" })
                     }
                 </div>
             </div>

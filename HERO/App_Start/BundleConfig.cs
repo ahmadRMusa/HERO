@@ -73,7 +73,8 @@ namespace HERO
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.css",
                       "~/Content/Theme/css/bootstrap-admin-theme.css",
-                       "~/Content/Theme/css/site.css"));
+                       "~/Content/Theme/css/site.css",
+                       "~/Content/Theme/css/checkbox.css"));
 
             bundles.Add(new StyleBundle("~/Content/Vendors").Include(
                 "~/Content/Theme/vendors/bootstrap-datepicker/css/datepicker.css"

@@ -12,6 +12,7 @@ using HERO.Models.Objects;
 
 namespace HERO.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class WODController : Controller
     {
         private GymContext db;

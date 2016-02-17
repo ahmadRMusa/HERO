@@ -52,8 +52,17 @@ namespace HERO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Score")] Performance performance)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Score,Description,Prescribed")] Performance performance, int classId)
         {
+            Task<Class> clsTask = db.Classes.FindAsync(classId);
+            string userId = HttpContext.User.Identity.GetUserId();
+            Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+            Class cls = await clsTask;
+
+            performance.Class = cls;
+            performance.Athlete = athlete;
+            performance.WOD = cls.WOD;
+
             if (ModelState.IsValid)
             {
                 db.Performances.Add(performance);

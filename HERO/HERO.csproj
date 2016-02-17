@@ -363,6 +363,18 @@
     <Compile Include="Migrations\GymContext\201602162239479_ChangeAthlete.Designer.cs">
       <DependentUpon>201602162239479_ChangeAthlete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602171404402_AddedDescToPerformance.cs" />
+    <Compile Include="Migrations\GymContext\201602171404402_AddedDescToPerformance.Designer.cs">
+      <DependentUpon>201602171404402_AddedDescToPerformance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602171431054_AddedPrescribedToPerformance.cs" />
+    <Compile Include="Migrations\GymContext\201602171431054_AddedPrescribedToPerformance.Designer.cs">
+      <DependentUpon>201602171431054_AddedPrescribedToPerformance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602171500093_RemovedRequireds.cs" />
+    <Compile Include="Migrations\GymContext\201602171500093_RemovedRequireds.Designer.cs">
+      <DependentUpon>201602171500093_RemovedRequireds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\Objects\Performance.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
@@ -457,6 +469,7 @@
     <Content Include="Content\Theme\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\Theme\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\Theme\css\bootstrap-admin-theme.css" />
+    <Content Include="Content\Theme\css\checkbox.css" />
     <Content Include="Content\Theme\css\datepicker.fixes.css" />
     <Content Include="Content\Theme\css\DT_bootstrap.css" />
     <Content Include="Content\Theme\css\site.css" />
@@ -2063,6 +2076,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602162239479_ChangeAthlete.resx">
       <DependentUpon>201602162239479_ChangeAthlete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602171404402_AddedDescToPerformance.resx">
+      <DependentUpon>201602171404402_AddedDescToPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602171431054_AddedPrescribedToPerformance.resx">
+      <DependentUpon>201602171431054_AddedPrescribedToPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602171500093_RemovedRequireds.resx">
+      <DependentUpon>201602171500093_RemovedRequireds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

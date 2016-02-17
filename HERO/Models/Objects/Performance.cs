@@ -9,13 +9,11 @@ namespace HERO.Models.Objects
     public class Performance
     {
         public int Id { get; set; }
-        [Required]
-        public double Score { get; set; }
-        [Required]
+        public bool Prescribed { get; set; }
         public virtual Athlete Athlete { get; set; }
-        [Required]
         public virtual Class Class { get; set; }
-        [Required]
         public virtual WOD WOD { get; set; }
+        public double Score { get; set; }
+        public string Description { get; set; }
     }
 }
