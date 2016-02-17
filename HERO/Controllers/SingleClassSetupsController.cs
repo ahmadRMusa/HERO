@@ -125,6 +125,13 @@ namespace HERO.Controllers
         {
             SingleClassSetup singleClassSetup = await db.SingleClasses.FindAsync(id);
             Class cls = await db.Classes.FindAsync(id);
+            List<Performance> performances = db.Performances.Where(p => p.Class.Id.Equals(cls.Id)).ToList();
+
+            foreach (var performance in performances)
+            {
+                performance.Class = null;
+            }
+
             db.SingleClasses.Remove(singleClassSetup);
             db.Classes.Remove(cls);
             await db.SaveChangesAsync();

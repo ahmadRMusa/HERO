@@ -96,17 +96,24 @@ namespace HERO.Controllers
         }
 
         // GET: Performances/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? id, int? classId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Performance performance = await db.Performances.FindAsync(id);
+
             if (performance == null)
             {
                 return HttpNotFound();
             }
+
+            Class cls = db.Classes.Find(classId);
+            ViewData["Class"] = db.Classes.Find(classId);
+            ViewData["WOD"] = cls.WOD;
+            
             return View(performance);
         }
 

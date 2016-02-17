@@ -140,27 +140,14 @@ namespace HERO.Controllers
             return View(weeklyClass);
         }
 
-        // GET: WeeklyClasses/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WeeklyClassSetup weeklyClass = await db.WeeklyClasses.FindAsync(id);
-            if (weeklyClass == null)
-            {
-                return HttpNotFound();
-            }
-            return View(weeklyClass);
-        }
-
         // POST: WeeklyClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             WeeklyClassSetup weeklyClass = await db.WeeklyClasses.FindAsync(id);
+            List<Class> classes = db.Classes.Where(c => c.WeeklyClass.Id.Equals(weeklyClass.Id)).ToList();
+            db.Classes.RemoveRange(classes);
             db.WeeklyClasses.Remove(weeklyClass);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

@@ -43,6 +43,7 @@
                                 <th>@Html.DisplayNameFor(m => m.Id)</th>
                                 <th>@Html.DisplayNameFor(m => m.Type)</th>
                                 <th>@Html.DisplayNameFor(m => m.Days)</th>
+                                <th>@Html.DisplayNameFor(m => m.Time)</th>
                                 <th>@Html.DisplayNameFor(m => m.Duration)</th>
                                 <th>@Html.DisplayNameFor(m => m.MaxAttendance)</th>
                                 <th>@Html.DisplayNameFor(m => m.StartDate)</th>
@@ -54,6 +55,7 @@
                                     <td>@Html.ActionLink(item.Id.ToString(), "Details", new { controller = "WeeklyClassSetups", id = item.Id })</td>
                                     <td>@Html.DisplayFor(m => item.Type)</td>
                                     <td>@string.Join(", ", item.Days.Select(x => x.Day.ToString()))</td>
+                                    <td>@item.Time.ToString(@"hh\:mm")</td>
                                     <td>@(item.Duration + " Hours")</td>
                                     <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
                                     <td>@Html.DisplayFor(m => item.StartDate)</td>

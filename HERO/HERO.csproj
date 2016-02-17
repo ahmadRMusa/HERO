@@ -1982,6 +1982,7 @@
     <Content Include="Views\Performances\Create.cshtml" />
     <Content Include="Views\Performances\Details.cshtml" />
     <Content Include="Views\Performances\Index.cshtml" />
+    <Content Include="Views\Performances\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

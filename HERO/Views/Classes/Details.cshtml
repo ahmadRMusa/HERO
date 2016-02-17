@@ -116,7 +116,8 @@ else
                                 <hr />
                                 if (Model.Athlete.Performances.Any(p => p.WOD == Model.Class.WOD))
                                 {
-                                    @Html.ActionLink("Edit Performance", "Create", new { controller = "Performances", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                                    var performance = Model.Athlete.Performances.Single(p => p.WOD == Model.Class.WOD);
+                                    @Html.ActionLink("Edit Performance", "Edit", new { controller = "Performances", id = performance.Id, classId = Model.Class.Id }, new { @class = "btn btn-primary" })
                                 }
                                 else
                                 {
@@ -144,33 +145,6 @@ else
                             </div>
                         }
                     }
-                </div>
-            </div>
-        </div>
-        <div class="bootstrap-admin-no-edges-padding">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="text-muted bootstrap-admin-box-title">Class Scores</div>
-                    </div>
-                    <table class="table table-condensed table-hovered sortableTable">
-                        <thead>
-                            <tr>
-                                <th>Name <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-                                <th>Score <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var athlete in Model.Class.Attendance)
-                            {
-                                var performance = athlete.Performances.Single(p => p.Class.Id.Equals(Model.Class.Id));
-                                <tr>
-                                    <td>@(athlete.FirstName + " " + athlete.LastName)</td>
-                                    <td>@Html.WODScore(Model.Class.WOD.Scoring, performance.ScoreActual)</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

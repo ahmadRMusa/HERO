@@ -103,8 +103,8 @@
             {
                 <tr>
                     <td>@Html.ActionLink("Class " + item.Id, "Details", new { controller = "Classes", id = item.Id } )</td>
-                    <td>@item.Time.Date.ToString("MM/dd/yyyy")</td>
-                    <td>@item.Time.TimeOfDay.ToString()</td>
+                    <td>@item.Time.Value.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Time.Value.TimeOfDay.ToString()</td>
                 </tr>
             }
         </tbody>
