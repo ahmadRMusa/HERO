@@ -148,5 +148,29 @@ else
                 </div>
             </div>
         </div>
+        <div class="bootstrap-admin-no-edges-padding">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">Attendance</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        @if (Model.Class.Attendance.Count() > 0)
+                        {
+                            <strong>Athletes:</strong>
+                            <ul>
+                                @foreach (var athlete in Model.Class.Attendance)
+                                {
+                                    <li>@athlete.FirstName + " " + @athlete.LastName</li>
+                                }
+                            </ul>
+                        } else
+                        {
+                            <p>There are currently no athletes signed up for this class.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
