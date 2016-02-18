@@ -401,6 +401,10 @@
     <Compile Include="Migrations\GymContext\201602182135406_1to1ReminderAthlete.Designer.cs">
       <DependentUpon>201602182135406_1to1ReminderAthlete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602182208154_ManyManyClassClassReminders.cs" />
+    <Compile Include="Migrations\GymContext\201602182208154_ManyManyClassClassReminders.Designer.cs">
+      <DependentUpon>201602182208154_ManyManyClassClassReminders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\Objects\ClassReminders.cs" />
     <Compile Include="Models\Objects\Performance.cs" />
@@ -2134,6 +2138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602182135406_1to1ReminderAthlete.resx">
       <DependentUpon>201602182135406_1to1ReminderAthlete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602182208154_ManyManyClassClassReminders.resx">
+      <DependentUpon>201602182208154_ManyManyClassClassReminders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

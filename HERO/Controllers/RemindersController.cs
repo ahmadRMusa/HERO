@@ -38,8 +38,20 @@ namespace HERO.Controllers
             string userId = HttpContext.User.Identity.GetUserId();
             int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;
             ClassReminders reminders = await db.ClassReminders.FindAsync(athleteId);
+
+            if (reminders.Reminders == null)
+            {
+                reminders.Reminders = new List<Class>();
+            }
+
             List<Class> classes = db.Classes.Where(a => a.WeeklyClass.Id.Equals(weeklyId)).ToList();
             reminders.Reminders.ToList().AddRange(classes);
+
+            foreach(var cls in classes)
+            {
+                cls.AttachedReminders.Add(reminders);
+            }
+
             await db.SaveChangesAsync();
             return RedirectToAction("AddRecurring", new { controller = "Reminders" });
         }

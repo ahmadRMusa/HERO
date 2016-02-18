@@ -25,6 +25,7 @@ namespace HERO.Models.Objects
         public int MaxAttendance { get; set; }
         public virtual IList<Athlete> Attendance { get; set; }
         public virtual IList<Performance> Performances { get; set; }
+        public virtual IList<ClassReminders> AttachedReminders { get; set; }
         public virtual WOD WOD { get; set; }
         public virtual WeeklyClassSetup WeeklyClass { get; set; }
         public virtual SingleClassSetup SingleClass { get; set; }
