@@ -1,11 +1,40 @@
 ﻿@model HERO.Models.IndexViewModel
+
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Manage Your Account";
 }
 
-<h2>@ViewBag.Title.</h2>
+@Html.Partial("_LeftMenu")
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Manage Account</h1>
+        </div>
+    </div>
+    <div class="row bootstrap-admin-no-edges-padding">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Change Account Settings</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <p class="text-success">@ViewBag.StatusMessage</p>
+                    <h4>Password:</h4>
+                    @if (Model.HasPassword)
+                    {
+                        @Html.ActionLink("Change your password", "ChangePassword")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Create", "SetPassword")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
     <h4>Change your account settings</h4>
     <hr />
