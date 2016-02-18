@@ -38,5 +38,6 @@ namespace HERO.Models.Objects
         public virtual Subscription Subscription { get; set; }
         public virtual IList<Class> Classes { get; set; }
         public virtual IList<Performance> Performances { get; set; }
+        public virtual ClassReminders Reminders { get; set; }
     }
 }

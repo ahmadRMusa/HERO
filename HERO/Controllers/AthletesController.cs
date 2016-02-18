@@ -98,7 +98,14 @@ namespace HERO.Controllers
                 Gender = model.Gender,
                 BirthDate = model.BirthDate,
                 Subscription = _db.Subscriptions.Single(x => x.Id.Equals(model.SubscriptionId)),
-                SubscriptionLength = model.SubscriptionLength
+                SubscriptionLength = model.SubscriptionLength,
+            };
+
+            athlete.Reminders = new ClassReminders
+            {
+                Athlete = athlete,
+                AthleteId = athlete.Id,
+                Reminders = new List<Class>()
             };
 
             if (ModelState.IsValid)

@@ -126,3 +126,7 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResour
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ManyManyWeeklyDayOfWeek.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.Reminders.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedReminderListToClasses.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedReminderclass.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext._1to1ReminderAthlete.resources

@@ -237,6 +237,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PerformancesController.cs" />
+    <Compile Include="Controllers\RemindersController.cs" />
     <Compile Include="Controllers\SingleClassSetupsController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
     <Compile Include="Controllers\WeeklyClassSetupsController.cs" />
@@ -384,9 +385,25 @@
     <Compile Include="Migrations\GymContext\201602172026261_ManyManyWeeklyDayOfWeek.Designer.cs">
       <DependentUpon>201602172026261_ManyManyWeeklyDayOfWeek.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602181934019_Reminders.cs" />
+    <Compile Include="Migrations\GymContext\201602181934019_Reminders.Designer.cs">
+      <DependentUpon>201602181934019_Reminders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602182034543_AddedReminderListToClasses.cs" />
+    <Compile Include="Migrations\GymContext\201602182034543_AddedReminderListToClasses.Designer.cs">
+      <DependentUpon>201602182034543_AddedReminderListToClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602182127369_AddedReminderclass.cs" />
+    <Compile Include="Migrations\GymContext\201602182127369_AddedReminderclass.Designer.cs">
+      <DependentUpon>201602182127369_AddedReminderclass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\GymContext\201602182135406_1to1ReminderAthlete.cs" />
+    <Compile Include="Migrations\GymContext\201602182135406_1to1ReminderAthlete.Designer.cs">
+      <DependentUpon>201602182135406_1to1ReminderAthlete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
+    <Compile Include="Models\Objects\ClassReminders.cs" />
     <Compile Include="Models\Objects\Performance.cs" />
-    <Compile Include="Models\Objects\Reminder.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\AddWODToClassViewModel.cs" />
     <Compile Include="Models\ViewModels\AddWODToDatesViewModel.cs" />
@@ -1990,7 +2007,7 @@
     <Content Include="Views\Performances\Index.cshtml" />
     <Content Include="Views\Performances\Edit.cshtml" />
     <Content Include="Views\WOD\AddToDates.cshtml" />
-    <Content Include="Views\Home\Reminders.cshtml" />
+    <Content Include="Views\Reminders\AddRecurring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2105,6 +2122,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GymContext\201602172026261_ManyManyWeeklyDayOfWeek.resx">
       <DependentUpon>201602172026261_ManyManyWeeklyDayOfWeek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602181934019_Reminders.resx">
+      <DependentUpon>201602181934019_Reminders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602182034543_AddedReminderListToClasses.resx">
+      <DependentUpon>201602182034543_AddedReminderListToClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602182127369_AddedReminderclass.resx">
+      <DependentUpon>201602182127369_AddedReminderclass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602182135406_1to1ReminderAthlete.resx">
+      <DependentUpon>201602182135406_1to1ReminderAthlete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
