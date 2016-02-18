@@ -386,6 +386,7 @@
     </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\Objects\Performance.cs" />
+    <Compile Include="Models\Objects\Reminder.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\AddWODToClassViewModel.cs" />
     <Compile Include="Models\ViewModels\AddWODToDatesViewModel.cs" />
@@ -1989,6 +1990,7 @@
     <Content Include="Views\Performances\Index.cshtml" />
     <Content Include="Views\Performances\Edit.cshtml" />
     <Content Include="Views\WOD\AddToDates.cshtml" />
+    <Content Include="Views\Home\Reminders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

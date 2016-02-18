@@ -1,0 +1,64 @@
+﻿@model IEnumerable<HERO.Models.Objects.Reminder>
+
+@{
+    ViewBag.Title = "Reminders";
+}
+
+@Html.Partial("_LeftMenu")
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Reminders</h1>
+        </div>
+    </div>
+    <div class="row bootstrap-admin-no-edges-padding">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Notices</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                   @foreach (var reminder in Model)
+                   {
+                       if (reminder.Type == HERO.Models.Objects.ReminderType.RecordWod)
+                       {
+                            <div class="alert alert-info">
+                                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                <strong>Missing Performance!</strong> @reminder.Message @Html.ActionLink("Click here", "Create", new { controller = "Performances", classId = reminder.ClickId }) to get started.
+                            </div>
+                       }
+                   }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@foreach (var reminder in Model)
+{
+    if (reminder.Severity == HERO.Models.Objects.ReminderSeverity.Success)
+    {
+        <div class="alert alert-success">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <h4>Success!</h4>
+            Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        </div>
+    }
+    else if (reminder.Severity == HERO.Models.Objects.ReminderSeverity.Info)
+    {
+        <div class="alert alert-info">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <h4>Info!</h4>
+            Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <h4>Error!</h4>
+            Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        </div>
+    }
+}*@
