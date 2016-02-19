@@ -131,3 +131,15 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedReminderclass.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext._1to1ReminderAthlete.resources
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ManyManyClassClassReminders.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedEmailAddressToClassReminder.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedEmailAddressToClassReminder1.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.AddedEmailAddressToClassReminder2.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Common.Logging.Core.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Common.Logging.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Quartz.dll
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Common.Logging.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Common.Logging.xml
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Common.Logging.Core.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Common.Logging.Core.xml
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Quartz.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Quartz.xml

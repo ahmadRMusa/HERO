@@ -105,7 +105,8 @@ namespace HERO.Controllers
             {
                 Athlete = athlete,
                 AthleteId = athlete.Id,
-                Reminders = new List<Class>()
+                Reminders = new List<Class>(),
+                EmailAddress = athlete.EmailAddress
             };
 
             if (ModelState.IsValid)

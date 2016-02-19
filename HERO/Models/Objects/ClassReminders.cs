@@ -13,5 +13,6 @@ namespace HERO.Models.Objects
         public int AthleteId { get; set; }
         public virtual Athlete Athlete { get; set; }
         public IList<Class> Reminders { get; set; }
+        public string EmailAddress { get; set; }
     }
 }
