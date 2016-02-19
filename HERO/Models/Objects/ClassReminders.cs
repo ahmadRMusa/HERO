@@ -12,7 +12,7 @@ namespace HERO.Models.Objects
         [Key, ForeignKey("Athlete")]
         public int AthleteId { get; set; }
         public virtual Athlete Athlete { get; set; }
-        public IList<Class> Reminders { get; set; }
-        public string EmailAddress { get; set; }
+        public virtual IList<WeeklyClassSetup> WeeklyClassSetups { get; set; }
+        public virtual List<Class> Reminders { get; set; }
     }
 }

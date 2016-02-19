@@ -11,40 +11,39 @@ namespace HERO.Services
 {
     public class ReminderSender : IJob
     {
-        private GymContext _gymContext;
-        private IEmailSender _emailSender;
-
-        [Inject]
-        public ReminderSender(GymContext gymContext, IEmailSender emailSender)
+        public void Execute(IJobExecutionContext context)
         {
-            _gymContext = gymContext;
-            _emailSender = emailSender;
-        }
+            GymContext db = new GymContext();
 
-        public async void Execute(IJobExecutionContext context)
-        {
-            var athletes = _gymContext.Athletes.ToList();
+            var athletes = db.Athletes.ToList();
 
             foreach (var athlete in athletes)
             {
-                foreach(var cls in athlete.Reminders.Reminders)
-                {
-                    if (cls.Time - DateTime.Now <= new TimeSpan(24))
-                    {
-                        SendClassReminder(athlete.EmailAddress, cls);
-                        athlete.Reminders.Reminders.Remove(cls);
-                    }
-                }
-            }
+                TimeSpan fullDay = new TimeSpan(1, 0, 0, 0, 0);
 
-            await _gymContext.SaveChangesAsync();
+                List<Class> classesToRemind = athlete.Reminders.Reminders.Where(c => c.Time - DateTime.Now <= fullDay).ToList();
+
+                foreach(var cls in classesToRemind)
+                {
+                    SendReminder(athlete.EmailAddress, cls);
+                    athlete.Reminders.Reminders.Remove(cls);
+                }
+
+                db.SaveChanges();
+            }
         }
 
-        public async void SendClassReminder(string email, Class cls)
+        public async void SendReminder(string email, Class cls)
         {
+            SmtpMessageSender sender = new SmtpMessageSender();
             string subject = String.Format("Don't Forget to Signup for {0}!", cls.Type);
-            string message = String.Format("You still haven't signed up for your {0} class on {1}!", cls.Type, cls.Time.Value.ToString("MM/dd/yyyy"));
-            await _emailSender.SendEmailAsync(email, subject, message);
+            string greeting = String.Format("<h1>Hey there!</h1>");
+            string body = String.Format("<p>You still haven't signed up for your {0} class on {1}!</p>", cls.Type, cls.Time.Value.ToString("MM/dd/yyyy"));
+            string link = String.Format(@"<p><a href = ""http://localhost:11700/Account/Classes/Details?Id={0}"">Click here to signup!</a></p>", cls.Id);
+
+            string message = greeting + body + link;
+
+            await sender.SendEmailAsync(email, subject, message);
         }
     }
 }

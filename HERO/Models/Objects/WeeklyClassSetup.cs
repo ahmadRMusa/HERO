@@ -34,6 +34,7 @@ namespace HERO.Models.Objects
         public virtual IList<DayOfWeekModel> Days { get; set; }
         [Required]
         public virtual IList<Class> GeneratedClasses { get; set; }
+        public virtual IList<ClassReminders> AttachedReminders { get; set; }
         [NotMapped]
         public string[] SelectedDays { get; set; }
     }

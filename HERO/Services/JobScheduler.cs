@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Quartz;
+using Quartz.Impl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Quartz;
-using Quartz.Impl;
 
 namespace HERO.Services
 {
@@ -17,7 +17,7 @@ namespace HERO.Services
             IJobDetail job = JobBuilder.Create<ReminderSender>().Build();
 
             ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("classReminder", "reminders")
+                .WithIdentity("trigger1", "group1")
                 .StartNow()
                 .WithSimpleSchedule(x => x
                 .WithIntervalInSeconds(10)

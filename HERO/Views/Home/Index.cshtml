@@ -12,53 +12,43 @@
         </div>
     </div>
     <div class="row bootstrap-admin-no-edges-padding">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="text-muted bootstrap-admin-box-title">Details</div>
-                </div>
-                <div class="bootstrap-admin-panel-content">
-                    <ul>
-                        <li>An admin theme built with <a href="http://getbootstrap.com" target="_blank">Bootstrap 3.x.</a></li>
-                        <li>Free for personal and commercial use</li>
-                        <li>Inspired by and based on <a href="https://github.com/meritoo/Bootstrap-3-Admin-Theme" target="_blank">Bootstrap-3-Admin-Theme by meritoo</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="text-muted bootstrap-admin-box-title">Source</div>
-                </div>
-                <div class="bootstrap-admin-panel-content">
-                    <ul>
-                        <li>
-                            <a href="https://github.com/jrocket/MVC-Bootstrap-3-Admin-Template" target="_blank">Github Repository</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/jrocket/MVC-Bootstrap-3-Admin-Template/archive/master.zip">Download (.zip package)</a>
-                        </li>
-                        <li>
-                            License: MIT (see below)
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row bootstrap-admin-no-edges-padding">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="text-muted bootstrap-admin-box-title">License</div>
+                    <div class="text-muted bootstrap-admin-box-title">About HERO</div>
                 </div>
                 <div class="bootstrap-admin-panel-content">
-                    <p>The MIT License (MIT)</p>
-                    <p>Copyright © 2013 - <a href="https://github.com/jrocket">jrocket</a></p>
-                    <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-                    <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-                    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+                    <p>HERO is a light-weight software system designed specifically to streamline the tedious processes associated with managing a CrossFit gym. HERO provides an array of features for both  and athletes to improve their overall CrossFit experience.</p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <strong>Current Admin Features:</strong>
+                        <ul>
+                            <li>Manage all your athletes and subscription levels from one convienent dashboard</li>
+                            <li>Create recurring classes using the Weekly Class Scheduler</li>
+                            <li>Easiy create new WODs and add them to your classes so that your athletes can track their day to day performance</li>
+                            <li>Use the class calendar to add the same WOD to all classes that take place on that day</li>
+                        </ul>
+                        <strong>Planned Features:</strong>
+                        <ul>
+                            <li>A reminder system to keep you up to date on expiring athlete contracts, class-renewals, etc</li>
+                            <li>Class and athlete analytics to help you understand how clients interact with your gym</li>
+                            <li>WOD and class searching to help you go back through the workouts you've assigned in the past</li>
+                        </ul>
+                    } else
+                    {
+                        <strong>Current Athlete Features:</strong>
+                        <ul>
+                            <li>Easily get details about every class at your gym including the assigned WOD and the other members attending</li>
+                            <li>Use the convienent class calendar to sign up for classes with just a few clicks</li>
+                            <li>Go back through your past classes and record your performance against that classes workout</li>
+                        </ul>
+                        <strong>Planned Features:</strong>
+                        <ul>
+                            <li>Set up email reminders to tell you when you haven't signed up for the class you normally attend</li>
+                            <li>Search through your performances to see your improvement against specific movements or WODs</li>
+                            <li>Easily store your performance data for the CrossFit HERO and GIRL workouts, and visualize your improvements in those workouts over time</li>
+                        </ul>
+                    }
                 </div>
             </div>
         </div>

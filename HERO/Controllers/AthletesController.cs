@@ -105,8 +105,7 @@ namespace HERO.Controllers
             {
                 Athlete = athlete,
                 AthleteId = athlete.Id,
-                Reminders = new List<Class>(),
-                EmailAddress = athlete.EmailAddress
+                Reminders = new List<Class>()
             };
 
             if (ModelState.IsValid)
@@ -142,6 +141,9 @@ namespace HERO.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Athlete athlete = await _db.Athletes.FindAsync(id);
+            ClassReminders reminders = await _db.ClassReminders.FindAsync(athlete.Id);
+
+            _db.ClassReminders.Remove(reminders);
             _db.Athletes.Remove(athlete);
 
             var user = await _userManager.FindByIdAsync(athlete.ApplicationUserId);
