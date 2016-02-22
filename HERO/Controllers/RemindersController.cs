@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using HERO.Models.Objects;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using HERO.Models.ViewModels;
 
 namespace HERO.Controllers
 {
@@ -22,23 +23,48 @@ namespace HERO.Controllers
         // GET: Reminders
         public ActionResult Index()
         {
-            return View();
+            string userId = HttpContext.User.Identity.GetUserId();
+            int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;
+
+            List<WeeklyClassSetup> classesWithReminders = db.WeeklyClasses.Where(w => w.AttachedReminders.Select(a => a.AthleteId).Contains(athleteId)).ToList();
+
+            List<int> classesWithRemindersIds = classesWithReminders.Select(c => c.Id).ToList();
+
+            List<WeeklyClassSetup> classesNoReminders = db.WeeklyClasses.Where(w => !classesWithRemindersIds.Contains(w.Id)).ToList();
+
+            var model = new ManageRemindersViewModel
+            {
+                ClassesWithReminders = classesWithReminders,
+                ClassesNoReminders = classesNoReminders
+            };
+
+            return View(model);
         }
 
-        // GET: Reminders/AddRecurring
-        public ActionResult AddRecurring()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteRecurring(int weeklyId)
         {
             string userId = HttpContext.User.Identity.GetUserId();
             int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;
-            try
+
+            WeeklyClassSetup weeklyClassSetup = await db.WeeklyClasses.FindAsync(weeklyId);
+            ClassReminders reminders = await db.ClassReminders.FindAsync(athleteId);
+
+            List<Class> classes = db.Classes.Where(a => a.WeeklyClass.Id.Equals(weeklyId)).ToList();
+            reminders.Reminders.RemoveAll(c => classes.Contains(c));
+
+            foreach(var cls in classes)
             {
-                List<int> currentWeeklyClassIds = db.ClassReminders.Find(athleteId).WeeklyClassSetups.Select(w => w.Id).ToList();
-                List<WeeklyClassSetup> availableReminders = db.WeeklyClasses.Where(w => !currentWeeklyClassIds.Contains(w.Id)).ToList();
-                return View(availableReminders);
-            } catch
-            {
-                return View(db.WeeklyClasses.ToList());
+                cls.AttachedReminders.Remove(reminders);
             }
+
+            reminders.WeeklyClassSetups.Remove(weeklyClassSetup);
+            weeklyClassSetup.AttachedReminders.Remove(reminders);
+
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index", new { controller = "Reminders" });
+
         }
 
         [HttpPost]
@@ -63,7 +89,7 @@ namespace HERO.Controllers
             weeklyClassSetup.AttachedReminders.Add(reminders);
 
             await db.SaveChangesAsync();
-            return RedirectToAction("AddRecurring", new { controller = "Reminders" });
+            return RedirectToAction("Index", new { controller = "Reminders" });
         }
     }
 }
