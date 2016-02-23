@@ -47,9 +47,8 @@ else
     {
         <div class="row">
             <div class="alert alert-success bootstrap-admin-alert">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <h4>@ViewData["SuccessHeader"].ToString()</h4>
-                @ViewData["SuccessBody"].ToString()
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <strong>@ViewData["SuccessHeader"].ToString().</strong> @ViewData["SuccessBody"].ToString()
             </div>
         </div>
     }
@@ -79,16 +78,18 @@ else
                     }
                     else
                     {
-                        if (Model.Class.Time.Value > DateTime.Now)
+                        //if (Model.Class.Time.Value > DateTime.Now)
+                        //{
+                        // Remove this if statement from the statements below to seed database.
+                        //}
+
+                        if (!AthleteInClass)
                         {
-                            if (!AthleteInClass)
-                            {
-                                <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
-                            }
-                            else
-                            {
-                                <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
-                            }
+                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
+                        }
+                        else
+                        {
+                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
                         }
                     }
                     @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-default" })
@@ -129,12 +130,17 @@ else
                 @if (Model.Class.WOD != null)
                 {
                     <div class="bootstrap-admin-panel-content">
+                        <h3>@Model.Class.WOD.Name</h3>
                         @Html.Raw(Model.Class.WOD.Description)
                         @if (User.IsInRole("Admin") && Model.Class.Time.Value >= DateTime.Now)
                         {
                             <hr />
-                                @Html.ActionLink("Change WOD", "AddToClass", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
-                                <a href="javascript:document.getElementById('remove-wod-form').submit()" class="btn btn-default">Remove WOD</a>
+                            @Html.ActionLink("Change WOD", "AddToClass", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                            <a href="javascript:document.getElementById('remove-wod-form').submit()" class="btn btn-default">Remove WOD</a>
+                        } else if (User.IsInRole("Admin") && Model.Class.Time.Value <= DateTime.Now)
+                        {
+                            <hr />
+                            <p>This class has already occurred.</p>
                         }
                         else if (User.IsInRole("Athlete") && Model.Class.Time.Value <= DateTime.Now)
                         {

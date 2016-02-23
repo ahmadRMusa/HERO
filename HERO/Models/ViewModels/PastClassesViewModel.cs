@@ -9,7 +9,7 @@ namespace HERO.Models
     public class PastClassesViewModel
     {
         public int AthleteId { get; set; }
-        public List<string> RecordedWods { get; set; }
+        public List<Performance> Performances { get; set; }
         public List<Class> Classes { get; set; }
     }
 }

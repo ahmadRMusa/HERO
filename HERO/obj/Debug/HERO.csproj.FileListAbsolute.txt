@@ -102,3 +102,4 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ForeignKeyForPerformances.resources

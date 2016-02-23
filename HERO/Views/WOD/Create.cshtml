@@ -18,7 +18,7 @@
         <div class="row">
             <div class="alert alert-info">
                 <a class="close" data-dismiss="alert" href="#">&times;</a>
-                <strong>Notice!</strong> You are creating a new WOD for this specific class (ID: @Model.ClassId). If you instead want to add the stand-alone WOD, @Html.ActionLink("click here", "Create", new { controller = "WOD" }).
+                <strong>Notice!</strong> You are creating a new WOD for class #@Model.ClassId. If you instead want to add the stand-alone WOD, @Html.ActionLink("click here", "Create", new { controller = "WOD" }). If you'd like to search for an existing WOD, @Html.ActionLink("click here", "AddToClass", new { controller = "WOD", classId = Model.ClassId }).
             </div>
         </div>
     }
@@ -60,7 +60,14 @@
                         }
                         <hr />
                         <button type="submit" value="Create" class="btn btn-primary">Add WOD</button>
-                        @Html.ActionLink("Cancel", "Index", new { controller = "Classes" } , new { @class = "btn btn-default" })
+                        @if (Model.ClassId != null)
+                        {
+                            @Html.ActionLink("Cancel", "Details", new { controller = "Classes", id = Model.ClassId }, new { @class = "btn btn-default" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Cancel", "Index", new { controller = "Classes" }, new { @class = "btn btn-default" })
+                        }
                     </fieldset>
                 }
             </div>

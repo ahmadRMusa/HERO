@@ -50,9 +50,8 @@ namespace HERO.Controllers
             try
             {
                 Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
-                List<string> wodNames = athlete.Performances.Select(p => p.WOD.Name).ToList();
                 List<Class> classes = athlete.Classes.Where(c => c.Time < DateTime.Now).OrderByDescending(d => d.Time).ToList();
-                PastClassesViewModel model = new PastClassesViewModel { AthleteId = athlete.Id, Classes = classes, RecordedWods = wodNames };
+                PastClassesViewModel model = new PastClassesViewModel { AthleteId = athlete.Id, Classes = classes, Performances = athlete.Performances.ToList() };
                 return View(model);
             }
             catch

@@ -1,0 +1,147 @@
+﻿@model HERO.Models.ViewModels.ManageRemindersViewModel
+
+@{
+    ViewBag.Title = "Manage Recurring Reminders";
+}
+
+@using (Html.BeginForm("AddRecurring", "Reminders", FormMethod.Post, new { style = "display:none;", id = "add-recurring-form" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="" name="weeklyId" id="add-class-input" />
+}
+
+@using (Html.BeginForm("DeleteRecurring", "Reminders", FormMethod.Post, new { style = "display:none;", id = "delete-recurring-form" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="" name="weeklyId" id="del-class-input" />
+}
+
+@Html.Partial("_LeftMenu")
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="bootstrap-admin-content-title">
+            <h1>Manage Recurring Reminders</h1>
+        </div>
+    </div>
+    @if (Model.ClassesWithReminders.Count() == 0)
+    {
+        <div class="row bootstrap-admin-no-edges-padding">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">No Currently Scheduled Reminders</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <p>Woops, it looks like you don't have any recurring class reminders scheduled. Take a look at the weekly classes listed below if you'd like to add one.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Currently Scheduled Reminders</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Class Type</th>
+                                <th>Days</th>
+                                <th>Time</th>
+                                <th>Duration</th>
+                                <th>Max Attendance</th>
+                                <th>Manage</th>
+                            </tr>
+                            @foreach (var item in Model.ClassesWithReminders)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(m => item.Type)</td>
+                                    <td>@string.Join(", ", item.Days.Select(x => x.Day.ToString()))</td>
+                                    <td>@item.Time.ToString(@"hh\:mm")</td>
+                                    <td>@(item.Duration + " Hours")</td>
+                                    <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                    <td>
+                                        <a href="#" class="btn btn-xs btn-default delete-recurring-button" data-weekly-id="@item.Id">Delete Reminder</a>
+                                    </td>
+                                </tr>
+                            }
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.ClassesNoReminders.Count() == 0)
+    {
+        <div class="row bootstrap-admin-no-edges-padding">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-muted bootstrap-admin-box-title">No Available Reminders</div>
+                    </div>
+                    <div class="bootstrap-admin-panel-content">
+                        <p>It looks like there are no weekly classes that you don't already have reminders for.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-muted bootstrap-admin-box-title">Available Reminders</div>
+                </div>
+                <div class="bootstrap-admin-panel-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Class Type</th>
+                                <th>Days</th>
+                                <th>Time</th>
+                                <th>Duration</th>
+                                <th>Max Attendance</th>
+                                <th>Manage</th>
+                            </tr>
+                            @foreach (var item in Model.ClassesNoReminders)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(m => item.Type)</td>
+                                    <td>@string.Join(", ", item.Days.Select(x => x.Day.ToString()))</td>
+                                    <td>@item.Time.ToString(@"hh\:mm")</td>
+                                    <td>@(item.Duration + " Hours")</td>
+                                    <td>@Html.DisplayFor(m => item.MaxAttendance)</td>
+                                    <td>
+                                        <a href="#" class="btn btn-xs btn-default add-recurring-button" data-weekly-id="@item.Id">Add Reminder</a>
+                                    </td>
+                                </tr>
+                            }
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            @Html.ActionLink("Cancel", "Index", new { controller = "Home" }, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script>
+        $(".add-recurring-button").click(function () {
+            var $classId = $(this).attr("data-weekly-id");
+            $("#add-class-input").val($classId);
+            $("#add-recurring-form").submit();
+        });
+        $(".delete-recurring-button").click(function () {
+            var $classId = $(this).attr("data-weekly-id");
+            $("#del-class-input").val($classId);
+            $("#delete-recurring-form").submit();
+        });
+    </script>
+}

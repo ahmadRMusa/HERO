@@ -63,13 +63,14 @@
                                         <td>@Html.ActionLink(item.Type, "Details", new { controller = "Classes", id = item.Id })</td>
                                         <td>@Html.DisplayFor(m => item.Time)</td>
                                         <td>@item.WOD.Name</td>
-                                        @if (!Model.RecordedWods.Contains(item.WOD.Name))
+                                        <!-- if class does not contain athlete's performance -->
+                                        @if (!item.Performances.Any(p => p.AthleteId.Equals(Model.AthleteId)))
                                         {
                                             <td>@Html.ActionLink("Add Your Performance", "Create", new { controller = "Performances", classId = item.Id } )</td>
                                         }
                                         else
                                         {
-                                            var performance = item.Performances.Single(p => p.Athlete.Id == Model.AthleteId);
+                                            var performance = item.Performances.Single(p => p.AthleteId.Equals(Model.AthleteId));
                                             <td>@Html.WODScore(item.WOD.Scoring, performance.ScoreActual)</td>
                                         }
                                     </tr>

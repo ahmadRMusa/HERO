@@ -265,6 +265,10 @@
     <Compile Include="Migrations\GymContext\201602191816294_IListToListinReminders.Designer.cs">
       <DependentUpon>201602191816294_IListToListinReminders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GymContext\201602231558558_ForeignKeyForPerformances.cs" />
+    <Compile Include="Migrations\GymContext\201602231558558_ForeignKeyForPerformances.Designer.cs">
+      <DependentUpon>201602231558558_ForeignKeyForPerformances.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\Objects\ClassReminders.cs" />
     <Compile Include="Models\Objects\Performance.cs" />
@@ -1877,8 +1881,7 @@
     <Content Include="Views\Performances\Index.cshtml" />
     <Content Include="Views\Performances\Edit.cshtml" />
     <Content Include="Views\WOD\AddToDates.cshtml" />
-    <Content Include="Views\Reminders\AddRecurring.cshtml" />
-    <Content Include="Views\Reminders\Index.cshtml" />
+    <Content Include="Views\Reminders\Class.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1894,6 +1897,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\GymContext\201602191816294_IListToListinReminders.resx">
       <DependentUpon>201602191816294_IListToListinReminders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GymContext\201602231558558_ForeignKeyForPerformances.resx">
+      <DependentUpon>201602231558558_ForeignKeyForPerformances.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

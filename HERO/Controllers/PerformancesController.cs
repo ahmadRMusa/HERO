@@ -16,7 +16,12 @@ namespace HERO.Controllers
 {
     public class PerformancesController : Controller
     {
-        private GymContext db = new GymContext();
+        private GymContext db;
+
+        public PerformancesController(GymContext context)
+        {
+            db = context;
+        }
 
         // GET: Performances
         public async Task<ActionResult> Index()
@@ -56,6 +61,7 @@ namespace HERO.Controllers
         public async Task<ActionResult> Create([Bind(Include = "Id,ScoreInput,Description,Prescribed")] Performance performance, int classId)
         {
             Class cls = await db.Classes.FindAsync(classId);
+
             string userId = HttpContext.User.Identity.GetUserId();
             Athlete athlete = db.Athletes.Single(a => a.ApplicationUserId.Equals(userId));
 
@@ -80,6 +86,9 @@ namespace HERO.Controllers
             performance.Class = cls;
             performance.Athlete = athlete;
             performance.WOD = cls.WOD;
+
+            cls.Performances.Add(performance);
+            athlete.Performances.Add(performance);
 
             ModelState.Remove("Description");
             ModelState.Remove("Prescribed");

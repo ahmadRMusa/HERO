@@ -1,13 +1,12 @@
-﻿using System;
-using HERO.Models;
+﻿using HERO.Models;
+using HERO.Models.Objects;
+using HERO.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using HERO.Models.Objects;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using HERO.Models.ViewModels;
+using System.Web.Mvc;
 
 namespace HERO.Controllers
 {
@@ -20,8 +19,16 @@ namespace HERO.Controllers
             db = context;
         }
 
+        public ActionResult Performance()
+        {
+            string userId = HttpContext.User.Identity.GetUserId();
+            int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;
+
+            throw new NotImplementedException();
+        }
+
         // GET: Reminders
-        public ActionResult Index()
+        public ActionResult Class()
         {
             string userId = HttpContext.User.Identity.GetUserId();
             int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;

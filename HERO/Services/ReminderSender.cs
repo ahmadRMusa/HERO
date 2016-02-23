@@ -19,23 +19,24 @@ namespace HERO.Services
 
             foreach (var athlete in athletes)
             {
+                #region Class Reminders
                 TimeSpan fullDay = new TimeSpan(1, 0, 0, 0, 0);
-
                 TimeSpan noTime = new TimeSpan(0, 0, 0);
 
                 List<Class> classesToRemind = athlete.Reminders.Reminders.Where(c => c.Time - DateTime.Now <= fullDay && c.Time - DateTime.Now >= noTime).ToList();
 
                 foreach(var cls in classesToRemind)
                 {
-                    SendReminder(athlete.EmailAddress, cls);
+                    SendClassReminder(athlete.EmailAddress, cls);
                     athlete.Reminders.Reminders.Remove(cls);
                 }
 
                 db.SaveChanges();
+                #endregion
             }
         }
 
-        public async void SendReminder(string email, Class cls)
+        public async void SendClassReminder(string email, Class cls)
         {
             SmtpMessageSender sender = new SmtpMessageSender();
             string subject = String.Format("Don't Forget to Signup for {0}!", cls.Type);

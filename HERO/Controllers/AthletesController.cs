@@ -143,6 +143,13 @@ namespace HERO.Controllers
             Athlete athlete = await _db.Athletes.FindAsync(id);
             ClassReminders reminders = await _db.ClassReminders.FindAsync(athlete.Id);
 
+            List<int> reminderClassIds = reminders.Reminders.Select(r => r.Id).ToList();
+            List<Class> classes = _db.Classes.Where(c => reminderClassIds.Contains(c.Id)).ToList();
+            foreach(var cls in classes)
+            {
+                cls.AttachedReminders.Remove(reminders);
+            }
+
             _db.ClassReminders.Remove(reminders);
             _db.Athletes.Remove(athlete);
 

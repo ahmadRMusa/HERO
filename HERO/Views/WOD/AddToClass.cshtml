@@ -47,7 +47,7 @@
                         </div>
                         <hr />
                         <button type="submit" value="AddToClass" class="btn btn-primary">Add WOD to Class</button>
-                        @Html.ActionLink("Cancel", "Index", new { controller = "Classes" }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Cancel", "Details", new { controller = "Classes", id = Model.ClassId }, new { @class = "btn btn-default" })
                     </fieldset>
                 }
             </div>
