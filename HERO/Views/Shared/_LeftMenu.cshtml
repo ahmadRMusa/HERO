@@ -1,7 +1,7 @@
 ﻿<!-- left, vertical navbar -->
 <div class="col-md-2 bootstrap-admin-col-left">
     <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
-        @Html.MenuItem("About", "Index", "Home")
+        @Html.MenuItem("Home", "Index", "Home")
         @if (User.IsInRole("Admin"))
         {
             @Html.MenuItem("Athletes", "Index", "Athletes")
