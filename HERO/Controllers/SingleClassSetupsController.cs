@@ -1,4 +1,4 @@
-﻿using HERO.Constants;
+﻿using HERO.Extensions;
 using HERO.Models;
 using HERO.Models.Objects;
 using System;
@@ -74,7 +74,7 @@ namespace HERO.Controllers
                     await db.SaveChangesAsync();
                 } catch(DbEntityValidationException e)
                 {
-                    ConstantValues.ThrowDetailedEntityValidationErrors(e);
+                    e.ThrowDetailedEntityValidationErrors();
                 }
 
                 return RedirectToAction("Index");
@@ -110,7 +110,7 @@ namespace HERO.Controllers
                     await db.SaveChangesAsync();
                 } catch(DbEntityValidationException e)
                 {
-                    ConstantValues.ThrowDetailedEntityValidationErrors(e);
+                    e.ThrowDetailedEntityValidationErrors();
                 }
 
                 return RedirectToAction("Index");

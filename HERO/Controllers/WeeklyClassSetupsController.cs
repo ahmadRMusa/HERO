@@ -1,4 +1,4 @@
-﻿using HERO.Constants;
+﻿using HERO.Utilities;
 using HERO.Models;
 using HERO.Models.Objects;
 using HERO.Scheduler;
@@ -84,7 +84,7 @@ namespace HERO.Controllers
             };
             weeklySchedule.SetDays(chosenDays);
             var schedules = new List<Schedule>() { weeklySchedule };
-            List<Class> classes = _calendarGenerator.GenerateCalendar(ConstantValues.calendarPeriod, schedules).ToList();
+            List<Class> classes = _calendarGenerator.GenerateCalendar(Utilities.Constants.calendarPeriod, schedules).ToList();
 
             foreach(var item in classes)
             {

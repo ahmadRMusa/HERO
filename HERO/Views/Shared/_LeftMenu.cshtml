@@ -15,6 +15,9 @@
         {
             @Html.MenuItem("Calendar", "Index", "Classes")
             @Html.MenuItem("Class Reminders", "Class", "Reminders")
+            <li>
+                <a href="@Url.Action("Performance", new { controller = "Reminders" })"><span class="badge pull-right" id="wod-badge"></span> WOD Reminders</a>
+            </li>
             @Html.MenuItem("Past Classes", "PastClasses", "Classes")
             @Html.MenuItem("Performances", "Index", "Performances")
             @Html.MenuItem("Upcoming Classes", "UpcomingClasses", "Classes")

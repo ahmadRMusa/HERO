@@ -86,8 +86,8 @@ namespace HERO.Controllers
 
         public ActionResult AddToDates(string start, string end)
         {
-            DateTime startDate = Constants.ConstantValues.GetDateTimeFromFullCalendar(start);
-            DateTime endDate = Constants.ConstantValues.GetDateTimeFromFullCalendar(end);
+            DateTime startDate = Utilities.Constants.GetDateTimeFromFullCalendar(start);
+            DateTime endDate = Utilities.Constants.GetDateTimeFromFullCalendar(end);
 
             var model = new AddWODToDatesViewModel { StartDate = startDate, EndDate = endDate };
             return View(model);

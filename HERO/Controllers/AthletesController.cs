@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HERO.Models;
-using HERO.Constants;
+using HERO.Utilities;
 using HERO.Models.Objects;
 using HERO.Services;
 using Microsoft.AspNet.Identity;
@@ -53,7 +53,7 @@ namespace HERO.Controllers
             List<Subscription> subscriptions = _db.Subscriptions.ToList();
 
             ViewBag.SubscriptionLength = new SelectList(
-                    ConstantValues.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value }),
+                    Utilities.Constants.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value }),
                     "value",
                     "text");
 
@@ -71,7 +71,7 @@ namespace HERO.Controllers
             List<Subscription> subscriptions = _db.Subscriptions.ToList();
 
             ViewBag.SubscriptionLength = new SelectList(
-                    ConstantValues.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value } ),
+                    Utilities.Constants.SubscriptionLengthOptions.Select(x => new { text = x.Key, value = x.Value } ),
                     "value",
                     "text");
 
@@ -163,7 +163,7 @@ namespace HERO.Controllers
         public async Task BeginAthleteSetup(Athlete athlete)
         {
             Guid token = Guid.NewGuid();
-            string emailBody = ConstantValues.GetEmailBody(athlete.FirstName, "CrossFit Example", token);
+            string emailBody = Utilities.Constants.GetEmailBody(athlete.FirstName, "CrossFit Example", token);
             await _emailSender.SendEmailAsync(athlete.EmailAddress, "Welcome to CrossFit Example!", emailBody);
 
             var keys = new AthleteSignupKey

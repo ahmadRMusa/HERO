@@ -242,7 +242,8 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Constants\ConstantValues.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AthletesController.cs" />
     <Compile Include="Controllers\ClassesController.cs" />
@@ -1882,6 +1883,7 @@
     <Content Include="Views\Performances\Edit.cshtml" />
     <Content Include="Views\WOD\AddToDates.cshtml" />
     <Content Include="Views\Reminders\Class.cshtml" />
+    <Content Include="Views\Reminders\Performance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

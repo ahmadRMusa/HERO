@@ -159,8 +159,8 @@ namespace HERO.Controllers
 
         public async Task<JsonResult> GetScheduledClasses(string start, string end)
         {
-            DateTime startDate = Constants.ConstantValues.UnixTimestampToDateTime(Convert.ToDouble(start));
-            DateTime endDate = Constants.ConstantValues.UnixTimestampToDateTime(Convert.ToDouble(end));
+            DateTime startDate = Utilities.Constants.UnixTimestampToDateTime(Convert.ToDouble(start));
+            DateTime endDate = Utilities.Constants.UnixTimestampToDateTime(Convert.ToDouble(end));
 
             List<Class> classes = await db.Classes.Where(x => x.Time >= startDate && x.Time <= endDate).ToListAsync();
             List<ClassJsonModel> jsonModel = classes.Select(x => new ClassJsonModel {

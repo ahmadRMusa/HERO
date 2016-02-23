@@ -67,5 +67,17 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        (function poll() {
+            $.ajax({
+                url: "@Url.Action("PerformanceReminderCount", "Reminders")",
+                success: function (data) {
+                    $("#wod-badge").text(data);
+                },
+                dataType: "json"
+            });
+            setTimeout(poll, 30000);
+        })();
+    </script>
 </body>
 </html>

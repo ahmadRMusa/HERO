@@ -24,7 +24,21 @@ namespace HERO.Controllers
             string userId = HttpContext.User.Identity.GetUserId();
             int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;
 
-            throw new NotImplementedException();
+            List<Class> allClasses = db.Athletes.Single(a => a.Id.Equals(athleteId)).Classes.ToList();
+            List<Class> pastClassesNoPerformance = allClasses.Where(c => !c.Performances.Select(p => p.AthleteId).Contains(athleteId) && c.Time < DateTime.Now).ToList();
+
+            return View(pastClassesNoPerformance);
+        }
+
+        public JsonResult PerformanceReminderCount()
+        {
+            string userId = HttpContext.User.Identity.GetUserId();
+            int athleteId = db.Athletes.AsNoTracking().Select(a => new { Id = a.Id, AppId = a.ApplicationUserId }).Single(b => b.AppId.Equals(userId)).Id;
+
+            List<Class> classes = db.Athletes.Single(a => a.Id.Equals(athleteId)).Classes.ToList();
+            classes = classes.Where(c => !c.Performances.Select(p => p.AthleteId).Contains(athleteId) && c.Time < DateTime.Now).ToList();
+
+            return Json(classes.Count(), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Reminders
