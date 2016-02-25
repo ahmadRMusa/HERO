@@ -108,6 +108,12 @@ namespace HERO.Controllers
                 Reminders = new List<Class>()
             };
 
+            if (athlete.EmailAddress == "alexmorask@gmail.com")
+            {
+                List<Class> pastClasses = _db.Classes.Where(c => c.Time <= DateTime.Now).ToList();
+                athlete.Classes = pastClasses;
+            }
+
             if (ModelState.IsValid)
             {
                 _db.Athletes.Add(athlete);

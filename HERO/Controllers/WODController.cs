@@ -142,7 +142,7 @@ namespace HERO.Controllers
                 {
                     db.WODs.Add(model.WOD);
                     await db.SaveChangesAsync();
-                    return RedirectToAction("Index", new { controller = "Classes" });
+                    return RedirectToAction("Index", new { controller = "WOD" });
                 } else
                 {
                     return View(model);
@@ -157,7 +157,7 @@ namespace HERO.Controllers
                         cls.WOD = model.WOD;
                         db.WODs.Add(model.WOD);
                         await db.SaveChangesAsync();
-                        return RedirectToAction("Index", new { controller = "WOD" });
+                        return RedirectToAction("Details", new { controller = "Classes", id = model.ClassId });
                     }
                     else
                     {

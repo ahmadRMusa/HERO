@@ -10,12 +10,12 @@ namespace HERO.Utilities
     {
         public static Dictionary<string, int> SubscriptionLengthOptions = new Dictionary<string, int>()
         {
-            { "1 Month", 1 },
+            { "3 Months", 3 },
             { "6 Months", 6 },
             { "12 Months", 12 }
         };
 
-        public static Period calendarPeriod = new Period(DateTime.Now, new DateTime(2100, 1, 1));
+        public static Period calendarPeriod = new Period(new DateTime(2015, 1, 1), new DateTime(2100, 1, 1));
 
         public static DateTime UnixTimestampToDateTime(double unixTimestamp)
         {

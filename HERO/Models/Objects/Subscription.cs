@@ -12,18 +12,15 @@ namespace HERO.Models.Objects
         [Required]
         [Display(Name = "Subscription Name")]
         public string Name { get; set; }
-        [Display(Name = "Monthly Price")]
+        [Display(Name = "3 Month Price")]
         [DataType(DataType.Currency)]
-        public decimal PricePerMonth { get; set; }
-        [Display(Name = "6-Month Price")]
+        public decimal ThreeMonthPrice { get; set; }
+        [Display(Name = "6 Month Price")]
         [DataType(DataType.Currency)]
-        public decimal PricePerHalfYear { get; set; }
-        [Display(Name = "Yearly Price")]
+        public decimal SixMonthPrice { get; set; }
+        [Display(Name = "12 Month Price")]
         [DataType(DataType.Currency)]
-        public decimal PricePerYear { get; set; }
-        [Display(Name = "Description")]
-        [StringLength(300)]
-        public string Description { get; set; }
+        public decimal TwelveMonthPrice { get; set; }
         public virtual IList<Athlete> Athletes { get; set; }
     }
 }

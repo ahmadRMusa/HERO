@@ -243,6 +243,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Migrations\GymContext\201602251421522_ChangedSubscription.cs" />
+    <Compile Include="Migrations\GymContext\201602251421522_ChangedSubscription.Designer.cs">
+      <DependentUpon>201602251421522_ChangedSubscription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AthletesController.cs" />
@@ -262,14 +266,6 @@
     <Compile Include="HtmlHelperExtensions\MenuExtensions.cs" />
     <Compile Include="HtmlHelperExtensions\TextExtensions.cs" />
     <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
-    <Compile Include="Migrations\GymContext\201602191816294_IListToListinReminders.cs" />
-    <Compile Include="Migrations\GymContext\201602191816294_IListToListinReminders.Designer.cs">
-      <DependentUpon>201602191816294_IListToListinReminders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\GymContext\201602231558558_ForeignKeyForPerformances.cs" />
-    <Compile Include="Migrations\GymContext\201602231558558_ForeignKeyForPerformances.Designer.cs">
-      <DependentUpon>201602231558558_ForeignKeyForPerformances.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\GymContext\Configuration.cs" />
     <Compile Include="Models\Objects\ClassReminders.cs" />
     <Compile Include="Models\Objects\Performance.cs" />
@@ -1897,11 +1893,8 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\GymContext\201602191816294_IListToListinReminders.resx">
-      <DependentUpon>201602191816294_IListToListinReminders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\GymContext\201602231558558_ForeignKeyForPerformances.resx">
-      <DependentUpon>201602231558558_ForeignKeyForPerformances.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\GymContext\201602251421522_ChangedSubscription.resx">
+      <DependentUpon>201602251421522_ChangedSubscription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

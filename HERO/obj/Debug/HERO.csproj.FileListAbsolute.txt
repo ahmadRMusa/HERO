@@ -98,8 +98,7 @@ C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.OAuth.xm
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\alexm\Documents\Projects\HERO\HERO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.IListToListinReminders.resources
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.dll
 C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.pdb
-C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ForeignKeyForPerformances.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.Migrations.GymContext.ChangedSubscription.resources
+C:\Users\alexm\Documents\Projects\HERO\HERO\obj\Debug\HERO.csproj.GenerateResource.Cache

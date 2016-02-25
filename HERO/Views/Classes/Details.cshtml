@@ -159,7 +159,7 @@ else
                 }
                 else
                 {
-                    if (User.IsInRole("Admin"))
+                    if (User.IsInRole("Admin") && Model.Class.Time.Value >= DateTime.Now)
                     {
                         <div class="bootstrap-admin-panel-content">
                             <p>It looks like you haven't added a WOD to this class yet.</p>
@@ -167,6 +167,11 @@ else
                             @Html.ActionLink("Add a New WOD", "Create", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Add Existing WOD", "AddToClass", new { controller = "WOD", classId = Model.Class.Id }, new { @class = "btn btn-default" })
                         </div>
+                    }
+                    else if (User.IsInRole("Admin") && Model.Class.Time.Value < DateTime.Now)
+                    {
+                        <hr />
+                        <p>This class has already occurred.</p>
                     }
                     else
                     {

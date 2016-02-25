@@ -41,17 +41,17 @@
                         <thead>
                             <tr>
                                 <th>@Html.DisplayNameFor(m => m.Name)</th>
-                                <th>@Html.DisplayNameFor(m => m.PricePerMonth)</th>
-                                <th>@Html.DisplayNameFor(m => m.PricePerHalfYear)</th>
-                                <th>@Html.DisplayNameFor(m => m.PricePerYear)</th>
+                                <th>@Html.DisplayNameFor(m => m.ThreeMonthPrice)</th>
+                                <th>@Html.DisplayNameFor(m => m.SixMonthPrice)</th>
+                                <th>@Html.DisplayNameFor(m => m.TwelveMonthPrice)</th>
                             </tr>
                             @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@Html.ActionLink(item.Name, "Details", new { controller = "Subscriptions", id = item.Id })</td>
-                                    <td>@Html.DisplayFor(m => item.PricePerMonth)</td>
-                                    <td>@Html.DisplayFor(m => item.PricePerHalfYear)</td>
-                                    <td>@Html.DisplayFor(m => item.PricePerYear)</td>
+                                    <td>@Html.DisplayFor(m => item.ThreeMonthPrice)</td>
+                                    <td>@Html.DisplayFor(m => item.SixMonthPrice)</td>
+                                    <td>@Html.DisplayFor(m => item.TwelveMonthPrice)</td>
                                 </tr>
                             }
                         </thead>
