@@ -142,30 +142,22 @@ namespace HERO.Controllers
             return View(performance);
         }
 
-        // GET: Performances/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Performance performance = await db.Performances.FindAsync(id);
-            if (performance == null)
-            {
-                return HttpNotFound();
-            }
-            return View(performance);
-        }
-
         // POST: Performances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id, int classId)
         {
             Performance performance = await db.Performances.FindAsync(id);
+            string userId = HttpContext.User.Identity.GetUserId();
+            Athlete athlete = await db.Athletes.SingleAsync(a => a.ApplicationUserId.Equals(userId));
+            Class cls = await db.Classes.FindAsync(classId);
+
+            athlete.Performances.Remove(performance);
+            cls.Performances.Remove(performance);
             db.Performances.Remove(performance);
+
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { controller = "Classes", id = classId });
         }
 
         protected override void Dispose(bool disposing)

@@ -37,6 +37,17 @@ else
     }
 }
 
+@if (Model.Athlete.Performances.Any(p => p.WOD == Model.Class.WOD))
+{
+    var performance = Model.Athlete.Performances.Single(p => p.WOD == Model.Class.WOD);
+    using (Html.BeginForm("Delete", "Performances", FormMethod.Post, new { style = "display:none;", id = "remove-performance-form" }))
+    {
+        @Html.AntiForgeryToken();
+        <input type="hidden" name="id" value="@performance.Id" />
+        <input type="hidden" name="classId" value="@Model.Class.Id" />
+    }
+}
+
 <div class="col-md-10">
     <div class="row">
         <div class="bootstrap-admin-content-title">
@@ -78,18 +89,16 @@ else
                     }
                     else
                     {
-                        //if (Model.Class.Time.Value > DateTime.Now)
-                        //{
-                        // Remove this if statement from the statements below to seed database.
-                        //}
-
-                        if (!AthleteInClass)
+                        if (Model.Class.Time.Value > DateTime.Now)
                         {
-                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
-                        }
-                        else
-                        {
-                            <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
+                            if (!AthleteInClass)
+                            {
+                                <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Signup</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:document.getElementById('class-form').submit()" class="btn btn-primary">Cancel Signup</a>
+                            }
                         }
                     }
                     @Html.ActionLink("Back to Calendar", "Index", "Classes", new { @class = "btn btn-default" })
@@ -149,6 +158,7 @@ else
                             {
                                 var performance = Model.Athlete.Performances.Single(p => p.WOD == Model.Class.WOD);
                                 @Html.ActionLink("Edit Performance", "Edit", new { controller = "Performances", id = performance.Id, classId = Model.Class.Id }, new { @class = "btn btn-primary" })
+                                <a href="javascript:document.getElementById('remove-performance-form').submit()" class="btn btn-default">Delete Performance</a>
                             }
                             else
                             {

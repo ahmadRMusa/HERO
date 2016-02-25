@@ -84,7 +84,7 @@ namespace HERO.Controllers
             weeklyClassSetup.AttachedReminders.Remove(reminders);
 
             await db.SaveChangesAsync();
-            return RedirectToAction("Index", new { controller = "Reminders" });
+            return RedirectToAction("Class", new { controller = "Reminders" });
 
         }
 
@@ -110,7 +110,7 @@ namespace HERO.Controllers
             weeklyClassSetup.AttachedReminders.Add(reminders);
 
             await db.SaveChangesAsync();
-            return RedirectToAction("Index", new { controller = "Reminders" });
+            return RedirectToAction("Class", new { controller = "Reminders" });
         }
     }
 }
