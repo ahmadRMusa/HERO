@@ -203,7 +203,7 @@ namespace HERO.Controllers
 
             db.WODs.Remove(wod);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { controller = "WOD" });
         }
 
         protected override void Dispose(bool disposing)

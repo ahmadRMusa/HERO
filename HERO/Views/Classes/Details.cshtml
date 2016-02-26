@@ -37,16 +37,20 @@ else
     }
 }
 
-@if (Model.Athlete.Performances.Any(p => p.WOD == Model.Class.WOD))
+@if (Model.Athlete != null)
 {
-    var performance = Model.Athlete.Performances.Single(p => p.WOD == Model.Class.WOD);
-    using (Html.BeginForm("Delete", "Performances", FormMethod.Post, new { style = "display:none;", id = "remove-performance-form" }))
+    if (Model.Athlete.Performances.Any(p => p.WOD == Model.Class.WOD))
     {
-        @Html.AntiForgeryToken();
-        <input type="hidden" name="id" value="@performance.Id" />
-        <input type="hidden" name="classId" value="@Model.Class.Id" />
+        var performance = Model.Athlete.Performances.Single(p => p.WOD == Model.Class.WOD);
+        using (Html.BeginForm("Delete", "Performances", FormMethod.Post, new { style = "display:none;", id = "remove-performance-form" }))
+        {
+            @Html.AntiForgeryToken();
+            <input type="hidden" name="id" value="@performance.Id" />
+            <input type="hidden" name="classId" value="@Model.Class.Id" />
+        }
     }
 }
+
 
 <div class="col-md-10">
     <div class="row">
@@ -180,8 +184,11 @@ else
                     }
                     else if (User.IsInRole("Admin") && Model.Class.Time.Value < DateTime.Now)
                     {
-                        <hr />
-                        <p>This class has already occurred.</p>
+                        <div class="bootstrap-admin-panel-content">
+                            <p>A WOD has not been assigned for this class yet.</p>
+                            <hr />
+                            <p>This class has already occurred.</p>
+                        </div>
                     }
                     else
                     {
